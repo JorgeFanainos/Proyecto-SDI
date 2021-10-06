@@ -29,7 +29,7 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
             <h2>Sobre Nosotros</h2>
-            <Link to='/sign-up'>Como funcionamos</Link>
+            <Link to='/'>Cómo funcionamos?</Link>
             <Link to='/'>Testimonios</Link>
             <Link to='/'>Colaboradores</Link>
             <Link to='/'>Terminos de Uso</Link>
@@ -60,46 +60,25 @@ function Footer() {
           </div>
           <small class='website-rights'>PsicoPagina © 2020</small>
           <div class='social-icons'>
-            <Link
-              class='social-icon-link facebook'
-              to='/'
-              target='_blank'
-              aria-label='Facebook'
-            >
-              <i class='fab fa-facebook-f' />
-            </Link>
-            <Link
+            <a
               class='social-icon-link instagram'
-              to='/'
+              href='https://www.instagram.com/psicologiaonlinepagina'
+              rel='noreferrer'
               target='_blank'
               aria-label='Instagram'
             >
               <i class='fab fa-instagram' />
-            </Link>
-            <Link
-              class='social-icon-link youtube'
-              to='/'
-              target='_blank'
-              aria-label='Youtube'
-            >
-              <i class='fab fa-youtube' />
-            </Link>
-            <Link
+            </a>
+            <a
               class='social-icon-link twitter'
-              to='/'
+              href='https://twitter.com/Paginapsicolog1'
+              rel='noreferrer'
               target='_blank'
               aria-label='Twitter'
             >
               <i class='fab fa-twitter' />
-            </Link>
-            <Link
-              class='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='LinkedIn'
-            >
-              <i class='fab fa-linkedin' />
-            </Link>
+            </a>
+        
           </div>
         </div>
       </section>

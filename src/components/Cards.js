@@ -6,6 +6,7 @@ function Cards() {
   return (
     <div className='cards'>
       <h1>Conoce a nuestros Psicologos!</h1>
+      <p>Buscamos a los mejores psicologos para ayudarte! </p>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
