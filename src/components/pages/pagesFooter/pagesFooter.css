@@ -1,0 +1,17 @@
+.div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 500px;
+}
+.h1{
+    text-align: center;
+    text-decoration:underline;
+}
+
+.p{
+    display: flex;
+}
+
+.h3{
+    display: flex;
+}

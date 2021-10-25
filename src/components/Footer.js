@@ -8,10 +8,10 @@ function Footer() {
     <div className='footer-container'>
       <section className='footer-subscription'>
         <p className='footer-subscription-heading'>
-          Si necesitas ayuda profesional, no dudes en buscarla aqui!
+          Si necesitas ayuda profesional, no dudes en buscarla aquí!
         </p>
         <p className='footer-subscription-text'>
-          Puedes eliminar tu membresia en el momento que tu quieras!
+          Puedes eliminar tu membresia en el momento que tú quieras!
         </p>
         <div className='input-areas'>
           <form>
@@ -21,7 +21,7 @@ function Footer() {
               type='email'
               placeholder='Tu Correo'
             />
-            <Button buttonStyle='btn--outline'>Suscribete</Button>
+            <Button buttonStyle='btn--outline'>Suscríbete</Button>
           </form>
         </div>
       </section>
@@ -29,24 +29,25 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
             <h2>Sobre Nosotros</h2>
-            <Link to='/'>Cómo funcionamos?</Link>
-            <Link to='/'>Testimonios</Link>
-            <Link to='/'>Colaboradores</Link>
-            <Link to='/'>Terminos de Uso</Link>
+            <Link to='/pasarela '>Pasarela De Pagos</Link>
+            <Link to='/comoFuncionamos'>Cómo funcionamos?</Link>
+            <Link to='/testimonios'>Testimonios</Link>
+            <Link to='/colaboradores'>Colaboradores</Link>
+            <Link to='/terminos'>Terminos de Uso</Link>
           </div>
           <div class='footer-link-items'>
-            <h2>Contactanos</h2>
-            <Link to='/'>Contacto</Link>
-            <Link to='/'>Soporte</Link>
+            <h2>Contáctanos</h2>
+            <Link to='/contactos'>Contacto</Link>
+            <Link to='/soporte'>Soporte</Link>
           </div>
         </div>
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
-            <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <h2>Redes Sociales</h2>
+            <a href='https://www.instagram.com/MyHelperSDI'
+              rel='noreferrer'>Instagram</a>
+            <a href='https://twitter.com/Paginapsicolog1'
+              rel='noreferrer'>Twitter</a>
           </div>
         </div>
       </div>
@@ -54,15 +55,15 @@ function Footer() {
         <div class='social-media-wrap'>
           <div class='footer-logo'>
             <Link to='/' className='social-logo'>
-              PsicoPagina
+              MyHelper
               <i class='fab fa-typo3' />
             </Link>
           </div>
-          <small class='website-rights'>PsicoPagina © 2020</small>
+          <small class='website-rights'>My Helper © 2020</small>
           <div class='social-icons'>
             <a
               class='social-icon-link instagram'
-              href='https://www.instagram.com/psicologiaonlinepagina'
+              href='https://www.instagram.com/MyHelperSDI'
               rel='noreferrer'
               target='_blank'
               aria-label='Instagram'
