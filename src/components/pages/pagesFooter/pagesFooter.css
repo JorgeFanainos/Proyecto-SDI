@@ -1,17 +1,61 @@
 .div{
     display: flex;
     flex-direction: column;
-    margin-left: 500px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 .h1{
     text-align: center;
     text-decoration:underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .p{
     display: flex;
+    text-align: justify;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .h3{
     display: flex;
+    text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.social-icon-link1 {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    display: flex;
+    flex-direction:column;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto 0 auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+.TextArea{
+    display: flex;
+    width: 30%;
+    height: 200px;
+    align-self: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.btn-formulario{
+    border: 2px solid rgb(255, 255, 255); 
+    padding: 10px 40px; 
+    display: inline-block; 
+    align-self: center;
+    text-decoration: none; 
+    color: #fff;
+    cursor: pointer;
+    background-color:#0d00c2;
+    width: 30%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+.btn-formulario:hover{
+    color:#0d00c2;
+    cursor: pointer;
+    background-color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }

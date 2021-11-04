@@ -40,7 +40,7 @@ function SignIn({
     return (
       <div class='inicar_sesion'>
         <h1 className='h1'>Iniciar sesión</h1>
-        <p className='p'>Introduce tus datos para Iniciar sesión.</p>
+        <p className='p2'>Introduce tus datos para Iniciar sesión.</p>
         <br/>
         <br/>
         <label className='correo'>Correo: </label>

@@ -3,10 +3,8 @@ import Navbar from './components/Navbar';
 import './App.css';
 import Home from './components/pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Services from './components/pages/Services';
 import Registro from './components/pages/Registro';
 import SignIn from './components/pages/SignIn';
-import CardItem from './components/CardItem';
 import Cards from './components/Cards';
 import Footer from './components/Footer';
 import RegistroPsico from './components/pages/RegistroPsico'

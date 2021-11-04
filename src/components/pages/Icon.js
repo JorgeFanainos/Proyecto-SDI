@@ -1,5 +1,6 @@
 import React from "react";
 import './Icon.css';
+import Swal from 'sweetalert2'
 export function Icon() {
   return (
     <svg className="svg"
@@ -208,4 +209,11 @@ export function Icon2() {
       <circle cx="981.017" cy="16.51" r="4.186" fill="#3f3d56"></circle>
     </svg>
   );
+}
+export function mensaje(){
+  Swal.fire(
+      'Gracias por contactarnos!',
+      'Su mensaje se envio Correctamente!',
+      'success'
+    )
 }
