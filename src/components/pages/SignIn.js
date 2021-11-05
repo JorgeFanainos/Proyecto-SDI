@@ -5,7 +5,6 @@ import { getAuth,signInWithPopup,GoogleAuthProvider } from 'firebase/auth';
 import {useHistory} from 'react-router-dom';
 import './SignIn.css'
 import { Link } from 'react-router-dom';
-import { Button, Button2 } from '../Button';
 import { Icon } from './Icon';
 
 function SignIn({

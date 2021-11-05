@@ -2,6 +2,8 @@ import react from "react";
 import React, { useState } from 'react';
 import { Button, Button2, ButtonCancelar } from '../Button';
 import { Link } from 'react-router-dom';
+import  firebaseApp  from '../../firebaseApp';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import './Registro.css';
 import { Icon2 } from "./Icon";
 
@@ -12,19 +14,23 @@ const RegistroPsico = ({ handleClose }) => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
-    const handleSubmit = e => {
+    const [confirmed_password, setConfirmed_Password] = useState('');
+    const [gender, setGender] = useState('');
+    const auth = new getAuth();
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(firstName, phoneNumber, lastName, email, password);
-      handleClose();
+      //console.log(firstName, phoneNumber, lastName, email, password, confirmed_password, gender);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(res)
     };
   
     return (
       <div className="newUser">
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>
       <p className="p1">Completa el formulario para completar tu cuenta</p>
-      <p className="p1">Recuerda introducir tus credenciales para registrarte como un especialista</p>
-      <form className="newUserForm">
+      <p className="p1">Recuerda insertar tus credenciales</p>
+      <form className="newUserForm" onSubmit={handleSubmit}>
         <div className="newUserItem">
           <label>Nombre</label>
           <input type="text" placeholder="Jhon"
@@ -39,15 +45,19 @@ const RegistroPsico = ({ handleClose }) => {
           variant="filled"
           required
           value={lastName}
-          onChange={e => setLastName(e.target.value)}/>
+          onChange={e => {
+          e.preventDefault()
+          setLastName(e.target.value)}}/>
         </div>
         <div className="newUserItem">
           <label>Numero De Teléfono</label>
           <input type="number" placeholder="+58 (xxx) xxx xxxx"
           variant="filled"
           required
-          value={setPhoneNumber}
-          onChange={e => setPhoneNumber(e.target.value)}/>
+          value={phoneNumber}
+          onChange={e => {
+          e.preventDefault()
+          setPhoneNumber(e.target.value)}}/>
         </div>
         <div className="newUserItem">
           <label>Email</label>
@@ -62,25 +72,37 @@ const RegistroPsico = ({ handleClose }) => {
           <input type="password" placeholder="xxxxxxx"
           variant="filled"
           required
-          value={email}
-          onChange={e => setEmail(e.target.value)}/>
+          value={password}
+          onChange={e => setPassword(e.target.value)}/>
         </div>
         <div className="newUserItem">
           <label>Contraseña</label>
           <input type="password" placeholder="xxxxxxx"
           variant="filled"
           required
-          value={email}
-          onChange={e => setEmail(e.target.value)}/>
+          value={confirmed_password}
+          onChange={e => setConfirmed_Password(e.target.value)}/>
         </div>
         <div className="newUserItem">
           <label>Genero</label>
           <div className="newUserGender">
-            <input type="radio" name="gender" id="male" value="male" />
+            <input type="radio"  id="male" value="male" onChange={e=>
+            {e.preventDefault()
+            setGender(e.target.value)
+            }
+            }/>
             <label for="male">Hombre</label>
-            <input type="radio" name="gender" id="female" value="female" />
+            <input type="radio" name="gender" id="female" value="female" onChange={e=>
+            {e.preventDefault()
+            setGender(e.target.value)
+            }
+            }/>
             <label for="female">Mujer</label>
-            <input type="radio" name="gender" id="other" value="other" />
+            <input type="radio" name="gender" id="other" value="other" onChange={e=>
+            {e.preventDefault()
+            setGender(e.target.value)
+            }
+            }/>
             <label for="other">Otro</label>
           </div>
         </div>
@@ -89,9 +111,7 @@ const RegistroPsico = ({ handleClose }) => {
         <br/>
         <br/>
         <div className='boton-registro'>
-        <Link className='link' to='/sign-in'>
-          Registrate 
-        </Link>
+        <button className='link' type='submit'>Registrarse</button>
         <Link className='link' to='/'>
           Cancelar
         </Link>

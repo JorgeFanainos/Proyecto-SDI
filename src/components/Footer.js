@@ -33,7 +33,7 @@ function Footer() {
             <Link to='/comoFuncionamos'>Cómo funcionamos?</Link>
             <Link to='/testimonios'>Testimonios</Link>
             <Link to='/colaboradores'>Colaboradores</Link>
-            <Link to='/terminos'>Terminos de Uso</Link>
+            <Link to='/testimonios'>Terminos de Uso</Link>
           </div>
           <div class='footer-link-items'>
             <h2>Contáctanos</h2>

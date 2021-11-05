@@ -1,0 +1,60 @@
+.contenedor {
+	width: 40%;
+	max-width: 1000px;
+	margin: 50px auto;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0px 0px 20px 0px rgba(209, 209, 209, 0.5);
+	padding: 40px;
+	border-radius:  15px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.contenedorTexto {
+	width: 50%;
+	max-width: 1000px;
+	margin: 50px auto;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0px 0px 20px 0px rgba(209, 209, 209, 0.5);
+	padding: 40px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.contenedorTodo{
+	display: flex;
+	flex-direction: row;
+
+}
+.horario {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.descripcion{
+	width: 50%;
+	height: 200px;
+}
+.asunto{
+	width: 50%;
+	height: 50px;
+}
+.textos{
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: rgb(48, 29, 214);
+	font-size:100% ;
+}
+.Pasarela{
+	display: flex;
+	background-color: rgb(255, 255, 255);
+	width: 20%;
+
+}
+.Pasarela:hover{
+	background-color: rgb(48, 29, 214);
+	color: #fff;
+
+}

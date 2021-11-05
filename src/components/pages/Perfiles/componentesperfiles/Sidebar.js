@@ -54,7 +54,7 @@ function Sidebar() {
             </Link>
             <br/>
             <br/>
-            <Link to="/perfilusuario" >
+            <Link to="/agendarcita" >
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Agendar una Cita

@@ -1,0 +1,61 @@
+.contenedorPagos{
+    width: 40%;
+	max-width: 1000px;
+	margin: 50px auto;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0px 0px 20px 0px rgba(209, 209, 209, 0.5);
+	padding: 40px;
+	border-radius:  15px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.ContenedorTodo{
+	display: flex;
+	flex-direction: row;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.botonPago{
+    display: flex;
+    align-self: center ;
+	background-color: rgb(255, 255, 255);
+	width: 20%;
+    border-color: rgb(58, 50, 175);
+    border-width: 4px;
+}
+.botonPago:hover{
+    background: linear-gradient(90deg, rgb(45, 36, 175) 0%, rgb(26, 23, 23) 120%);
+    color: #fff;
+}
+.contenedorpoliticas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.politicasStripe{
+    font-size: smaller;
+    color:rgb(58, 50, 175) ;
+}
+.small{
+    font-size: smaller;
+    margin-top: 10%;
+}
+.inputspago{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.lablepagos{
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+}
+.precio{
+    margin-top: 10%;
+    font-size:500%;
+}
