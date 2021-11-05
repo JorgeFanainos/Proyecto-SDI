@@ -38,7 +38,9 @@ const Registro = ({ handleClose }) => {
           variant="filled"
           required
           value={lastName}
-          onChange={e => setLastName(e.target.value)}/>
+          onChange={e => {
+          e.preventDefault()
+          setLastName(e.target.value)}}/>
         </div>
         <div className="newUserItem">
           <label>Numero De Teléfono</label>
@@ -46,7 +48,9 @@ const Registro = ({ handleClose }) => {
           variant="filled"
           required
           value={setPhoneNumber}
-          onChange={e => setPhoneNumber(e.target.value)}/>
+          onChange={e => {
+          e.preventDefault()
+          setPhoneNumber(e.target.value)}}/>
         </div>
         <div className="newUserItem">
           <label>Email</label>
@@ -87,7 +91,7 @@ const Registro = ({ handleClose }) => {
         <br/>
         <br/>
         <div className='boton-registro'>
-        <Link className='link' to='/sign-in'>
+        <Link className='link' to='/perfilusuario'>
           Registrate 
         </Link>
         <Link className='link' to='/'>

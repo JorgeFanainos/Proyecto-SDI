@@ -15,6 +15,7 @@ import Testimonios from './components/pages/pagesFooter/Testimonios'
 import Contacto from './components/pages/pagesFooter/Contacto'
 import Soporte from './components/pages/pagesFooter/Soporte'
 import Pasarela from './components/pages/Pasarela';
+import PerfilUsuario from './components/pages/Perfiles/PerfilUsuario';
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
           <Route path='/terminos' component={terminos} />
           <Route path='/soporte' component={Soporte} />
           <Route path='/pasarela' component={Pasarela} />
+          <Route path='/perfilusuario' component={PerfilUsuario}/>
         </Switch>
       </Router>
     </>
