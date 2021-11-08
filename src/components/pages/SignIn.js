@@ -21,7 +21,7 @@ function SignIn({
       sessionStorage.setItem('token', token);
       const user = result.user;
       }).then(()=>{
-        router.push('/')
+        router.push('/perfilusuario')
       });
       
   }

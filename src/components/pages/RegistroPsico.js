@@ -1,6 +1,5 @@
 import react from "react";
 import React, { useState } from 'react';
-import { Button, Button2, ButtonCancelar } from '../Button';
 import { Link } from 'react-router-dom';
 import  firebaseApp  from '../../firebaseApp';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -22,7 +21,7 @@ const RegistroPsico = ({ handleClose }) => {
       e.preventDefault();
       //console.log(firstName, phoneNumber, lastName, email, password, confirmed_password, gender);
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(res)
+      //console.log(res)
     };
   
     return (

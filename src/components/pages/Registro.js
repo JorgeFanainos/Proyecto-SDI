@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Registro.css';
 import  firebaseApp  from '../../firebaseApp';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Icon } from './Icon';
+import {
 
+  Publish,
+} from "@material-ui/icons";
 const Registro = ({ handleClose }) => {
   // Crear variables para cada input
   const [firstName, setFirstName] = useState('');
@@ -15,12 +18,14 @@ const Registro = ({ handleClose }) => {
   const [confirmed_password, setConfirmed_Password] = useState('');
   const [gender, setGender] = useState('');
   const auth = new getAuth();
-
+  const router = useHistory();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(firstName, phoneNumber, lastName, email, password, confirmed_password, gender);
-    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password).then(()=>{
+      router.push('/perfilusuario')
+    });
     console.log(res)
   };
 
@@ -29,6 +34,7 @@ const Registro = ({ handleClose }) => {
       <h1 className="newUserTitle">Registrarse</h1>
       <p className="p1">Completa el formulario para completar tu cuenta</p>
       <form className="newUserForm" onSubmit={handleSubmit}>
+
         <div className="newUserItem">
           <label>Nombre</label>
           <input type="text" placeholder="Jhon"
@@ -84,7 +90,7 @@ const Registro = ({ handleClose }) => {
         <div className="newUserItem">
           <label>Genero</label>
           <div className="newUserGender">
-            <input type="radio"  id="male" value="male" onChange={e=>
+            <input type="radio"  id="gender" value="male" onChange={e=>
             {e.preventDefault()
             setGender(e.target.value)
             }

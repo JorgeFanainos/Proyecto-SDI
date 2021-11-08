@@ -1,0 +1,16 @@
+.contenedorCarta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.perfilPsicologo{
+    border-radius: 100%;
+    align-self: flex-start;
+    width: 30%;
+    height: 35px;
+}
+.InfoPsicologo{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    align-self: center;
+    font-size: 100%;
+}

@@ -16,7 +16,8 @@ import Contacto from './components/pages/pagesFooter/Contacto'
 import Soporte from './components/pages/pagesFooter/Soporte'
 import Pasarela from './components/pages/Pasarela';
 import PerfilUsuario from './components/pages/Perfiles/PerfilUsuario';
-import AgendarCita from './components/pages/Perfiles/BuscarPsicologos/AgendarCita';
+import AgendarCita from './components/pages/Perfiles/AgendarCita/AgendarCita';
+import BuscarPsicologo from './components/pages/pagesFooter/BuscarPsicologos/BuscarPsicologos'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path='/pasarela' component={Pasarela} />
           <Route path='/perfilusuario' component={PerfilUsuario}/>
           <Route path='/agendarcita' component={AgendarCita}/>
+          <Route path='/buscarpsicologos' component={BuscarPsicologo}/>
         </Switch>
       </Router>
     </>

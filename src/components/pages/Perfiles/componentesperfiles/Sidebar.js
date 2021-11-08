@@ -30,7 +30,7 @@ function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Menú</h3>
           <ul className="sidebarList">
-            <Link to="/" >
+            <Link to="/buscarpsicologos" >
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Buscar Psicologos
