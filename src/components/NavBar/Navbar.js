@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Button } from "./Button";
+import { Button } from "../Button/Button";
 import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
-import { auth } from "../firebaseApp";
-import { UserContext } from "../context/UserContext";
+import { auth } from "../../utils/firebaseApp";
+import { UserContext } from "../../context/UserContext";
 
 function Navbar() {
   const history = useHistory();
@@ -83,8 +83,8 @@ function Navbar() {
             </li>
           </ul>
           {!!user ? (
-            <Button buttonStyle="btn--outline" onClick={handleLogout}>
-              Log Out, {user}
+            <Button buttonStyle="btn--outline2" onClick={handleLogout}>
+              Log Out, {user.email}
             </Button>
           ) : (
             <Button buttonStyle="btn--outline">Iniciar Sesión</Button>
