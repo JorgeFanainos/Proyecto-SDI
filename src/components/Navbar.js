@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import React, { useState, useEffect, useContext } from "react";
+import { Button } from "./Button";
+import { Link, useHistory } from "react-router-dom";
+import "./Navbar.css";
+import { auth } from "../firebaseApp";
+import { UserContext } from "../context/UserContext";
 
 function Navbar() {
+  const history = useHistory();
+  const { user, setUser } = useContext(UserContext);
+
+  const handleLogout = async () => {
+    await auth.signOut();
+    setUser(null);
+    history.push("/");
+  };
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -22,55 +32,63 @@ function Navbar() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
   return (
     <>
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+      <nav className="navbar">
+        <div className="navbar-container">
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
             MyHelper
-            <i class='fab fa-typo3' />
+            <i class="fab fa-typo3" />
           </Link>
-          <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          <div className="menu-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
+            <li className="nav-item">
               <Link
-                to='/psicologos'
-                className='nav-links'
+                to="/psicologos"
+                className="nav-links"
                 onClick={closeMobileMenu}
               >
                 Nuestros Psicólogos
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/contacto'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Contáctanos
-              </Link>
-            </li>
+            {!!user ? null : (
+              <li className="nav-item">
+                <Link
+                  to="/contacto"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Contáctanos
+                </Link>
+              </li>
+            )}
 
             <li>
               <Link
-                to='/sign-in'
-                className='nav-links-mobile'
+                to="/sign-in"
+                className="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
-                Iniciar Sesión 
+                Iniciar Sesión
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>Iniciar Sesión</Button>}
+          {!!user ? (
+            <Button buttonStyle="btn--outline" onClick={handleLogout}>
+              Log Out, {user}
+            </Button>
+          ) : (
+            <Button buttonStyle="btn--outline">Iniciar Sesión</Button>
+          )}
         </div>
       </nav>
     </>
