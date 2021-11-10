@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Testimonios.css";
 
-import Note from "./Nota/Nota";
-import NoteForm from "./FormaDeNota/FormaDeNota";
-import { db } from "../../../firebaseApp";
+import Note from "../Nota/Nota";
+import NoteForm from "../FormaDeNota/FormaDeNota";
+import { db } from "../../.././utils/firebaseApp";
 import "firebase/database";
 
 class Testimonios extends Component {

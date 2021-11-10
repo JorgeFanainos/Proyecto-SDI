@@ -1,24 +1,24 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 import "./App.css";
 import Home from "./components/pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Registro from "./components/pages/Registro";
-import SignIn from "./components/pages/SignIn";
-import Cards from "./components/Cards";
-import Footer from "./components/Footer";
-import RegistroPsico from "./components/pages/RegistroPsico";
-import terminos from "./components/pages/pagesFooter/Terminos";
-import Colaboradores from "./components/pages/pagesFooter/Colaboradores";
-import comoFuncionamos from "./components/pages/pagesFooter/ComoFuncionamos";
-import Testimonios from "./components/pages/pagesFooter/Testimonios";
-import Contacto from "./components/pages/pagesFooter/Contacto";
-import Soporte from "./components/pages/pagesFooter/Soporte";
-import Pasarela from "./components/pages/Pasarela";
-import PerfilUsuario from "./components/pages/Perfiles/PerfilUsuario";
+import Registro from "./components/pages/Registro/Registro";
+import SignIn from "./components/pages/SignIn/SignIn";
+import Cards from "./components/Cards/Cards";
+import Footer from "./components/Footer/Footer";
+import RegistroPsico from "./components/pages/Registro/RegistroPsico";
+import terminos from "./components/pages/PageFooter/Terminos";
+import Colaboradores from "./components/pages/PageFooter/Colaboradores";
+import comoFuncionamos from "./components/pages/PageFooter/ComoFuncionamos";
+import Testimonios from "./components/pages/PageFooter/Testimonios";
+import Contacto from "./components/pages/PageFooter/Contacto";
+import Soporte from "./components/pages/PageFooter/Soporte";
+import Pasarela from "./components/pages/Stripe/Pasarela";
+import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario";
 import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
-import BuscarPsicologo from "./components/pages/pagesFooter/BuscarPsicologos/BuscarPsicologos";
-import UserContextProvider from "./context/UserContext";
+import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
+import UserContextProvider from "./context/UserContext.jsx";
 
 function App() {
   return (

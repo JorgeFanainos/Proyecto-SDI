@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import { auth, db } from "../firebaseApp";
-import { getFirstElementArrayCollection } from "../parser";
+import { auth, db } from "../utils/firebaseApp";
+import { getFirstElementArrayCollection } from "../utils/parser";
 
 export const UserContext = createContext(null);
 
@@ -27,14 +27,14 @@ export default function UserContextProvider({ children }) {
   };
 
   const getUserByEmailPsico = async (email) => {
-    const usersReference = db.collection("usersPsicologos");
+    const usersReference = db.collection("users");
     const snapshot = await usersReference.where("email", "==", email).get();
 
     if (!snapshot.size) return null;
 
-    const loggedUserPsico = getFirstElementArrayCollection(snapshot);
+    const loggedUser = getFirstElementArrayCollection(snapshot);
 
-    return loggedUserPsico;
+    return loggedUser;
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import "../../App.css";
-import { auth, googleProvider } from "../../firebaseApp";
+import "../../../App";
+import { auth, googleProvider } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-import { auth } from "../../firebaseApp";
+import { UserContext } from "../../../context/UserContext";
+import { auth, storage } from "../../../utils/firebaseApp";
 import "./Registro.css";
-import { Icon2 } from "./Icon";
+import { Icon2 } from "../Icon";
 
 const RegistroPsico = () => {
   const history = useHistory();
@@ -17,6 +17,7 @@ const RegistroPsico = () => {
     password: "",
     confirmed_password: "",
     gender: "",
+    credenciales: "",
   });
 
   const handleOnChange = (event) => {
@@ -114,6 +115,7 @@ const RegistroPsico = () => {
             onChange={handleOnChange}
           />
         </div>
+
         <div className="newUserItem">
           <label>Contraseña</label>
           <input
@@ -123,6 +125,20 @@ const RegistroPsico = () => {
             variant="filled"
             required
             value={values.confirmed_password}
+            onChange={handleOnChange}
+          />
+        </div>
+
+        <div className="newUserItem">
+          <label>Credenciales</label>
+          <input
+            id="credenciales"
+            type="file"
+            name="credenciales"
+            multiple
+            variant="filled"
+            required
+            value={values.credenciales}
             onChange={handleOnChange}
           />
         </div>
