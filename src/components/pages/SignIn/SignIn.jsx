@@ -12,6 +12,35 @@ function SignIn() {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    emailErr: "",
+    passErr: "",
+    badcred: "",
+  });
+  const validate = () => {
+    let emailErr = "";
+    let passErr = "";
+    let password = values.password.length;
+
+    if (values.email === "") {
+      emailErr = "";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      emailErr = "Ingrese un correo correcto";
+    }
+    if (password < 6) {
+      passErr = "Ingrese una contrasena valida";
+    }
+
+    if (emailErr || passErr) {
+      setErrors({
+        emailErr,
+        passErr,
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   const handleOnChange = (event) => {
     const { value, name: inputName } = event.target;
@@ -21,14 +50,32 @@ function SignIn() {
 
   // HANDLE GOOGLE LOGIN
   const handleGoogleLogin = async () => {
-    await auth.signInWithPopup(googleProvider);
-    history.push("/");
+    await auth
+      .signInWithPopup(googleProvider)
+      .then(function (result) {
+        console.log("result", result);
+        history.push("/perfilusuario");
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await auth.signInWithEmailAndPassword(values.email, values.password);
-    history.push("/");
+    const isValid = validate();
+    if (isValid) {
+      try {
+        await auth.signInWithEmailAndPassword(values.email, values.password);
+        history.push("/perfilusuario");
+      } catch (error) {
+        let badcred = "";
+        badcred = "Su usuario o clave son incorrectos";
+        setErrors({ badcred });
+      }
+    } else {
+      console.log("f");
+    }
   };
 
   return (
@@ -48,6 +95,7 @@ function SignIn() {
         value={values.email}
         onChange={handleOnChange}
       />
+      <div class="error">{errors.emailErr}</div>
       <br />
       <br />
       <label className="contrasenia">Contraseña: </label>
@@ -61,6 +109,7 @@ function SignIn() {
         value={values.password}
         onChange={handleOnChange}
       />
+      <div class="error">{errors.passErr}</div>
       <br />
       <br />
       <br />
@@ -71,6 +120,7 @@ function SignIn() {
       <button className="boton" onClick={handleSubmit}>
         Iniciar Sesión
       </button>
+      <div class="error">{errors.badcred}</div>
       <button className="boton" onClick={handleGoogleLogin}>
         Iniciar Sesión con Google
       </button>

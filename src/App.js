@@ -19,6 +19,7 @@ import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario"
 import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
 import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
 import UserContextProvider from "./context/UserContext.jsx";
+import userConfig from "./components/pages/Perfiles/PerfilUser/userConfig";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/soporte" component={Soporte} />
           <Route path="/pasarela" component={Pasarela} />
           <Route path="/perfilusuario" component={PerfilUsuario} />
+          <Route path="/userconfig" component={userConfig} />
           <Route path="/agendarcita" component={AgendarCita} />
           <Route path="/buscarpsicologos" component={BuscarPsicologo} />
         </Switch>

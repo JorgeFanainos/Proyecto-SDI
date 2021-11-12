@@ -8,7 +8,14 @@ import { Icon } from "../Icon";
 const Registro = () => {
   const history = useHistory();
   const { createUser } = useContext(UserContext);
-
+  const [errors, setErrors] = useState({
+    pswrdError: "",
+    cpswrdError: "",
+    registered: "",
+    nameError: "",
+    lastNameError: "",
+    tlfError: "",
+  });
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -16,8 +23,64 @@ const Registro = () => {
     email: "",
     password: "",
     confirmed_password: "",
-    gender: "",
+    gender: "Otro",
   });
+
+  const validate = () => {
+    let nameError = "";
+    let lastNameError = "";
+    let cpswrdError = "";
+    let tlfError = "";
+    let pswrdError = "";
+    let registered = "";
+    let password = values.password.length;
+    let name = values.firstName.length;
+    let lastName = values.lastName.length;
+    let tlf = values.phoneNumber.length;
+    var letters = /^[A-Za-z]+$/;
+
+    if (!values.firstName.match(letters) || name < 4) {
+      nameError = "Introduzca su nombre correctamente";
+    }
+
+    if (!values.lastName.match(letters) || lastName < 4) {
+      lastNameError = "Introduzca su nombre correctamente";
+    }
+
+    if (password < 6) {
+      pswrdError = "Su contrasena no debe tener menos de 6 caracteres";
+    }
+    if (!/\S+@\S+\.\S+/.test(values.email)) {
+      registered = "Ingrese un correo correcto";
+    }
+    if (tlf < 6) {
+      tlfError = "Introduzca correctamente su telefono";
+    }
+    if (values.confirmed_password !== values.password) {
+      cpswrdError = "Sus Claves deben coincidir";
+    }
+
+    if (
+      cpswrdError ||
+      registered ||
+      pswrdError ||
+      lastNameError ||
+      nameError ||
+      tlfError
+    ) {
+      setErrors({
+        cpswrdError,
+        registered,
+        pswrdError,
+        nameError,
+        lastNameError,
+        tlfError,
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   const handleOnChange = (event) => {
     const { value, name: inputName } = event.target;
@@ -27,25 +90,39 @@ const Registro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await auth.createUserWithEmailAndPassword(
-      values.email,
-      values.password
-    );
+    const isValid = validate();
+    if (isValid) {
+      try {
+        const res = await auth.createUserWithEmailAndPassword(
+          values.email,
+          values.password
+        );
 
-    await createUser(
-      {
-        name: values.firstName,
-        lastname: values.lastName,
-        email: values.email,
-        gender: values.gender,
-        phoneNumber: values.phoneNumber,
-      },
-      res.user.uid
-    );
+        await createUser(
+          {
+            name: values.firstName,
+            lastname: values.lastName,
+            email: values.email,
+            gender: values.gender,
+            phoneNumber: values.phoneNumber,
+          },
+          res.user.uid
+        );
 
-    history.push("/");
+        history.push("/");
 
-    console.log(res.user.uid);
+        console.log(res.user.uid);
+      } catch (error) {
+        values.password = "";
+        values.confirmed_password = "";
+        let registered = "";
+        registered = "correo previamente registrado";
+        setErrors({ registered });
+      }
+    } else {
+      values.password = "";
+      values.confirmed_password = "";
+    }
   };
 
   return (
@@ -60,10 +137,11 @@ const Registro = () => {
             type="text"
             placeholder="Introduzca su nombre"
             variant="filled"
-            value={values.firstName}
-            onChange={handleOnChange}
             required
+            value={values.firstName || ""}
+            onChange={handleOnChange}
           />
+          <div class="error">{errors.nameError}</div>
         </div>
 
         <div className="newUserItem">
@@ -74,9 +152,10 @@ const Registro = () => {
             placeholder="Introduzca su Apellido"
             variant="filled"
             required
-            value={values.lastName}
+            value={values.lastName || ""}
             onChange={handleOnChange}
           />
+          <div class="error">{errors.lastNameError}</div>
         </div>
 
         <div className="newUserItem">
@@ -87,7 +166,7 @@ const Registro = () => {
             placeholder="+58 (xxx) xxx xxxx"
             variant="filled"
             required
-            value={values.phoneNumber}
+            value={values.phoneNumber || ""}
             onChange={handleOnChange}
           />
         </div>
@@ -96,13 +175,13 @@ const Registro = () => {
           <label>Email</label>
           <input
             name="email"
-            type="email"
             placeholder="Introduzca su Email"
             variant="filled"
             required
-            value={values.email}
+            value={values.email || ""}
             onChange={handleOnChange}
           />
+          <div class="error">{errors.registered}</div>
         </div>
 
         <div className="newUserItem">
@@ -113,9 +192,10 @@ const Registro = () => {
             placeholder="xxxxxxx"
             variant="filled"
             required
-            value={values.password}
+            value={values.password || ""}
             onChange={handleOnChange}
           />
+          <div class="error">{errors.pswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -126,9 +206,11 @@ const Registro = () => {
             placeholder="xxxxxxx"
             variant="filled"
             required
-            value={values.confirmed_password}
+            value={values.confirmed_password || ""}
             onChange={handleOnChange}
           />
+
+          <div class="error">{errors.cpswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -168,6 +250,7 @@ const Registro = () => {
             <button className="link" type="submit">
               Registrarse
             </button>
+
             <Link className="link" to="/">
               Cancelar
             </Link>

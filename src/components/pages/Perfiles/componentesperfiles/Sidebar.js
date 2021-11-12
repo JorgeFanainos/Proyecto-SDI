@@ -1,8 +1,5 @@
 import "./Sidebar.css";
-import {
-  LineStyle,
-  PermIdentity,
-} from "@material-ui/icons";
+import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
@@ -12,56 +9,56 @@ function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Panel</h3>
           <ul className="sidebarList">
-            <Link to="/perfilusuario" >
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Mi Perfil
-            </li>
-            </Link>
-            <br />
-            <Link to="/perfilusuario" >
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Editar Perfil
+            <Link to="/perfilusuario">
+              <li className="sidebarListItem active">
+                <LineStyle className="sidebarIcon" />
+                Mi Perfil
               </li>
             </Link>
+            <br />
           </ul>
+          <Link to="/userconfig">
+            <li className="sidebarListItem">
+              <PermIdentity className="sidebarIcon" />
+              Editar Perfil
+            </li>
+          </Link>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Menú</h3>
           <ul className="sidebarList">
-            <Link to="/buscarpsicologos" >
+            <Link to="/buscarpsicologos">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Buscar Psicologos
               </li>
             </Link>
-            <br/>
-            <br/>
-            <Link to="/testimonios" >
+            <br />
+            <br />
+            <Link to="/testimonios">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Testimonios
               </li>
             </Link>
-            <br/>
-            <br/>
-            <Link to="/perfilusuario" >
+            <br />
+            <br />
+            <Link to="/perfilusuario">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Mis Chats
               </li>
             </Link>
-            <br/>
-            <br/>
-            <Link to="/agendarcita" >
+            <br />
+            <br />
+            <Link to="/agendarcita">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Agendar una Cita
               </li>
             </Link>
-            <br/>
-            <br/>
+            <br />
+            <br />
           </ul>
         </div>
       </div>
