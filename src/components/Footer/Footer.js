@@ -29,11 +29,10 @@ function Footer() {
         <div className="footer-link-wrapper">
           <div class="footer-link-items">
             <h2>Sobre Nosotros</h2>
-            <Link to="/pasarela ">Pasarela De Pagos</Link>
             <Link to="/comoFuncionamos">Cómo funcionamos?</Link>
             <Link to="/testimonios">Testimonios</Link>
             <Link to="/colaboradores">Colaboradores</Link>
-            <Link to="/testimonios">Terminos de Uso</Link>
+            <Link to="/terminos">Terminos de Uso</Link>
           </div>
           <div class="footer-link-items">
             <h2>Contáctanos</h2>

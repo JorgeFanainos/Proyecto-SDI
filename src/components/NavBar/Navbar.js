@@ -46,11 +46,14 @@ function Navbar() {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
+          {!!user ? null : (
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
+            )}
+            {!!user ? null : (
             <li className="nav-item">
               <Link
                 to="/psicologos"
@@ -60,6 +63,7 @@ function Navbar() {
                 Nuestros Psicólogos
               </Link>
             </li>
+            )}
             {!!user ? null : (
               <li className="nav-item">
                 <Link
@@ -71,24 +75,15 @@ function Navbar() {
                 </Link>
               </li>
             )}
-
-            <li>
-              <Link
-                to="/sign-in"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Iniciar Sesión
-              </Link>
-            </li>
-          </ul>
-          {!!user ? (
-            <Button buttonStyle="btn--outline2" onClick={handleLogout}>
+            {!!user ? (
+            <Button  buttonStyle="btn--outline" onClick={handleLogout}>
               Log Out, {user.email}
             </Button>
           ) : (
-            <Button buttonStyle="btn--outline">Iniciar Sesión</Button>
+            <Button  buttonStyle="btn--outline">Iniciar Sesión</Button>
           )}
+          </ul>
+          
         </div>
       </nav>
     </>

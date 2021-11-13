@@ -12,12 +12,17 @@
 
 .p{
     display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-indent: 2%;
     text-align: justify;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .h3{
     display: flex;
+    margin-left: 10%;
+    margin-right: 20%;
     text-decoration: underline;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -58,4 +63,10 @@
     cursor: pointer;
     background-color: #fff;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.div{
+    box-shadow:0 6px 20px rgba(56, 125, 255, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    border-radius: 10px;
 }
