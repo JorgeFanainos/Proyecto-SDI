@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../utils/firebaseApp";
+import firebase from "firebase/compat/app";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -13,7 +14,9 @@ const Profile = () => {
     confirmed_password: "",
     empassword: "",
     confirmEmail: "",
+    newemail: "",
   });
+
   const [display, setdisplay] = useState({
     firstNamed: "",
     lastNamed: "",
@@ -128,46 +131,6 @@ const Profile = () => {
       return true;
     }
   };
-  const validateemail = () => {
-    let empswrdError = "";
-    let registered = "";
-    let cregistered = "";
-    let password = values.empassword.length;
-    let emaill = values.email.length;
-
-    if (password === 0) {
-      empswrdError = false;
-    } else if (password < 6) {
-      empswrdError = "Su contraseña no puede tener menos de 6 caracteres";
-    }
-    if (emaill === 0) {
-      registered = "Debe introducir un correo electronico";
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      registered = "Ingrese un correo correcto";
-    }
-    if (values.email !== values.confirmEmail) {
-      cregistered = " Los datos no coinciden";
-    }
-
-    if (empswrdError || registered || cregistered) {
-      setErrors({
-        empswrdError,
-        registered,
-        cregistered,
-      });
-      return false;
-    } else if (!password && !emaill && !cregistered) {
-      window.alert("Debe realizar al menos un cambio");
-      return false;
-    } else {
-      setErrors({
-        registered,
-        empswrdError,
-        cregistered,
-      });
-      return true;
-    }
-  };
 
   const validateUpdate = async () => {
     if (values.firstName !== "") {
@@ -220,18 +183,26 @@ const Profile = () => {
   }, []);
 
   const reauthenticate = (currentPassword) => {
-    var user = auth.currentUser;
-    var cred = auth.EmailAuthProvider.credential(user.email, currentPassword);
+    var user = firebase.auth().currentUser;
+    var cred = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      currentPassword
+    );
     return user.reauthenticateWithCredential(cred);
   };
-
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     let isvalid = validate();
     if (isvalid) {
       try {
         console.log("enviado");
-        validateUpdate();
+        validateUpdate()
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error();
+          });
       } catch (error) {
         console.log("error");
       }
@@ -241,31 +212,27 @@ const Profile = () => {
     }
   };
 
-  const handleSubmit2 = async (e) => {
+  const handleSubmit2 = (e) => {
     e.preventDefault();
     let isvalid = validatepswrd();
     if (isvalid) {
-      try {
-        console.log("enviado");
-      } catch (error) {
-        console.log("error");
-        alert(error.message);
-      }
-    } else {
-      console.log("no valido");
-      //
-    }
-  };
-  const handleSubmit3 = async (e) => {
-    e.preventDefault();
-    let isvalid = validateemail();
-    if (isvalid) {
-      try {
-        console.log("enviado");
-      } catch (error) {
-        console.log("error");
-        alert(error.message);
-      }
+      reauthenticate(values.password)
+        .then(() => {
+          var user = firebase.auth().currentUser;
+          user
+            .updatePassword(values.newpassword)
+            .then(() => {
+              alert("Password was changed");
+            })
+            .catch((error) => {
+              console.log("f1");
+              console.log(error.message);
+            });
+        })
+        .catch((error) => {
+          console.log("f1");
+          console.log(error.message);
+        });
     } else {
       console.log("no valido");
       //
@@ -431,58 +398,6 @@ const Profile = () => {
 
           <div className="error">{errors.cpassword}</div>
         </div>
-        <div>
-          <br />
-          <br />
-          <div className="boton-registro">
-            <button className="link" type="submit">
-              Guardar cambios
-            </button>
-          </div>
-        </div>
-      </form>
-      <h2> Cambie su email</h2>
-      <p>Para cambiar su email es necesario introducir su contraseña actual</p>
-      <form className="newUserForm" onSubmit={handleSubmit3}>
-        <div className="newUserItem">
-          <label>Contraseña Actual</label>
-          <input
-            name="empassword"
-            type="password"
-            placeholder="Ingrese su contraseña actual"
-            variant="filled"
-            required
-            value={values.empassword}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.empswrdError}</div>
-        </div>
-        <div className="newUserItem">
-          <label>Nuevo Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Ingrese su nuevo email"
-            variant="filled"
-            value={values.email}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.registered}</div>
-        </div>
-
-        <div className="newUserItem">
-          <label>Confirmar Email</label>
-          <input
-            name="confirmEmail"
-            type="email"
-            placeholder="confirme su nuevo email"
-            variant="filled"
-            value={values.confirmEmail}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.cregistered}</div>
-        </div>
-
         <div>
           <br />
           <br />
