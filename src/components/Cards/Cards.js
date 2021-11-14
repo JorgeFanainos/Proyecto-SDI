@@ -14,13 +14,13 @@ function Cards() {
               src='images/img-9.jpg'
               text='Descripcion del Psicologo'
               label='Precio de consulta:'
-              path='/services'
+              path='/'
             />
             <CardItem
               src='images/img-2.jpg'
               text='Descripción del Psicólogo'
               label='Precio de consulta:'
-              path='/services'
+              path='/'
             />
           </ul>
           <ul className='cards__items'>
@@ -28,19 +28,19 @@ function Cards() {
               src='images/img-3.jpg'
               text='Descripción del Psicólogo'
               label='Precio de consulta:'
-              path='/services'
+              path='/'
             />
             <CardItem
               src='images/img-4.jpg'
               text='Descripción del Psicólogo'
               label='Precio de consulta:'
-              path='/products'
+              path='/'
             />
             <CardItem
               src='images/img-8.jpg'
               text='Descripción del Psicólogo'
               label='Precio de consulta:'
-              path='/sign-up'
+              path='/'
             />
           </ul>
         </div>

@@ -1,6 +1,10 @@
 import "./Sidebar.css";
 import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import ChatIcon from '@material-ui/icons/Chat';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import SearchIcon from '@material-ui/icons/Search';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 function Sidebar() {
   return (
@@ -29,7 +33,7 @@ function Sidebar() {
           <ul className="sidebarList">
             <Link to="/buscarpsicologos">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <SearchIcon className="sidebarIcon" />
                 Buscar Psicologos
               </li>
             </Link>
@@ -37,7 +41,7 @@ function Sidebar() {
             <br />
             <Link to="/testimonios">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <ArrowForwardIcon className="sidebarIcon" />
                 Testimonios
               </li>
             </Link>
@@ -45,7 +49,7 @@ function Sidebar() {
             <br />
             <Link to="/perfilusuario">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <ChatIcon className="sidebarIcon" />
                 Mis Chats
               </li>
             </Link>
@@ -53,7 +57,7 @@ function Sidebar() {
             <br />
             <Link to="/agendarcita">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <DateRangeIcon className="sidebarIcon" />
                 Agendar una Cita
               </li>
             </Link>

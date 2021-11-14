@@ -5,6 +5,7 @@ import { auth, googleProvider } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
+import { errorCorreo, errorContra, errorTodo }   from "../Icon";
 
 function SignIn() {
   const history = useHistory();
@@ -21,14 +22,16 @@ function SignIn() {
     let emailErr = "";
     let passErr = "";
     let password = values.password.length;
-
     if (values.email === "") {
       emailErr = "";
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      emailErr = "Ingrese un correo correcto";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)&(values.email<5)) {
+      emailErr = errorCorreo();
     }
     if (password < 6) {
-      passErr = "Ingrese una contrasena valida";
+      passErr = errorContra();
+    }
+    if ((!/\S+@\S+\.\S+/.test(values.email))& (password < 6)){
+      errorTodo()
     }
 
     if (emailErr || passErr) {
@@ -69,12 +72,13 @@ function SignIn() {
         await auth.signInWithEmailAndPassword(values.email, values.password);
         history.push("/perfilusuario");
       } catch (error) {
-        let badcred = "";
-        badcred = "Su usuario o clave son incorrectos";
+        let badcred = " ";
+        badcred = " ";
         setErrors({ badcred });
       }
     } else {
       console.log("f");
+      errorTodo()
     }
   };
 

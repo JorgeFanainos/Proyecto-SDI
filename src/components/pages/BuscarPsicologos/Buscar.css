@@ -6,10 +6,15 @@
     display: flex;
     flex-direction: column;
 }
+.contenedorTexto{
+    display: flex;
+    width: 100%;
+
+}
 .Texto{
     color: #0d00c2;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: large;
+    align-self: center;
 }
 .InputBuscador:hover{
     border-color: #0d00c2;

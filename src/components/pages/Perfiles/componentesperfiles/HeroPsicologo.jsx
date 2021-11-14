@@ -4,68 +4,59 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Hero() {
+export default function HeroPsicologo() {
     const userRows = [
         {
           id: 1,
           username: "Mary Rosamund",
-          especialidad: "Neuropsicólogo",
           date: "1/05/2021",
           transaction: "$21.00",
         },
         {
           id: 2,
           username: "Jane Doe",
-          especialidad: "Psiquiatra",
           date: "2/05/2021",
           transaction: "$22.00",
         },
         {
           id: 3,
           username:"Sherlock Watson" ,
-          especialidad: "Especialista en ansiedad",
           date: "3/05/2021",
           transaction: "$23.00",
         },
         {
           id: 4,
           username: "John Holmes",
-          especialidad: "Psicoterapeuta",
           date: "4/05/2021",
           transaction: "$24.00",
         },
         {
           id: 5,
           username: "Andres Gonzales",
-          especialidad: "Psicólogo educativo",
           date: "5/05/2021",
           transaction: "$24.00",
         },
         {
           id: 6,
           username: "Mycroft Lestrade",
-          especialidad: "Psicólogo de desarrollo",
           date: "6/05/2021",
           transaction: "$25.00",
         },
         {
           id: 7,
           username: "Jorge Perez",
-          especialidad: "Neuropsicólogo",
           date: "7/05/2021",
           transaction: "$26.00",
         },
         {
           id: 8,
           username: "Mycroft Lestrade",
-          especialidad: "Neuropsicólogo",
           date: "8/05/2021",
           transaction: "$27.00",
         },
         {
           id: 9,
           username: "Andres Gonzales",
-          especialidad: "Psicoterapeuta",
           date: "9/05/2021",
           transaction: "$28.00",
         },
@@ -84,12 +75,7 @@ export default function Hero() {
       headerName: "Nombre",
       width: 200
     },
-    { field: "date", headerName: "Fecha", width: 200 },
-    {
-      field: "especialidad",
-      headerName: "Especialidad",
-      width: 200,
-    },
+    { field: "date", headerName: "Fecha de consulta", width: 200 },
     {
       field: "transaction",
       headerName: "Pago Consulta",

@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./Registro.css";
 import { UserContext } from "../../../context/UserContext";
 import { auth } from "../../../utils/firebaseApp";
-import { Icon } from "../Icon";
+import { Icon, errorNombre, errorContra, errorCorreo,errorApelli,errorTelef, errorContraInv } from "../Icon";
 
 const Registro = () => {
   const history = useHistory();
@@ -40,24 +40,24 @@ const Registro = () => {
     var letters = /^[A-Za-z]+$/;
 
     if (!values.firstName.match(letters) || name < 4) {
-      nameError = "Introduzca su nombre correctamente";
+      nameError = errorNombre();
     }
 
     if (!values.lastName.match(letters) || lastName < 4) {
-      lastNameError = "Introduzca su nombre correctamente";
+      lastNameError = errorApelli();
     }
 
     if (password < 6) {
-      pswrdError = "Su contrasena no debe tener menos de 6 caracteres";
+      pswrdError = errorContra();
     }
     if (!/\S+@\S+\.\S+/.test(values.email)) {
-      registered = "Ingrese un correo correcto";
+      registered = errorCorreo();
     }
-    if (tlf < 6) {
-      tlfError = "Introduzca correctamente su telefono";
+    if (tlf < 11) {
+      tlfError = errorTelef();
     }
     if (values.confirmed_password !== values.password) {
-      cpswrdError = "Sus Claves deben coincidir";
+      cpswrdError = errorContraInv();
     }
 
     if (
@@ -109,7 +109,7 @@ const Registro = () => {
           res.user.uid
         );
 
-        history.push("/");
+        history.push("/perfilusuario");
 
         console.log(res.user.uid);
       } catch (error) {

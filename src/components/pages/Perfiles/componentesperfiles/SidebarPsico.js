@@ -1,6 +1,8 @@
 import "./Sidebar.css";
 import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import ChatIcon from '@material-ui/icons/Chat';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 function SidebarPsico() {
   return (
@@ -9,7 +11,7 @@ function SidebarPsico() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Panel</h3>
           <ul className="sidebarList">
-            <Link to="/perfilusuario">
+            <Link to="/perfilPsicologo">
               <li className="sidebarListItem active">
                 <LineStyle className="sidebarIcon" />
                 Mi Perfil
@@ -29,17 +31,17 @@ function SidebarPsico() {
           <ul className="sidebarList">
             <br />
             <br />
-            <Link to="/testimonios">
+            <Link to="/citasagendadas">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Testimonios
+                <DateRangeIcon className="sidebarIcon" />
+                Citas Agendadas
               </li>
             </Link>
             <br />
             <br />
             <Link to="/perfilusuario">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <ChatIcon className="sidebarIcon" />
                 Mis Chats
               </li>
             </Link>

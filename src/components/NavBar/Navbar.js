@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Button } from "../Button/Button";
+import { Button, Button3 } from "../Button/Button";
 import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 import { auth } from "../../utils/firebaseApp";
@@ -76,11 +76,22 @@ function Navbar() {
               </li>
             )}
             {!!user ? (
+              <li className="nav-item">
+                <Link
+                  to="/perfilusuario"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Mi perfil
+                </Link>
+              </li>
+            ): null}
+            {!!user ? (
             <Button  buttonStyle="btn--outline" onClick={handleLogout}>
               Log Out, {user.email}
             </Button>
           ) : (
-            <Button  buttonStyle="btn--outline">Iniciar Sesión</Button>
+            <Button3  buttonStyle="btn--outline">Iniciar Sesión</Button3>
           )}
           </ul>
           

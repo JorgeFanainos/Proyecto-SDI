@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
 import { auth, storage } from "../../../utils/firebaseApp";
 import "./Registro.css";
-import { Icon2 } from "../Icon";
+import { Icon2, errorCorreoRegistrado, errorContra,errorApelli,errorContraInv,errorCorreo,errorNombre,errorTelef } from "../Icon";
 
 const RegistroPsico = () => {
   const history = useHistory();
@@ -41,27 +41,27 @@ const RegistroPsico = () => {
     var letters = /^[A-Za-z]+$/;
 
     if (!values.firstName.match(letters) || name < 4) {
-      nameError = "Introduzca su nombre correctamente";
+      nameError = errorNombre();
     }
 
     if (!values.lastName.match(letters) || lastName < 4) {
-      lastNameError = "Introduzca su nombre correctamente";
+      lastNameError = errorApelli();
     }
 
     if (password < 6) {
-      pswrdError = "Su contrasena no debe tener menos de 6 caracteres";
+      pswrdError = errorContra();
     }
     if (!/\S+@\S+\.\S+/.test(values.email)) {
-      registered = "Ingrese un correo correcto";
+      registered = errorCorreo();
     } else if (auth.fetchSignInMethodsForEmail(values.email).length !== 0) {
       console.log(auth.fetchSignInMethodsForEmail(values.email));
-      registered = "Ya existe un usuario con este correo.";
+      registered = errorCorreoRegistrado();
     }
-    if (tlf < 6) {
-      tlfError = "Introduzca correctamente su telefono";
+    if (tlf < 11) {
+      tlfError = errorTelef();
     }
     if (values.confirmed_password !== values.password) {
-      cpswrdError = "Sus Claves deben coincidir";
+      cpswrdError = errorContraInv();
     }
     if (
       cpswrdError ||
@@ -117,7 +117,7 @@ const RegistroPsico = () => {
           res.user.uid
         );
 
-        history.push("/");
+        history.push("/perfilPsicologo");
 
         console.log(res.user.uid);
       } catch (error) {
@@ -125,7 +125,7 @@ const RegistroPsico = () => {
         values.confirmed_password = "";
 
         let registered = "";
-        registered = "correo previamente registrado";
+        registered = errorCorreoRegistrado();
         setErrors({ registered });
       }
     } else {
