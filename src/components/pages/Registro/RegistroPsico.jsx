@@ -53,9 +53,6 @@ const RegistroPsico = () => {
     }
     if (!/\S+@\S+\.\S+/.test(values.email)) {
       registered = "Ingrese un correo correcto";
-    } else if (auth.fetchSignInMethodsForEmail(values.email).length !== 0) {
-      console.log(auth.fetchSignInMethodsForEmail(values.email));
-      registered = "Ya existe un usuario con este correo.";
     }
     if (tlf < 6) {
       tlfError = "Introduzca correctamente su telefono";
@@ -116,6 +113,9 @@ const RegistroPsico = () => {
           },
           res.user.uid
         );
+        await storage
+          .ref("usersPsico/" + auth.currentUser.uid + "/profile.jpg")
+          .put(file);
 
         history.push("/");
 
@@ -151,7 +151,7 @@ const RegistroPsico = () => {
             value={values.firstName}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.nameError}</div>
+          <div className="error">{errors.nameError}</div>
         </div>
         <div className="newUserItem">
           <label>Apellido</label>
@@ -164,7 +164,7 @@ const RegistroPsico = () => {
             value={values.lastName}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.lastNameError}</div>
+          <div className="error">{errors.lastNameError}</div>
         </div>
         <div className="newUserItem">
           <label>Numero De Teléfono</label>
@@ -177,7 +177,7 @@ const RegistroPsico = () => {
             value={values.phoneNumber}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.tlfError}</div>
+          <div className="error">{errors.tlfError}</div>
         </div>
         <div className="newUserItem">
           <label>Email</label>
@@ -190,7 +190,7 @@ const RegistroPsico = () => {
             value={values.email}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.registered}</div>
+          <div className="error">{errors.registered}</div>
         </div>
         <div className="newUserItem">
           <label>Contraseña</label>
@@ -203,7 +203,7 @@ const RegistroPsico = () => {
             value={values.password}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.pswrdError}</div>
+          <div className="error">{errors.pswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -217,7 +217,7 @@ const RegistroPsico = () => {
             value={values.confirmed_password}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.cpswrdError}</div>
+          <div className="error">{errors.cpswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -241,7 +241,7 @@ const RegistroPsico = () => {
               value="male"
               onChange={handleOnChange}
             />
-            <label for="male">Hombre</label>
+            <label htmlFor="male">Hombre</label>
             <input
               type="radio"
               name="gender"
@@ -249,7 +249,7 @@ const RegistroPsico = () => {
               value="female"
               onChange={handleOnChange}
             />
-            <label for="female">Mujer</label>
+            <label htmlFor="female">Mujer</label>
             <input
               type="radio"
               name="gender"
@@ -257,7 +257,7 @@ const RegistroPsico = () => {
               value="other"
               onChange={handleOnChange}
             />
-            <label for="other">Otro</label>
+            <label htmlFor="other">Otro</label>
           </div>
         </div>
 

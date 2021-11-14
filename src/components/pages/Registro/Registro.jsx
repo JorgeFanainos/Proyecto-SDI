@@ -141,7 +141,7 @@ const Registro = () => {
             value={values.firstName || ""}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.nameError}</div>
+          <div className="error">{errors.nameError}</div>
         </div>
 
         <div className="newUserItem">
@@ -155,7 +155,7 @@ const Registro = () => {
             value={values.lastName || ""}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.lastNameError}</div>
+          <div className="error">{errors.lastNameError}</div>
         </div>
 
         <div className="newUserItem">
@@ -181,7 +181,7 @@ const Registro = () => {
             value={values.email || ""}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.registered}</div>
+          <div className="error">{errors.registered}</div>
         </div>
 
         <div className="newUserItem">
@@ -195,7 +195,7 @@ const Registro = () => {
             value={values.password || ""}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.pswrdError}</div>
+          <div className="error">{errors.pswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -210,7 +210,7 @@ const Registro = () => {
             onChange={handleOnChange}
           />
 
-          <div class="error">{errors.cpswrdError}</div>
+          <div className="error">{errors.cpswrdError}</div>
         </div>
 
         <div className="newUserItem">
@@ -223,7 +223,7 @@ const Registro = () => {
               value="male"
               onChange={handleOnChange}
             />
-            <label for="male">Hombre</label>
+            <label htmlFor="male">Hombre</label>
             <input
               type="radio"
               name="gender"
@@ -231,7 +231,7 @@ const Registro = () => {
               value="female"
               onChange={handleOnChange}
             />
-            <label for="female">Mujer</label>
+            <label htmlFor="female">Mujer</label>
             <input
               type="radio"
               name="gender"
@@ -239,7 +239,7 @@ const Registro = () => {
               value="other"
               onChange={handleOnChange}
             />
-            <label for="other">Otro</label>
+            <label htmlFor="other">Otro</label>
           </div>
         </div>
 

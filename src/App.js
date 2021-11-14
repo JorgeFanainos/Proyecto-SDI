@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registro from "./components/pages/Registro/Registro";
 import SignIn from "./components/pages/SignIn/SignIn";
+import ResetPassword from "./components/pages/SignIn/ResetPassword";
 import Cards from "./components/Cards/Cards";
 import Footer from "./components/Footer/Footer";
 import RegistroPsico from "./components/pages/Registro/RegistroPsico";
@@ -19,7 +20,7 @@ import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario"
 import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
 import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
 import UserContextProvider from "./context/UserContext.jsx";
-import userConfig from "./components/pages/Perfiles/PerfilUser/userConfig";
+import userConfig from "./components/pages/userConfig/Profile";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/registropsico" component={RegistroPsico} />
           <Route path="/registro" component={Registro} />
           <Route path="/sign-in" component={SignIn} />
+          <Route path="/resetpswd" component={ResetPassword} />
           <Route path="/psicologos" component={Cards} />
           <Route path="/contacto" component={Footer} />
           <Route path="/contactos" component={Contacto} />

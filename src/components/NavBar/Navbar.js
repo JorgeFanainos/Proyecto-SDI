@@ -17,7 +17,6 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
   const showButton = () => {
@@ -40,17 +39,16 @@ function Navbar() {
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
             MyHelper
-            <i class="fab fa-typo3" />
+            <i className="fab fa-typo3" />
           </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
+
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
+
             <li className="nav-item">
               <Link
                 to="/psicologos"
@@ -60,6 +58,7 @@ function Navbar() {
                 Nuestros Psicólogos
               </Link>
             </li>
+
             {!!user ? null : (
               <li className="nav-item">
                 <Link
