@@ -7,7 +7,7 @@
 .h1{
     text-align: center;
     text-decoration:underline;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: cursive;
 }
 
 .p{
@@ -16,7 +16,7 @@
     margin-right: 20%;
     text-indent: 2%;
     text-align: justify;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: cursive;
 }
 
 .h3{
@@ -24,7 +24,7 @@
     margin-left: 10%;
     margin-right: 20%;
     text-decoration: underline;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: cursive;
 }
 
 .social-icon-link1 {

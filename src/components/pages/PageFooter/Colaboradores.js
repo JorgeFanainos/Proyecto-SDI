@@ -16,8 +16,8 @@ function Colaboradores() {
               path="/colaboradores"
             />
             <CardItem
-              src="images/img-jeff.jpeg"
-              text="Descripción del Psicólogo"
+              src="images/img-empre.jpeg"
+              text=""
               label="Colaboración:9.635$"
               path="/colaboradores"
             />
@@ -25,13 +25,13 @@ function Colaboradores() {
           <ul className="cards__items">
             <CardItem
               src="images/img-sins.jpeg"
-              text="A well dressed man is more attractive than a shirtless guys with six pack abs.| Sins"
+              text=""
               label="Colaboración:8.634$"
               path="/colaboradores"
             />
             <CardItem
-              src="images/img-jeff.jpeg"
-              text="Descripción del Psicólogo"
+              src="images/img-paoo.jpeg"
+              text=""
               label="Colaboración:3.254$"
               path="/colaboradores"
             />
