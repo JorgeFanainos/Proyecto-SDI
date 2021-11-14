@@ -139,7 +139,23 @@ const RegistroPsico = () => {
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>
       <p className="p1">Completa el formulario para completar tu cuenta</p>
       <p className="p1">Recuerda insertar tus credenciales</p>
-      <form className="newUserForm" onSubmit={handleSubmit}>
+      <div className="ContenedorTODO">
+      <form className="newUserForm" onSubmit={handleSubmit}> 
+      <div className="divcontenedorpsico">
+      <div className="divcredenciales">
+          <div className="newUserItemCredenciales">
+            <label>Credenciales</label>
+              <input
+                id="credenciales"
+                type="file"
+                multiple
+                variant="filled"
+                required
+                onChange={choosefile}
+              />
+          </div>
+      </div> 
+      <div className="divinputs">
         <div className="newUserItem">
           <label>Nombre</label>
           <input
@@ -219,18 +235,6 @@ const RegistroPsico = () => {
           />
           <div class="error">{errors.cpswrdError}</div>
         </div>
-
-        <div className="newUserItem">
-          <label>Credenciales</label>
-          <input
-            id="credenciales"
-            type="file"
-            multiple
-            variant="filled"
-            required
-            onChange={choosefile}
-          />
-        </div>
         <div className="newUserItem">
           <label>Genero</label>
           <div className="newUserGender">
@@ -263,7 +267,7 @@ const RegistroPsico = () => {
 
         <div>
           <br />
-          <br />
+          
           <div className="boton-registro">
             <button className="link" type="submit">
               Registrarse
@@ -273,8 +277,13 @@ const RegistroPsico = () => {
             </Link>
           </div>
         </div>
+        </div>
+        </div>
       </form>
-      <Icon2 />
+        <div className="contenedoricon">
+          <Icon2 />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,28 +1,39 @@
 .newUserTitle {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family:cursive;
+  font-size: 100%;
+  font-size: xx-large;
+  
 }
 .p1 {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100%;
 }
 .link {
-  width: 200px;
+  width: 30%;
   border: none;
   background-color: rgb(45, 36, 175);
   color: white;
   padding: 7px 10px;
-  font-weight: 600;
+  font-size: 90%;
+  font-weight:bold;
   border-radius: 10px;
   margin-top: 30px;
   cursor: pointer;
+  margin-left: 5%;
 }
 
 .newUser {
   flex: 4;
 }
-
+.ContenedorTODO{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .newUserForm {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .newUserItem {
@@ -31,6 +42,7 @@
   flex-direction: column;
   margin-top: 10px;
   margin-right: 20px;
+  width: 85%;
 }
 
 .newUserItem > label {
@@ -38,14 +50,45 @@
   font-size: 14px;
   font-weight: 600;
   color: rgb(151, 150, 150);
+  width: 85%;
+  margin-left: 5%;
 }
 
 .newUserItem > input {
+  display:grid;
   height: 20px;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 5px;
+  margin-left: 5%;
+  width: 100%;
 }
+.newUserItemCredenciales {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+  width: 85%;
+}
+.newUserItemCredenciales > input {
+  display:grid;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-left: 5%;
+  width: 100%;
+}
+.newUserItemCredenciales > label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(151, 150, 150);
+  width: 50%;
+  margin-left: 5%;
+}
+
 
 .newUserGender > input {
   margin-top: 15px;
@@ -55,19 +98,44 @@
   margin: 10px;
   font-size: 18px;
   color: #555;
+  width: 50%;
 }
 .boton-registro {
   color: #fff;
+  width: 100%;
 }
 .userUpdateIcon {
   cursor: pointer;
+  width: 85%;
 }
-
-#credenciales {
-  width: 400px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-right: 20px;
+.divcontenedor{
+  box-shadow:0 6px 20px rgba(56, 125, 255, 0.17);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  border-radius: 10px;
+  margin-left: 10%;
+  width: 80%;
+}
+.divcontenedorpsico{
+  box-shadow:0 6px 20px rgba(56, 125, 255, 0.17);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  border-radius: 10px;
+  margin-left: 10%;
+  width: 80%;
+  display:flex;
+}
+.contenedoricon{
+    display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 30%;
+    height: 30%;
+    
+}
+.divinputs{
+  width: 60%;
+}
+.divcredenciales{
+  width: 40%;
 }
