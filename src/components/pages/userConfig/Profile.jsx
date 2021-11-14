@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
+import "./Profile.css";
+import { updateProfile } from "firebase/auth";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -198,7 +200,26 @@ const Profile = () => {
         console.log("enviado");
         validateUpdate()
           .then(() => {
-            window.location.reload();
+            db.collection("users")
+              .doc(auth.currentUser.uid)
+              .get()
+              .then((doc) => {
+                let firstNamed = doc.data().name;
+                let lastNamed = doc.data().lastname;
+                let genderd = doc.data().gender;
+                let phoneNumberd = doc.data().phoneNumber;
+                updateProfile(auth.currentUser, {
+                  displayName: firstNamed + " " + lastNamed,
+                  phoneNumber: phoneNumberd,
+                })
+                  .then(() => {
+                    console.log("profile updated");
+                  })
+                  .catch((error) => {
+                    console.error();
+                  });
+                window.location.reload();
+              });
           })
           .catch((error) => {
             console.error();
@@ -268,146 +289,158 @@ const Profile = () => {
 
   return (
     <div className="newUser">
-      <div>{display.firstNamed}</div>
-      <div>{display.lastNamed}</div>
-      <div>{display.emaild}</div>
-      <div>{display.phoneNumberd}</div>
-      <div>{display.genderd}</div>
-      <form className="newUserForm" onSubmit={handleSubmit1}>
-        <div className="newUserItem">
-          <label>Nombre</label>
-          <input
-            type="text"
-            placeholder={display.firstNamed}
-            name="firstName"
-            variant="filled"
-            value={values.firstName}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.nameError}</div>
-        </div>
-        <div className="newUserItem">
-          <label>Apellido</label>
-          <input
-            name="lastName"
-            type="text"
-            placeholder={display.lastNamed}
-            variant="filled"
-            value={values.lastName}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.lastNameError}</div>
-        </div>
-        <div className="newUserItem">
-          <label>Numero De Teléfono</label>
-          <input
-            name="phoneNumber"
-            type="number"
-            placeholder={display.phoneNumberd}
-            variant="filled"
-            value={values.phoneNumber}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.tlfError}</div>
-        </div>
-        <div className="newUserItem">
-          <label>Genero</label>
-          <div className="newUserGender">
+      <div>Nombre actual: {display.firstNamed}</div>
+      <br />
+      <div>Apellido actual: {display.lastNamed}</div>
+      <br />
+      <div>email: {display.emaild}</div>
+      <br />
+      <div>numero actual: {display.phoneNumberd}</div>
+      <br />
+      <div>genero: {display.genderd}</div>
+      <br />
+      <br />
+      <h2>Configure sus datos</h2>
+      <div className="Info1">
+        <form className="newUserForm" onSubmit={handleSubmit1}>
+          <div className="newUserItem">
+            <label>Nombre</label>
             <input
-              name="gender"
-              type="radio"
-              id="male"
-              value="male"
+              type="text"
+              placeholder={display.firstNamed}
+              name="firstName"
+              variant="filled"
+              value={values.firstName}
               onChange={handleOnChange}
             />
-            <label htmlFor="male">Hombre</label>
-            <input
-              type="radio"
-              name="gender"
-              id="female"
-              value="female"
-              onChange={handleOnChange}
-            />
-            <label htmlFor="female">Mujer</label>
-            <input
-              type="radio"
-              name="gender"
-              id="other"
-              value="other"
-              onChange={handleOnChange}
-            />
-            <label htmlFor="other">Otro</label>
+            <div className="error">{errors.nameError}</div>
           </div>
-        </div>
+          <div className="newUserItem">
+            <label>Apellido</label>
+            <input
+              name="lastName"
+              type="text"
+              placeholder={display.lastNamed}
+              variant="filled"
+              value={values.lastName}
+              onChange={handleOnChange}
+            />
+            <div className="error">{errors.lastNameError}</div>
+          </div>
+          <div className="newUserItem">
+            <label>Numero De Teléfono</label>
+            <input
+              name="phoneNumber"
+              type="number"
+              placeholder={display.phoneNumberd}
+              variant="filled"
+              value={values.phoneNumber}
+              onChange={handleOnChange}
+            />
+            <div className="error">{errors.tlfError}</div>
+          </div>
+          <div className="newUserItem">
+            <label>Genero</label>
+            <div className="newUserGender">
+              <input
+                name="gender"
+                type="radio"
+                id="male"
+                value="male"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="male">Hombre</label>
+              <input
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="female">Mujer</label>
+              <input
+                type="radio"
+                name="gender"
+                id="other"
+                value="other"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="other">Otro</label>
+            </div>
+          </div>
 
-        <div>
-          <br />
-          <br />
-          <div className="boton-registro">
-            <button className="link" type="submit">
-              Guardar cambios
-            </button>
+          <div>
+            <br />
+            <br />
+            <div className="boton-registro">
+              <button className="link" type="submit">
+                Guardar cambios
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+
       <h2> Cambie su contraseña</h2>
       <p>
         Para cambiar su contraseña es necesario introducir su contrasena actual
       </p>
-      <form className="newUserForm" onSubmit={handleSubmit2}>
-        <div className="newUserItem">
-          <label>Contraseña Actual</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Ingrese su contraseña actual"
-            variant="filled"
-            required
-            value={values.password}
-            onChange={handleOnChange}
-          />
-          <div className="error">{errors.pswrdError}</div>
-        </div>
-
-        <div className="newUserItem">
-          <label>Nueva Contraseña</label>
-          <input
-            name="newpassword"
-            type="password"
-            placeholder="Ingrese su nueva contraseña"
-            variant="filled"
-            required
-            value={values.newpassword || ""}
-            onChange={handleOnChange}
-          />
-
-          <div className="error">{errors.newpswrdError}</div>
-        </div>
-
-        <div className="newUserItem">
-          <label>Confirmar Nueva contraseña</label>
-          <input
-            name="confirmed_password"
-            type="password"
-            placeholder="Confirme su nueva contraseña"
-            variant="filled"
-            required
-            value={values.confirmed_password || ""}
-            onChange={handleOnChange}
-          />
-
-          <div className="error">{errors.cpassword}</div>
-        </div>
-        <div>
-          <br />
-          <br />
-          <div className="boton-registro">
-            <button className="link" type="submit">
-              Guardar cambios
-            </button>
+      <div className="Info2">
+        <form className="newUserForm" onSubmit={handleSubmit2}>
+          <div className="newUserItem">
+            <label>Contraseña Actual</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Ingrese su contraseña actual"
+              variant="filled"
+              required
+              value={values.password}
+              onChange={handleOnChange}
+            />
+            <div className="error">{errors.pswrdError}</div>
           </div>
-        </div>
-      </form>
+
+          <div className="newUserItem">
+            <label>Nueva Contraseña</label>
+            <input
+              name="newpassword"
+              type="password"
+              placeholder="Ingrese su nueva contraseña"
+              variant="filled"
+              required
+              value={values.newpassword || ""}
+              onChange={handleOnChange}
+            />
+
+            <div className="error">{errors.newpswrdError}</div>
+          </div>
+
+          <div className="newUserItem">
+            <label>Confirmar Nueva contraseña</label>
+            <input
+              name="confirmed_password"
+              type="password"
+              placeholder="Confirme su nueva contraseña"
+              variant="filled"
+              required
+              value={values.confirmed_password || ""}
+              onChange={handleOnChange}
+            />
+
+            <div className="error">{errors.cpassword}</div>
+          </div>
+          <div>
+            <br />
+            <br />
+            <div className="boton-registro">
+              <button className="link" type="submit">
+                Guardar cambios
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
