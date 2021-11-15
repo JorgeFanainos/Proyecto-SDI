@@ -66,9 +66,6 @@ function Navbar() {
             </li>
 <<<<<<< HEAD
             )}
-=======
-
->>>>>>> configuracion
             {!!user ? null : (
               <li className="nav-item">
                 <Link
