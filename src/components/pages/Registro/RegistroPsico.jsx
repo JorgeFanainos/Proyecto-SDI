@@ -17,6 +17,7 @@ import {
 const RegistroPsico = () => {
   const history = useHistory();
   const { createUserPsico } = useContext(UserContext);
+  const [file, setfile] = useState(null);
   const [errors, setErrors] = useState({
     pswrdError: "",
     cpswrdError: "",
@@ -25,7 +26,7 @@ const RegistroPsico = () => {
     lastNameError: "",
     tlfError: "",
   });
-  const [file, setfile] = useState(null);
+ 
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -62,10 +63,14 @@ const RegistroPsico = () => {
       pswrdError = errorContra();
     }
     if (!/\S+@\S+\.\S+/.test(values.email)) {
+<<<<<<< HEAD
       registered = errorCorreo();
     } else if (auth.fetchSignInMethodsForEmail(values.email).length !== 0) {
       console.log(auth.fetchSignInMethodsForEmail(values.email));
       registered = errorCorreoRegistrado();
+=======
+      registered = "Ingrese un correo correcto";
+>>>>>>> configuracion
     }
     if (tlf < 11) {
       tlfError = errorTelef();
@@ -124,6 +129,7 @@ const RegistroPsico = () => {
             email: values.email,
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            bio: "",
           },
           res.user.uid
         );
@@ -147,7 +153,7 @@ const RegistroPsico = () => {
       values.confirmed_password = "";
     }
   };
-
+  console.log(file);
   return (
     <div className="newUser">
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>

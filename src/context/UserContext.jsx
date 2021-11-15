@@ -27,7 +27,7 @@ export default function UserContextProvider({ children }) {
   };
 
   const getUserByEmailPsico = async (email) => {
-    const usersReference = db.collection("users");
+    const usersReference = db.collection("usersPsicologos");
     const snapshot = await usersReference.where("email", "==", email).get();
 
     if (!snapshot.size) return null;
@@ -37,25 +37,24 @@ export default function UserContextProvider({ children }) {
     return loggedUser;
   };
 
+  const resetPassword = async (email) => {
+    await auth.sendPasswordResetEmail(auth, email);
+  };
+
   useEffect(() => {
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
         const profile = await getUserByEmail(loggedUser.email);
-
-        if (!profile) {
-          const newProfile = {
-            name: loggedUser.displayName,
-            lastname: "",
-            email: loggedUser.email,
-            gender: "",
-            phoneNumber: "",
-          };
-          await createUser(newProfile, loggedUser.uid);
-          setUser(newProfile);
-        } else {
+        const profileP = await getUserByEmailPsico(loggedUser.email);
+        if (profile) {
           setUser(profile);
+          console.log("soy cliente");
+        } else if (profileP) {
+          setUser(profileP);
+          console.log("soy psicologo");
         }
       } else {
+        console.log("nada");
         setUser(null);
       }
     });
@@ -74,6 +73,7 @@ export default function UserContextProvider({ children }) {
         getUserByEmail,
         createUserPsico,
         getUserByEmailPsico,
+        resetPassword,
       }}
     >
       {children}
