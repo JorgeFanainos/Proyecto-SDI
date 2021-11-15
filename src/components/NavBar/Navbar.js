@@ -43,28 +43,23 @@ function Navbar() {
           </Link>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-          {!!user ? null : (
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-<<<<<<< HEAD
+            {!!user ? null : (
+              <li className="nav-item">
+                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                  Home
+                </Link>
+              </li>
             )}
             {!!user ? null : (
-=======
-
->>>>>>> configuracion
-            <li className="nav-item">
-              <Link
-                to="/psicologos"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Nuestros Psicólogos
-              </Link>
-            </li>
-<<<<<<< HEAD
+              <li className="nav-item">
+                <Link
+                  to="/psicologos"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Nuestros Psicólogos
+                </Link>
+              </li>
             )}
             {!!user ? null : (
               <li className="nav-item">
@@ -87,16 +82,15 @@ function Navbar() {
                   Mi perfil
                 </Link>
               </li>
-            ): null}
+            ) : null}
             {!!user ? (
-            <Button  buttonStyle="btn--outline" onClick={handleLogout}>
-              Log Out, {user.email}
-            </Button>
-          ) : (
-            <Button3  buttonStyle="btn--outline">Iniciar Sesión</Button3>
-          )}
+              <Button buttonStyle="btn--outline" onClick={handleLogout}>
+                Log Out, {user.email}
+              </Button>
+            ) : (
+              <Button3 buttonStyle="btn--outline">Iniciar Sesión</Button3>
+            )}
           </ul>
-          
         </div>
       </nav>
     </>

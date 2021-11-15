@@ -26,7 +26,7 @@ const RegistroPsico = () => {
     lastNameError: "",
     tlfError: "",
   });
- 
+
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -63,14 +63,10 @@ const RegistroPsico = () => {
       pswrdError = errorContra();
     }
     if (!/\S+@\S+\.\S+/.test(values.email)) {
-<<<<<<< HEAD
       registered = errorCorreo();
     } else if (auth.fetchSignInMethodsForEmail(values.email).length !== 0) {
       console.log(auth.fetchSignInMethodsForEmail(values.email));
       registered = errorCorreoRegistrado();
-=======
-      registered = "Ingrese un correo correcto";
->>>>>>> configuracion
     }
     if (tlf < 11) {
       tlfError = errorTelef();
