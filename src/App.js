@@ -20,7 +20,7 @@ import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario"
 import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
 import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
 import UserContextProvider from "./context/UserContext.jsx";
-import userConfig from "./components/pages/Perfiles/PerfilUser/Profile";
+import userConfig from "./components/pages/userConfig/Profile";
 import PerfilPsicologo from "./components/pages/Perfiles/PerfilPsicologo/PerfilPsicologo";
 import CitasAgendadas from "./components/pages/Perfiles/AgendarCita/CitasAgendadas";
 

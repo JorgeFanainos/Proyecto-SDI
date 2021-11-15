@@ -42,6 +42,9 @@ function ResetPassword() {
     if (isValid) {
       try {
         await auth.sendPasswordResetEmail(values.email);
+        let emailErr = "";
+        emailErr = "Mensaje enviado con exito";
+        setErrors({ emailErr });
         console.log("noice");
       } catch (error) {
         const errorMessage = error.code;

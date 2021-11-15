@@ -5,13 +5,10 @@ import { auth, googleProvider } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { errorCorreo, errorContra, errorTodo, Icon }   from "../Icon";
-import '../Registro/Registro.css'
-=======
+import { errorCorreo, errorContra, errorTodo, Icon } from "../Icon";
+import "../Registro/Registro.css";
 import { UserContext } from "../../../context/UserContext";
 
->>>>>>> configuracion
 function SignIn() {
   const history = useHistory();
   const { getUserByEmail, createUser, setUser } = useContext(UserContext);
@@ -31,14 +28,14 @@ function SignIn() {
     let password = values.password.length;
     if (values.email === "") {
       emailErr = "";
-    } else if (!/\S+@\S+\.\S+/.test(values.email)&(values.email<5)) {
+    } else if (!/\S+@\S+\.\S+/.test(values.email) & (values.email < 5)) {
       emailErr = errorCorreo();
     }
     if (password < 6) {
       passErr = errorContra();
     }
-    if ((!/\S+@\S+\.\S+/.test(values.email))& (password < 6)){
-      errorTodo()
+    if (!/\S+@\S+\.\S+/.test(values.email) & (password < 6)) {
+      errorTodo();
     }
 
     if (emailErr || passErr) {
@@ -105,11 +102,10 @@ function SignIn() {
       } catch (error) {
         let badcred = " ";
         badcred = " ";
-        setErrors({ badcred }& errorTodo());
+        setErrors({ badcred } & errorTodo());
       }
     } else {
       console.log("f");
-     
     }
   };
 
@@ -119,28 +115,27 @@ function SignIn() {
       <p className="p2">Introduce tus datos para Iniciar sesión.</p>
       <br />
       <br />
-<<<<<<< HEAD
       <div className="ContenedorTODO">
-      <div className="contenedorini">
-        <div className="newUserItem">
-          <label>Correo</label>
+        <div className="contenedorini">
+          <div className="newUserItem">
+            <label>Correo</label>
+            <br />
+            <input
+              className="input_contra"
+              name="email"
+              id="email"
+              type="email"
+              placeholder="Ingrese su correo"
+              value={values.email}
+              onChange={handleOnChange}
+            />
+            <div class="error">{errors.emailErr}</div>
+          </div>
           <br />
-          <input
-            className="input_contra"
-            name="email"
-            id="email"
-            type="email"
-            placeholder="Ingrese su correo"
-            value={values.email}
-            onChange={handleOnChange}
-          />
-          <div class="error">{errors.emailErr}</div>
-        </div>
-        <br />
-        <br />
-        <div className="newUserItem">
-          <label>Contraseña</label>
           <br />
+          <div className="newUserItem">
+            <label>Contraseña</label>
+            <br />
             <input
               className="input_contra"
               name="password"
@@ -154,65 +149,24 @@ function SignIn() {
           </div>
           <br />
           <br />
-            <Link className="boton" to="/registro">
-              No tienes cuenta? Registrate
-            </Link>
-            <button className="boton" onClick={handleSubmit}>
-              Iniciar Sesión
-            </button>
-            <button className="boton" onClick={handleGoogleLogin}>
-              Iniciar Sesión con Google
-            </button><div class="error">{errors.badcred}</div>
+          <Link className="boton" to="/registro">
+            No tienes cuenta? Registrate
+          </Link>
+          <button className="boton" onClick={handleSubmit}>
+            Iniciar Sesión
+          </button>
+          <button className="boton" onClick={handleGoogleLogin}>
+            Iniciar Sesión con Google
+          </button>
+          <Link className="boton" to="/resetpswd">
+            Olvidaste tu contraseña? Restaurala.
+          </Link>
+          <div class="error">{errors.badcred}</div>
+        </div>
+        <div className="contenedoricon">
+          <Icon />
+        </div>
       </div>
-          <div className="contenedoricon">
-            <Icon />
-          </div>
-      </div>    
-=======
-      <label className="correo">Correo: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="email"
-        id="email"
-        type="email"
-        placeholder="Enter your email"
-        value={values.email}
-        onChange={handleOnChange}
-      />
-      <div className="error">{errors.emailErr}</div>
-      <br />
-      <br />
-      <label className="contrasenia">Contraseña: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="password"
-        id="password"
-        type="password"
-        placeholder="Enter your password"
-        value={values.password}
-        onChange={handleOnChange}
-      />
-      <div className="error">{errors.passErr}</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <Link className="link_registro" to="/registro">
-        No tienes cuenta? Registrate
-      </Link>
-      <Link className="link_registro" to="/resetpswd">
-        Olvidaste tu contrasena?
-      </Link>
-      <button className="boton" onClick={handleSubmit}>
-        Iniciar Sesión
-      </button>
-      <div className="error">{errors.badcred}</div>
-      <button className="boton" onClick={handleGoogleLogin}>
-        Iniciar Sesión con Google
-      </button>
->>>>>>> configuracion
     </div>
   );
 }
