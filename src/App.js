@@ -21,6 +21,7 @@ import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
 import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
 import UserContextProvider from "./context/UserContext.jsx";
 import userConfig from "./components/pages/userConfig/Profile";
+import userConfigpsicologo from "./components/pages/userConfig/ProfilePsicologo";
 import PerfilPsicologo from "./components/pages/Perfiles/PerfilPsicologo/PerfilPsicologo";
 import CitasAgendadas from "./components/pages/Perfiles/AgendarCita/CitasAgendadas";
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/pasarela" component={Pasarela} />
           <Route path="/perfilusuario" component={PerfilUsuario} />
           <Route path="/userconfig" component={userConfig} />
+          <Route path="/userconfigpsicologo" component={userConfigpsicologo} />
           <Route path="/agendarcita" component={AgendarCita} />
           <Route path="/buscarpsicologos" component={BuscarPsicologo} />
           <Route path="/perfilPsicologo" component={PerfilPsicologo} />

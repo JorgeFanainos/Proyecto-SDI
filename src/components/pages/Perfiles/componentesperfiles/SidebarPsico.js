@@ -1,8 +1,8 @@
 import "./Sidebar.css";
 import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import ChatIcon from '@material-ui/icons/Chat';
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import ChatIcon from "@material-ui/icons/Chat";
+import DateRangeIcon from "@material-ui/icons/DateRange";
 
 function SidebarPsico() {
   return (
@@ -19,7 +19,7 @@ function SidebarPsico() {
             </Link>
             <br />
           </ul>
-          <Link to="/userconfig">
+          <Link to="/userconfigpsicologo">
             <li className="sidebarListItem">
               <PermIdentity className="sidebarIcon" />
               Editar Perfil
