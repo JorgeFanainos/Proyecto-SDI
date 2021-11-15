@@ -95,7 +95,6 @@ const RegistroPsico = () => {
     return true;
   };
 
-  let file = {};
   const choosefile = (e) => {
     if (e.target.files[0]) {
       setfile(e.target.files[0]);

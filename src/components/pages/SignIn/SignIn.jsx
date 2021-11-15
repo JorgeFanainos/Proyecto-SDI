@@ -5,8 +5,8 @@ import { auth, googleProvider } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
-import { errorCorreo, errorContra, errorTodo }   from "../Icon";
-
+import { errorCorreo, errorContra, errorTodo, Icon }   from "../Icon";
+import '../Registro/Registro.css'
 function SignIn() {
   const history = useHistory();
   const [values, setValues] = useState({
@@ -74,11 +74,11 @@ function SignIn() {
       } catch (error) {
         let badcred = " ";
         badcred = " ";
-        setErrors({ badcred });
+        setErrors({ badcred }& errorTodo());
       }
     } else {
       console.log("f");
-      errorTodo()
+     
     }
   };
 
@@ -88,46 +88,54 @@ function SignIn() {
       <p className="p2">Introduce tus datos para Iniciar sesión.</p>
       <br />
       <br />
-      <label className="correo">Correo: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="email"
-        id="email"
-        type="email"
-        placeholder="Enter your email"
-        value={values.email}
-        onChange={handleOnChange}
-      />
-      <div class="error">{errors.emailErr}</div>
-      <br />
-      <br />
-      <label className="contrasenia">Contraseña: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="password"
-        id="password"
-        type="password"
-        placeholder="Enter your password"
-        value={values.password}
-        onChange={handleOnChange}
-      />
-      <div class="error">{errors.passErr}</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <Link className="link_registro" to="/registro">
-        No tienes cuenta? Registrate
-      </Link>
-      <button className="boton" onClick={handleSubmit}>
-        Iniciar Sesión
-      </button>
-      <div class="error">{errors.badcred}</div>
-      <button className="boton" onClick={handleGoogleLogin}>
-        Iniciar Sesión con Google
-      </button>
+      <div className="ContenedorTODO">
+      <div className="contenedorini">
+        <div className="newUserItem">
+          <label>Correo</label>
+          <br />
+          <input
+            className="input_contra"
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Ingrese su correo"
+            value={values.email}
+            onChange={handleOnChange}
+          />
+          <div class="error">{errors.emailErr}</div>
+        </div>
+        <br />
+        <br />
+        <div className="newUserItem">
+          <label>Contraseña</label>
+          <br />
+            <input
+              className="input_contra"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Ingrese su contraseña"
+              value={values.password}
+              onChange={handleOnChange}
+            />
+            <div class="error">{errors.passErr}</div>
+          </div>
+          <br />
+          <br />
+            <Link className="boton" to="/registro">
+              No tienes cuenta? Registrate
+            </Link>
+            <button className="boton" onClick={handleSubmit}>
+              Iniciar Sesión
+            </button>
+            <button className="boton" onClick={handleGoogleLogin}>
+              Iniciar Sesión con Google
+            </button><div class="error">{errors.badcred}</div>
+      </div>
+          <div className="contenedoricon">
+            <Icon />
+          </div>
+      </div>    
     </div>
   );
 }
