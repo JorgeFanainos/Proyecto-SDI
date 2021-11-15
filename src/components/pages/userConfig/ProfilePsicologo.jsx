@@ -3,6 +3,14 @@ import { db, auth } from "../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
 import "./Profile.css";
 import { updateProfile } from "firebase/auth";
+import {
+  errorNombre,
+  errorContra,
+  errorApelli,
+  errorTelef,
+  errorContraInv,
+  Timer2,
+} from "../Icon";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -55,18 +63,18 @@ const Profile = () => {
     if (name === 0) {
       nameError = false;
     } else if (!values.firstName.match(letters) || name < 4) {
-      nameError = "Introduzca su nombre correctamente";
+      nameError = errorNombre();
     }
     if (lastName === 0) {
       lastNameError = false;
     } else if (!values.lastName.match(letters) || lastName < 4) {
-      lastNameError = "Introduzca su apellido correctamente";
+      lastNameError = errorApelli();
     }
 
     if (tlf === 0) {
       tlfError = false;
-    } else if (tlf < 6) {
-      tlfError = "Introduzca correctamente su telefono";
+    } else if (tlf < 11) {
+      tlfError = errorTelef();
     }
 
     if (lastNameError || nameError || tlfError) {
@@ -99,19 +107,19 @@ const Profile = () => {
     if (password === 0) {
       pswrdError = false;
     } else if (password < 6) {
-      pswrdError = "Su contraseña no puede tener menos de 6 caracteres";
+      pswrdError = errorContra();
     }
     if (newpassword === 0) {
       newpswrdError = false;
     } else if (newpassword < 6) {
       newpswrdError =
-        "Su nueva contraseña no puede tener menos de 6 caracteres";
+        errorContra();
     }
     if (confirmpss < 6) {
-      cpassword = "Su nueva contraseña no puede tener menos de 6 caracteres";
+      cpassword = errorApelli();
     }
     if (values.newpassword !== values.confirmed_password) {
-      cpassword = "Sus Claves no coinciden";
+      cpassword = errorContraInv();
     }
 
     if (pswrdError || newpswrdError || cpassword) {
@@ -196,6 +204,7 @@ const Profile = () => {
     e.preventDefault();
     let isvalid = validate();
     if (isvalid) {
+      const timer = Timer2();
       try {
         console.log("enviado");
         validateUpdate()
@@ -236,6 +245,7 @@ const Profile = () => {
     e.preventDefault();
     let isvalid = validatepswrd();
     if (isvalid) {
+      const timer = Timer2();
       reauthenticate(values.password)
         .then(() => {
           var user = firebase.auth().currentUser;
@@ -288,18 +298,56 @@ const Profile = () => {
 
   return (
     <div className="newUser">
-      <div>Nombre actual: {display.firstNamed}</div>
+      <div className="divTexto3">
+      <div>
+          <h2 className="newUserTitle">Información actual</h2>
+        </div>
+        <div className="divTexto1">
+          <h2 className="newUserTitle">Configure sus datos</h2>
+        </div>
+        <div className="divTexto">
+          <h2 className="newUserTitle"> Cambie su contraseña</h2>
+        </div>
+      </div>
+      <br/>
+      <div className="ContenedorTODO">
+        <div className="Contenedor">
+          <div className="newUserItem">
+            <lable>Nombre actual:</lable> 
+            {display.firstNamed}
+            </div>
+          <br />
+          <div className="newUserItem">
+            <lable>
+              Apellido actual: 
+            </lable>
+            {display.lastNamed}
+            </div>
+          <br />
+          <div className="newUserItem" >
+            <lable>
+              email: 
+            </lable>
+            {display.emaild}
+            </div>
+          <br />
+          <div className="newUserItem" >
+            <lable>
+              numero actual: 
+            </lable>
+            {display.phoneNumberd}
+            </div>
+          <br />
+          <div className="newUserItem" >
+            <lable>
+              genero: 
+            </lable>
+            {display.genderd}
+          </div>
+        </div>
       <br />
-      <div>Apellido actual: {display.lastNamed}</div>
       <br />
-      <div>email: {display.emaild}</div>
-      <br />
-      <div>numero actual: {display.phoneNumberd}</div>
-      <br />
-      <div>genero: {display.genderd}</div>
-      <br />
-      <br />
-      <h2>Configure sus datos</h2>
+      
       <div className="Info1">
         <form className="newUserForm" onSubmit={handleSubmit1}>
           <div className="newUserItem">
@@ -379,11 +427,6 @@ const Profile = () => {
           </div>
         </form>
       </div>
-
-      <h2> Cambie su contraseña</h2>
-      <p>
-        Para cambiar su contraseña es necesario introducir su contrasena actual
-      </p>
       <div className="Info2">
         <form className="newUserForm" onSubmit={handleSubmit2}>
           <div className="newUserItem">
@@ -441,7 +484,9 @@ const Profile = () => {
         </form>
       </div>
     </div>
+  </div>
   );
+   
 };
 
 export default Profile;

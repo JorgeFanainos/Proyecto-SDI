@@ -320,7 +320,30 @@ export function Timer(){
       }
     })
 }
-
+export function Timer2(){
+  let timerInterval
+    Swal.fire({
+      title: 'Gracias por hacer los cambios!',
+      html: 'Sus cambiuos estan siendo procesados, tomará <b></b> milisegundos.',
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+}
 export function Icon3(){
   return (
     <svg
