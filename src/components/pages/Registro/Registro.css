@@ -103,6 +103,8 @@
 .boton-registro {
   color: #fff;
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .userUpdateIcon {
   cursor: pointer;

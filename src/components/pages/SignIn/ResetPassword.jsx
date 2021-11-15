@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import "../../../App";
 import { auth } from "../../../utils/firebaseApp";
+import { Icon3, errorCorreo, Exito, Wave } from "../Icon";
 
 function ResetPassword() {
   const [values, setValues] = useState({
@@ -43,14 +44,14 @@ function ResetPassword() {
       try {
         await auth.sendPasswordResetEmail(values.email);
         let emailErr = "";
-        emailErr = "Mensaje enviado con exito";
+        emailErr = Exito();
         setErrors({ emailErr });
         console.log("noice");
       } catch (error) {
         const errorMessage = error.code;
         if (errorMessage === "auth/user-not-found") {
           let emailErr = "";
-          emailErr = "Usuario no registrado";
+          emailErr = errorCorreo();
           setErrors({ emailErr });
         }
       }
@@ -60,26 +61,31 @@ function ResetPassword() {
   };
 
   return (
-    <div>
-      <br />
-      <label className="correo">Correo: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="email"
-        id="email"
-        type="email"
-        placeholder="Enter your email"
-        value={values.email}
-        onChange={handleOnChange}
-      />
-      <div className="error">{errors.emailErr}</div>
-      <br />
-      <br />
-      <br />
-      <button className="boton" onClick={handleSubmit}>
-        Recuperar
-      </button>
+    <div className="ContenedorTODO">
+      <div className="contenedoricon">
+          <Icon3 />
+      </div>
+      <div className="contenedorini">
+        <div className="newUserItem">
+          <p className="p2">Realice su solicitud para recuperar su contraseña</p>
+          <label >Correo </label>
+            <input
+              className="input_contra"
+              name="email"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={values.email}
+              onChange={handleOnChange}
+            />      
+            <div className="error">{errors.emailErr}</div>
+            <br/>
+            <br/>
+              <button className="boton" onClick={handleSubmit}>
+                Recuperar
+              </button>
+        </div>
+      </div> 
     </div>
   );
 }

@@ -12,9 +12,11 @@ import {
   errorCorreo,
   errorNombre,
   errorTelef,
+  Timer
 } from "../Icon";
 
 const RegistroPsico = () => {
+  
   const history = useHistory();
   const { createUserPsico } = useContext(UserContext);
   const [file, setfile] = useState(null);
@@ -112,12 +114,12 @@ const RegistroPsico = () => {
     e.preventDefault();
     const isValid = validate();
     if (isValid) {
+      const timer = Timer();
       try {
         const res = await auth.createUserWithEmailAndPassword(
           values.email,
           values.password
         );
-
         await createUserPsico(
           {
             name: values.firstName,
@@ -128,7 +130,7 @@ const RegistroPsico = () => {
             bio: "",
           },
           res.user.uid
-        );
+        ); 
         await storage
           .ref("usersPsico/" + auth.currentUser.uid + "/" + file.name)
           .put(file);
@@ -141,7 +143,7 @@ const RegistroPsico = () => {
         values.confirmed_password = "";
 
         let registered = "";
-        registered = errorCorreoRegistrado();
+        registered = "";
         setErrors({ registered });
       }
     } else {

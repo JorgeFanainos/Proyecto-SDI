@@ -251,11 +251,7 @@ const Registro = () => {
                 <label htmlFor="other">Otro</label>
               </div>
             </div>
-
-            <div>
-              <br />
-              <br />
-              <div className="boton-registro">
+            <div className="boton-registro">
                 <button className="link" type="submit">
                   Registrarse
                 </button>
@@ -267,6 +263,11 @@ const Registro = () => {
                   Eres Psicologo?
                 </Link>
               </div>
+
+            <div>
+              <br />
+              <br />
+              
             </div>
           </div>
         </form>
