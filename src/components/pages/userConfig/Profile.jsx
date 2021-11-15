@@ -206,7 +206,6 @@ const Profile = () => {
               .then((doc) => {
                 let firstNamed = doc.data().name;
                 let lastNamed = doc.data().lastname;
-                let genderd = doc.data().gender;
                 let phoneNumberd = doc.data().phoneNumber;
                 updateProfile(auth.currentUser, {
                   displayName: firstNamed + " " + lastNamed,

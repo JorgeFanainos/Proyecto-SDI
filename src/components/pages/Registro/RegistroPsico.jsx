@@ -8,6 +8,7 @@ import { Icon2 } from "../Icon";
 const RegistroPsico = () => {
   const history = useHistory();
   const { createUserPsico } = useContext(UserContext);
+  const [file, setfile] = useState(null);
   const [errors, setErrors] = useState({
     pswrdError: "",
     cpswrdError: "",
@@ -82,9 +83,10 @@ const RegistroPsico = () => {
     return true;
   };
 
-  let file = {};
   const choosefile = (e) => {
-    file = e.target.files[0];
+    if (e.target.files[0]) {
+      setfile(e.target.files[0]);
+    }
   };
 
   const handleOnChange = (event) => {
@@ -110,11 +112,12 @@ const RegistroPsico = () => {
             email: values.email,
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            bio: "",
           },
           res.user.uid
         );
         await storage
-          .ref("usersPsico/" + auth.currentUser.uid + "/profile.jpg")
+          .ref("usersPsico/" + auth.currentUser.uid + "/" + file.name)
           .put(file);
 
         history.push("/");
@@ -133,7 +136,7 @@ const RegistroPsico = () => {
       values.confirmed_password = "";
     }
   };
-
+  console.log(file);
   return (
     <div className="newUser">
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>
