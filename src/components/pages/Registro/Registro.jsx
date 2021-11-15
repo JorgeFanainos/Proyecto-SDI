@@ -116,7 +116,7 @@ const Registro = () => {
         values.password = "";
         values.confirmed_password = "";
         let registered = "";
-        registered = "correo previamente registrado";
+        registered = "";
         setErrors({ registered });
       }
     } else {
@@ -174,7 +174,7 @@ const Registro = () => {
         </div>
 
         <div className="newUserItem">
-          <label>Email</label>
+          <label>Correo</label>
           <input
             name="email"
             placeholder="Introduzca su Email"
@@ -183,7 +183,6 @@ const Registro = () => {
             value={values.email || ""}
             onChange={handleOnChange}
           />
-          <div class="error">{errors.registered}</div>
         </div>
 
         <div className="newUserItem">

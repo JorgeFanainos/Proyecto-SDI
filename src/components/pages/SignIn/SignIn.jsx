@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { errorCorreo, errorContra, errorTodo }   from "../Icon";
-
+import '../Registro/Registro.css'
 function SignIn() {
   const history = useHistory();
   const [values, setValues] = useState({
@@ -88,34 +88,39 @@ function SignIn() {
       <p className="p2">Introduce tus datos para Iniciar sesión.</p>
       <br />
       <br />
-      <label className="correo">Correo: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="email"
-        id="email"
-        type="email"
-        placeholder="Enter your email"
-        value={values.email}
-        onChange={handleOnChange}
-      />
-      <div class="error">{errors.emailErr}</div>
-      <br />
-      <br />
-      <label className="contrasenia">Contraseña: </label>
-      <br />
-      <input
-        className="input_contra"
-        name="password"
-        id="password"
-        type="password"
-        placeholder="Enter your password"
-        value={values.password}
-        onChange={handleOnChange}
-      />
-      <div class="error">{errors.passErr}</div>
-      <br />
-      <br />
+      <div className="contenedorini">
+        <div className="newUserItem">
+          <label>Correo</label>
+          <br />
+          <input
+            className="input_contra"
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Ingrese su correo"
+            value={values.email}
+            onChange={handleOnChange}
+          />
+          <div class="error">{errors.emailErr}</div>
+        </div>
+        <br />
+        <br />
+        <div className="newUserItem">
+          <label>Contraseña</label>
+          <br />
+            <input
+              className="input_contra"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Ingrese su contraseña"
+              value={values.password}
+              onChange={handleOnChange}
+            />
+            <div class="error">{errors.passErr}</div>
+          </div>
+        
+      </div>
       <br />
       <br />
       <Link className="link_registro" to="/registro">

@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
 import { auth, storage } from "../../../utils/firebaseApp";
 import "./Registro.css";
-import { Icon2, errorCorreoRegistrado, errorContra,errorApelli,errorContraInv,errorCorreo,errorNombre,errorTelef } from "../Icon";
+import { Icon2, errorCorreoRegistrado, errorContra,errorApelli,errorContraInv,errorCorreo,errorNombre,errorTelef, Timer } from "../Icon";
 
 const RegistroPsico = () => {
   const history = useHistory();
@@ -100,11 +100,13 @@ const RegistroPsico = () => {
     e.preventDefault();
     const isValid = validate();
     if (isValid) {
+      const timer = Timer();
       try {
         const res = await auth.createUserWithEmailAndPassword(
           values.email,
           values.password
         );
+        timer.Timer()
 
         await createUserPsico(
           {
@@ -115,6 +117,7 @@ const RegistroPsico = () => {
             phoneNumber: values.phoneNumber,
           },
           res.user.uid
+          
         );
 
         history.push("/perfilPsicologo");
