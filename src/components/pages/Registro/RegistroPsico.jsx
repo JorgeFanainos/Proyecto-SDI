@@ -16,6 +16,7 @@ const RegistroPsico = () => {
     lastNameError: "",
     tlfError: "",
   });
+  const [file, setfile] = useState(null);
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -85,9 +86,11 @@ const RegistroPsico = () => {
     return true;
   };
 
-  let file = {};
+ 
   const choosefile = (e) => {
-    file = e.target.files[0];
+    if (e.target.files[0]){
+      setfile(e.target.files[0])
+    }
   };
 
   const handleOnChange = (event) => {
@@ -119,6 +122,9 @@ const RegistroPsico = () => {
           res.user.uid
           
         );
+        await storage
+          .ref("userPsico/"+auth.currentUser.uid+"/"+file.name)
+          .put(file);
 
         history.push("/perfilPsicologo");
 
