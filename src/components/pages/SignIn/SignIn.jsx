@@ -79,6 +79,7 @@ function SignIn() {
             gender: "",
             phoneNumber: auth.currentUser.phoneNumber,
             rol: "paciente",
+            photo: auth.currentUser.photoURL,
           };
           await createUser(newProfile, auth.currentUser.uid);
           setUser(newProfile);

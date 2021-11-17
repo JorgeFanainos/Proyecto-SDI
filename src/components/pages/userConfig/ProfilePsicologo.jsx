@@ -19,6 +19,7 @@ const Profile = () => {
     phoneNumber: "",
     email: "",
     gender: "",
+    bio: "",
     password: "",
     newpassword: "",
     confirmed_password: "",
@@ -32,6 +33,7 @@ const Profile = () => {
     lastNamed: "",
     phoneNumberd: "",
     genderd: "",
+    biod: "",
   });
 
   const [errors, setErrors] = useState({
@@ -43,6 +45,7 @@ const Profile = () => {
     tlfError: "",
     empswrdError: "",
     cregistered: "",
+    bioerror: "",
   });
 
   const handleOnChange = (event) => {
@@ -55,8 +58,10 @@ const Profile = () => {
     let nameError = "";
     let lastNameError = "";
     let tlfError = "";
+    let bioerror = "";
     let name = values.firstName.length;
     let lastName = values.lastName.length;
+    let bio = values.bio.length;
     let tlf = values.phoneNumber.length;
     var letters = /^[A-Za-z]+$/;
 
@@ -64,6 +69,11 @@ const Profile = () => {
       nameError = false;
     } else if (!values.firstName.match(letters) || name < 4) {
       nameError = errorNombre();
+    }
+    if (bio === 0) {
+      bioerror = false;
+    } else if (bio < 4) {
+      bioerror = errorNombre();
     }
     if (lastName === 0) {
       lastNameError = false;
@@ -77,14 +87,15 @@ const Profile = () => {
       tlfError = errorTelef();
     }
 
-    if (lastNameError || nameError || tlfError) {
+    if (lastNameError || nameError || tlfError || bioerror) {
       setErrors({
         nameError,
         lastNameError,
         tlfError,
+        bioerror,
       });
       return false;
-    } else if (!tlf && !name && !lastName) {
+    } else if (!tlf && !name && !lastName && !bio) {
       window.alert("Debe realizar al menos un cambio");
       return false;
     } else {
@@ -92,6 +103,7 @@ const Profile = () => {
         nameError,
         lastNameError,
         tlfError,
+        bioerror,
       });
       return true;
     }
@@ -112,8 +124,7 @@ const Profile = () => {
     if (newpassword === 0) {
       newpswrdError = false;
     } else if (newpassword < 6) {
-      newpswrdError =
-        errorContra();
+      newpswrdError = errorContra();
     }
     if (confirmpss < 6) {
       cpassword = errorApelli();
@@ -163,6 +174,11 @@ const Profile = () => {
         phoneNumber: values.phoneNumber,
       });
     }
+    if (values.bio !== "") {
+      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+        bio: values.bio,
+      });
+    }
   };
 
   useEffect(() => {
@@ -178,12 +194,14 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+            let biod = doc.data().bio;
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+              biod,
             });
           });
       } else {
@@ -216,6 +234,7 @@ const Profile = () => {
                 let firstNamed = doc.data().name;
                 let lastNamed = doc.data().lastname;
                 let phoneNumberd = doc.data().phoneNumber;
+
                 updateProfile(auth.currentUser, {
                   displayName: firstNamed + " " + lastNamed,
                   phoneNumber: phoneNumberd,
@@ -282,12 +301,14 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+            let biod = doc.data().bio;
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+              biod,
             });
           });
       } else {
@@ -299,7 +320,7 @@ const Profile = () => {
   return (
     <div className="newUser">
       <div className="divTexto3">
-      <div>
+        <div>
           <h2 className="newUserTitle">Información actual</h2>
         </div>
         <div className="divTexto1">
@@ -309,184 +330,191 @@ const Profile = () => {
           <h2 className="newUserTitle"> Cambie su contraseña</h2>
         </div>
       </div>
-      <br/>
+      <br />
       <div className="ContenedorTODO">
         <div className="Contenedor">
           <div className="newUserItem">
-            <lable>Nombre actual:</lable> 
+            <lable>Nombre actual:</lable>
             {display.firstNamed}
-            </div>
+          </div>
           <br />
           <div className="newUserItem">
-            <lable>
-              Apellido actual: 
-            </lable>
+            <lable>Apellido actual:</lable>
             {display.lastNamed}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              email: 
-            </lable>
+          <div className="newUserItem">
+            <lable>email:</lable>
             {display.emaild}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              numero actual: 
-            </lable>
+          <div className="newUserItem">
+            <lable>numero actual:</lable>
             {display.phoneNumberd}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              genero: 
-            </lable>
+          <div className="newUserItem">
+            <lable>genero:</lable>
             {display.genderd}
           </div>
+          <div className="newUserItem">
+            <lable>Bio:</lable>
+            {display.biod}
+          </div>
         </div>
-      <br />
-      <br />
-      
-      <div className="Info1">
-        <form className="newUserForm" onSubmit={handleSubmit1}>
-          <div className="newUserItem">
-            <label>Nombre</label>
-            <input
-              type="text"
-              placeholder={display.firstNamed}
-              name="firstName"
-              variant="filled"
-              value={values.firstName}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.nameError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Apellido</label>
-            <input
-              name="lastName"
-              type="text"
-              placeholder={display.lastNamed}
-              variant="filled"
-              value={values.lastName}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.lastNameError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Numero De Teléfono</label>
-            <input
-              name="phoneNumber"
-              type="number"
-              placeholder={display.phoneNumberd}
-              variant="filled"
-              value={values.phoneNumber}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.tlfError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Genero</label>
-            <div className="newUserGender">
+        <br />
+        <br />
+
+        <div className="Info1">
+          <form className="newUserForm" onSubmit={handleSubmit1}>
+            <div className="newUserItem">
+              <label>Nombre</label>
               <input
-                name="gender"
-                type="radio"
-                id="male"
-                value="male"
+                type="text"
+                placeholder={display.firstNamed}
+                name="firstName"
+                variant="filled"
+                value={values.firstName}
                 onChange={handleOnChange}
               />
-              <label htmlFor="male">Hombre</label>
+              <div className="error">{errors.nameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Apellido</label>
               <input
-                type="radio"
-                name="gender"
-                id="female"
-                value="female"
+                name="lastName"
+                type="text"
+                placeholder={display.lastNamed}
+                variant="filled"
+                value={values.lastName}
                 onChange={handleOnChange}
               />
-              <label htmlFor="female">Mujer</label>
+              <div className="error">{errors.lastNameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Numero De Teléfono</label>
               <input
-                type="radio"
-                name="gender"
-                id="other"
-                value="other"
+                name="phoneNumber"
+                type="number"
+                placeholder={display.phoneNumberd}
+                variant="filled"
+                value={values.phoneNumber}
                 onChange={handleOnChange}
               />
-              <label htmlFor="other">Otro</label>
+              <div className="error">{errors.tlfError}</div>
             </div>
-          </div>
-
-          <div>
-            <br />
-            <br />
-            <div className="boton-registro">
-              <button className="link" type="submit">
-                Guardar cambios
-              </button>
+            <div className="newUserItem">
+              <label>Bio</label>
+              <input
+                name="bio"
+                type="text"
+                placeholder={display.biod}
+                variant="filled"
+                value={values.bio}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.bioerror}</div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div className="Info2">
-        <form className="newUserForm" onSubmit={handleSubmit2}>
-          <div className="newUserItem">
-            <label>Contraseña Actual</label>
-            <input
-              name="password"
-              type="password"
-              placeholder="Ingrese su contraseña actual"
-              variant="filled"
-              required
-              value={values.password}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.pswrdError}</div>
-          </div>
-
-          <div className="newUserItem">
-            <label>Nueva Contraseña</label>
-            <input
-              name="newpassword"
-              type="password"
-              placeholder="Ingrese su nueva contraseña"
-              variant="filled"
-              required
-              value={values.newpassword || ""}
-              onChange={handleOnChange}
-            />
-
-            <div className="error">{errors.newpswrdError}</div>
-          </div>
-
-          <div className="newUserItem">
-            <label>Confirmar Nueva contraseña</label>
-            <input
-              name="confirmed_password"
-              type="password"
-              placeholder="Confirme su nueva contraseña"
-              variant="filled"
-              required
-              value={values.confirmed_password || ""}
-              onChange={handleOnChange}
-            />
-
-            <div className="error">{errors.cpassword}</div>
-          </div>
-          <div>
-            <br />
-            <br />
-            <div className="boton-registro">
-              <button className="link" type="submit">
-                Guardar cambios
-              </button>
+            <div className="newUserItem">
+              <label>Genero</label>
+              <div className="newUserGender">
+                <input
+                  name="gender"
+                  type="radio"
+                  id="male"
+                  value="male"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="male">Hombre</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="female"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="female">Mujer</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="other"
+                  value="other"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="other">Otro</label>
+              </div>
             </div>
-          </div>
-        </form>
+
+            <div>
+              <br />
+              <br />
+              <div className="boton-registro">
+                <button className="link" type="submit">
+                  Guardar cambios
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="Info2">
+          <form className="newUserForm" onSubmit={handleSubmit2}>
+            <div className="newUserItem">
+              <label>Contraseña Actual</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Ingrese su contraseña actual"
+                variant="filled"
+                required
+                value={values.password}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.pswrdError}</div>
+            </div>
+
+            <div className="newUserItem">
+              <label>Nueva Contraseña</label>
+              <input
+                name="newpassword"
+                type="password"
+                placeholder="Ingrese su nueva contraseña"
+                variant="filled"
+                required
+                value={values.newpassword || ""}
+                onChange={handleOnChange}
+              />
+
+              <div className="error">{errors.newpswrdError}</div>
+            </div>
+
+            <div className="newUserItem">
+              <label>Confirmar Nueva contraseña</label>
+              <input
+                name="confirmed_password"
+                type="password"
+                placeholder="Confirme su nueva contraseña"
+                variant="filled"
+                required
+                value={values.confirmed_password || ""}
+                onChange={handleOnChange}
+              />
+
+              <div className="error">{errors.cpassword}</div>
+            </div>
+            <div>
+              <br />
+              <br />
+              <div className="boton-registro">
+                <button className="link" type="submit">
+                  Guardar cambios
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
   );
-   
 };
 
 export default Profile;

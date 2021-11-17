@@ -128,6 +128,13 @@ const RegistroPsico = () => {
             phoneNumber: values.phoneNumber,
             rol: "psicologo",
             bio: "",
+            photo: "",
+            feedback: [],
+            schedule: [],
+            especialidad: [],
+            ranking: 0,
+            role: "especialista",
+            status: "standby",
           },
           res.user.uid
         );

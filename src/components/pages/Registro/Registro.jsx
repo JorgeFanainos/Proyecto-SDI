@@ -114,6 +114,7 @@ const Registro = () => {
             gender: values.gender,
             phoneNumber: values.phoneNumber,
             rol: "paciente",
+            img: "",
           },
           res.user.uid
         );
