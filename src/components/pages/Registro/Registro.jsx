@@ -113,6 +113,7 @@ const Registro = () => {
             email: values.email,
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            rol: "paciente",
           },
           res.user.uid
         );
@@ -252,22 +253,21 @@ const Registro = () => {
               </div>
             </div>
             <div className="boton-registro">
-                <button className="link" type="submit">
-                  Registrarse
-                </button>
+              <button className="link" type="submit">
+                Registrarse
+              </button>
 
-                <Link className="link" to="/">
-                  Cancelar
-                </Link>
-                <Link className="link" to="/registropsico">
-                  Eres Psicologo?
-                </Link>
-              </div>
+              <Link className="link" to="/">
+                Cancelar
+              </Link>
+              <Link className="link" to="/registropsico">
+                Eres Psicologo?
+              </Link>
+            </div>
 
             <div>
               <br />
               <br />
-              
             </div>
           </div>
         </form>

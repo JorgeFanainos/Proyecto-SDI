@@ -12,11 +12,10 @@ import {
   errorCorreo,
   errorNombre,
   errorTelef,
-  Timer
+  Timer,
 } from "../Icon";
 
 const RegistroPsico = () => {
-  
   const history = useHistory();
   const { createUserPsico } = useContext(UserContext);
   const [file, setfile] = useState(null);
@@ -127,10 +126,11 @@ const RegistroPsico = () => {
             email: values.email,
             gender: values.gender,
             phoneNumber: values.phoneNumber,
+            rol: "psicologo",
             bio: "",
           },
           res.user.uid
-        ); 
+        );
         await storage
           .ref("usersPsico/" + auth.currentUser.uid + "/" + file.name)
           .put(file);

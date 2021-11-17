@@ -78,6 +78,7 @@ function SignIn() {
             email: auth.currentUser.email,
             gender: "",
             phoneNumber: auth.currentUser.phoneNumber,
+            rol: "paciente",
           };
           await createUser(newProfile, auth.currentUser.uid);
           setUser(newProfile);
@@ -98,7 +99,9 @@ function SignIn() {
     if (isValid) {
       try {
         await auth.signInWithEmailAndPassword(values.email, values.password);
-        history.push("/perfilusuario");
+        if (auth.currentUser) {
+          history.push("/perfilusuario");
+        }
       } catch (error) {
         let badcred = " ";
         badcred = " ";
