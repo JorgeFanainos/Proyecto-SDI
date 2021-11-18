@@ -37,11 +37,8 @@ const Profile = () => {
     lastNamed: "",
     phoneNumberd: "",
     genderd: "",
-<<<<<<< HEAD
     biod: "",
-=======
     img: "",
->>>>>>> admin
   });
 
   const [errors, setErrors] = useState({
@@ -183,7 +180,7 @@ const Profile = () => {
       });
     }
     if (values.bio !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         bio: values.bio,
       });
     }
@@ -221,23 +218,17 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
-<<<<<<< HEAD
             let biod = doc.data().bio;
-=======
             let img = doc.data().img;
 
->>>>>>> admin
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
-<<<<<<< HEAD
               biod,
-=======
               img,
->>>>>>> admin
             });
           });
       } else {
@@ -337,23 +328,17 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
-<<<<<<< HEAD
             let biod = doc.data().bio;
-=======
             let img = doc.data().img;
 
->>>>>>> admin
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
-<<<<<<< HEAD
               biod,
-=======
               img,
->>>>>>> admin
             });
           });
       } else {
@@ -379,8 +364,6 @@ const Profile = () => {
       <div className="ContenedorTODO">
         <div className="Contenedor">
           <div className="newUserItem">
-<<<<<<< HEAD
-=======
             <img
               src={display.img}
               alt="fotico"
@@ -405,7 +388,6 @@ const Profile = () => {
             </Tooltip>
           </div>
           <div className="newUserItem">
->>>>>>> admin
             <lable>Nombre actual:</lable>
             {display.firstNamed}
           </div>
@@ -418,7 +400,6 @@ const Profile = () => {
           <div className="newUserItem">
             <lable>email:</lable>
             {display.emaild}
-<<<<<<< HEAD
           </div>
           <br />
           <div className="newUserItem">
@@ -434,19 +415,6 @@ const Profile = () => {
             <lable>Bio:</lable>
             {display.biod}
           </div>
-=======
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>numero actual:</lable>
-            {display.phoneNumberd}
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>genero:</lable>
-            {display.genderd}
-          </div>
->>>>>>> admin
         </div>
         <br />
         <br />
@@ -455,7 +423,6 @@ const Profile = () => {
           <form className="newUserForm" onSubmit={handleSubmit1}>
             <div className="newUserItem">
               <label>Nombre</label>
-<<<<<<< HEAD
               <input
                 type="text"
                 placeholder={display.firstNamed}
@@ -501,41 +468,6 @@ const Profile = () => {
                 onChange={handleOnChange}
               />
               <div className="error">{errors.bioerror}</div>
-=======
-              <input
-                type="text"
-                placeholder={display.firstNamed}
-                name="firstName"
-                variant="filled"
-                value={values.firstName}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.nameError}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Apellido</label>
-              <input
-                name="lastName"
-                type="text"
-                placeholder={display.lastNamed}
-                variant="filled"
-                value={values.lastName}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.lastNameError}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Numero De Teléfono</label>
-              <input
-                name="phoneNumber"
-                type="number"
-                placeholder={display.phoneNumberd}
-                variant="filled"
-                value={values.phoneNumber}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.tlfError}</div>
->>>>>>> admin
             </div>
             <div className="newUserItem">
               <label>Genero</label>
