@@ -6,28 +6,14 @@ export const UserContext = createContext(null);
 
 export default function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setloading] = useState(true);
 
   const createUser = async (user, uid) => {
     await db.collection("users").doc(uid).set(user);
   };
 
-  const createUserPsico = async (user, uid) => {
-    await db.collection("usersPsicologos").doc(uid).set(user);
-  };
-
   const getUserByEmail = async (email) => {
     const usersReference = db.collection("users");
-    const snapshot = await usersReference.where("email", "==", email).get();
-
-    if (!snapshot.size) return null;
-
-    const loggedUser = getFirstElementArrayCollection(snapshot);
-
-    return loggedUser;
-  };
-
-  const getUserByEmailPsico = async (email) => {
-    const usersReference = db.collection("usersPsicologos");
     const snapshot = await usersReference.where("email", "==", email).get();
 
     if (!snapshot.size) return null;
@@ -42,21 +28,20 @@ export default function UserContextProvider({ children }) {
   };
 
   useEffect(() => {
+    setloading(true);
     const unlisten = auth.onAuthStateChanged(async (loggedUser) => {
       if (loggedUser) {
         const profile = await getUserByEmail(loggedUser.email);
-        const profileP = await getUserByEmailPsico(loggedUser.email);
+
         if (profile) {
           setUser(profile);
-          console.log("soy cliente");
-        } else if (profileP) {
-          setUser(profileP);
-          console.log("soy psicologo");
         }
       } else {
         console.log("nada");
         setUser(null);
       }
+
+      setloading(false);
     });
 
     return () => {
@@ -71,9 +56,8 @@ export default function UserContextProvider({ children }) {
         setUser,
         createUser,
         getUserByEmail,
-        createUserPsico,
-        getUserByEmailPsico,
         resetPassword,
+        loading,
       }}
     >
       {children}

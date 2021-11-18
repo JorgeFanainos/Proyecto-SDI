@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Registro.css";
 import { UserContext } from "../../../context/UserContext";
-import { auth } from "../../../utils/firebaseApp";
+import { auth, storage } from "../../../utils/firebaseApp";
 import {
   Icon,
   errorNombre,
@@ -15,7 +15,7 @@ import {
 
 const Registro = () => {
   const history = useHistory();
-  const { createUser } = useContext(UserContext);
+  const { createUser, setUser } = useContext(UserContext);
   const [errors, setErrors] = useState({
     pswrdError: "",
     cpswrdError: "",
@@ -105,24 +105,25 @@ const Registro = () => {
           values.email,
           values.password
         );
-
-        await createUser(
-          {
-            name: values.firstName,
-            lastname: values.lastName,
-            email: values.email,
-            gender: values.gender,
-            phoneNumber: values.phoneNumber,
-            rol: "paciente",
-            img: "",
-          },
-          res.user.uid
-        );
-
+        const imgp = await storage
+          .ref("FotosPerfil/defaultimg.png")
+          .getDownloadURL();
+        const newProfile = {
+          name: values.firstName,
+          lastname: values.lastName,
+          email: values.email,
+          gender: values.gender,
+          phoneNumber: values.phoneNumber,
+          rol: "paciente",
+          img: imgp,
+        };
+        await createUser(newProfile, res.user.uid);
+        setUser(newProfile);
         history.push("/perfilusuario");
 
         console.log(res.user.uid);
       } catch (error) {
+        console.error(error);
         values.password = "";
         values.confirmed_password = "";
         let registered = "";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db, auth } from "../../../utils/firebaseApp";
+import { db, auth, storage } from "../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
 import "./Profile.css";
 import { updateProfile } from "firebase/auth";
@@ -11,6 +11,9 @@ import {
   errorContraInv,
   Timer2,
 } from "../Icon";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import { Tooltip } from "@material-ui/core";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -26,6 +29,7 @@ const Profile = () => {
     empassword: "",
     confirmEmail: "",
     newemail: "",
+    newimg: "",
   });
 
   const [display, setdisplay] = useState({
@@ -33,7 +37,11 @@ const Profile = () => {
     lastNamed: "",
     phoneNumberd: "",
     genderd: "",
+<<<<<<< HEAD
     biod: "",
+=======
+    img: "",
+>>>>>>> admin
   });
 
   const [errors, setErrors] = useState({
@@ -155,22 +163,22 @@ const Profile = () => {
 
   const validateUpdate = async () => {
     if (values.firstName !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         name: values.firstName,
       });
     }
     if (values.lastName !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         lastname: values.lastName,
       });
     }
     if (values.gender !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         gender: values.gender,
       });
     }
     if (values.phoneNumber !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         phoneNumber: values.phoneNumber,
       });
     }
@@ -180,12 +188,31 @@ const Profile = () => {
       });
     }
   };
-
+  const handlePicChange = async (e) => {
+    //FALTA PONERLE UN TIMER PARA QUE LA PERSONA NO CRISEE
+    e.preventDefault();
+    const img = e.target.files[0];
+    await storage.ref("images/" + auth.currentUser.uid).put(img);
+    const newimg = await storage
+      .ref("images/" + auth.currentUser.uid)
+      .getDownloadURL();
+    if (newimg !== "") {
+      await db
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .update({ img: newimg });
+      window.location.reload();
+    }
+  };
+  const handleEditPic = () => {
+    const fileinput = document.getElementById("imgInput");
+    fileinput.click();
+  };
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
       unsub();
       if (user) {
-        db.collection("usersPsicologos")
+        db.collection("users")
           .doc(auth.currentUser.uid)
           .get()
           .then((doc) => {
@@ -194,14 +221,23 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+<<<<<<< HEAD
             let biod = doc.data().bio;
+=======
+            let img = doc.data().img;
+
+>>>>>>> admin
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+<<<<<<< HEAD
               biod,
+=======
+              img,
+>>>>>>> admin
             });
           });
       } else {
@@ -227,7 +263,7 @@ const Profile = () => {
         console.log("enviado");
         validateUpdate()
           .then(() => {
-            db.collection("usersPsicologos")
+            db.collection("users")
               .doc(auth.currentUser.uid)
               .get()
               .then((doc) => {
@@ -292,7 +328,7 @@ const Profile = () => {
     const unsub = auth.onAuthStateChanged((user) => {
       unsub();
       if (user) {
-        db.collection("usersPsicologos")
+        db.collection("users")
           .doc(auth.currentUser.uid)
           .get()
           .then((doc) => {
@@ -301,14 +337,23 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+<<<<<<< HEAD
             let biod = doc.data().bio;
+=======
+            let img = doc.data().img;
+
+>>>>>>> admin
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+<<<<<<< HEAD
               biod,
+=======
+              img,
+>>>>>>> admin
             });
           });
       } else {
@@ -334,6 +379,33 @@ const Profile = () => {
       <div className="ContenedorTODO">
         <div className="Contenedor">
           <div className="newUserItem">
+<<<<<<< HEAD
+=======
+            <img
+              src={display.img}
+              alt="fotico"
+              height="200"
+              width="200"
+              className="perfilpic"
+            />
+          </div>
+          <div>
+            <input
+              hidden
+              type="file"
+              id="imgInput"
+              accept=".png,.jpg"
+              onChange={handlePicChange}
+            />
+            <br />
+            <Tooltip title="Edite su foto de perfil" placement="right">
+              <IconButton onClick={handleEditPic}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className="newUserItem">
+>>>>>>> admin
             <lable>Nombre actual:</lable>
             {display.firstNamed}
           </div>
@@ -346,6 +418,7 @@ const Profile = () => {
           <div className="newUserItem">
             <lable>email:</lable>
             {display.emaild}
+<<<<<<< HEAD
           </div>
           <br />
           <div className="newUserItem">
@@ -361,6 +434,19 @@ const Profile = () => {
             <lable>Bio:</lable>
             {display.biod}
           </div>
+=======
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>numero actual:</lable>
+            {display.phoneNumberd}
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>genero:</lable>
+            {display.genderd}
+          </div>
+>>>>>>> admin
         </div>
         <br />
         <br />
@@ -369,6 +455,7 @@ const Profile = () => {
           <form className="newUserForm" onSubmit={handleSubmit1}>
             <div className="newUserItem">
               <label>Nombre</label>
+<<<<<<< HEAD
               <input
                 type="text"
                 placeholder={display.firstNamed}
@@ -414,6 +501,41 @@ const Profile = () => {
                 onChange={handleOnChange}
               />
               <div className="error">{errors.bioerror}</div>
+=======
+              <input
+                type="text"
+                placeholder={display.firstNamed}
+                name="firstName"
+                variant="filled"
+                value={values.firstName}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.nameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Apellido</label>
+              <input
+                name="lastName"
+                type="text"
+                placeholder={display.lastNamed}
+                variant="filled"
+                value={values.lastName}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.lastNameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Numero De Teléfono</label>
+              <input
+                name="phoneNumber"
+                type="number"
+                placeholder={display.phoneNumberd}
+                variant="filled"
+                value={values.phoneNumber}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.tlfError}</div>
+>>>>>>> admin
             </div>
             <div className="newUserItem">
               <label>Genero</label>

@@ -63,29 +63,31 @@ function ResetPassword() {
   return (
     <div className="ContenedorTODO">
       <div className="contenedoricon">
-          <Icon3 />
+        <Icon3 />
       </div>
       <div className="contenedorini">
         <div className="newUserItem">
-          <p className="p2">Realice su solicitud para recuperar su contraseña</p>
-          <label >Correo </label>
-            <input
-              className="input_contra"
-              name="email"
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={values.email}
-              onChange={handleOnChange}
-            />      
-            <div className="error">{errors.emailErr}</div>
-            <br/>
-            <br/>
-              <button className="boton" onClick={handleSubmit}>
-                Recuperar
-              </button>
+          <p className="p2">
+            Realice su solicitud para recuperar su contraseña
+          </p>
+          <label>Correo </label>
+          <input
+            className="input_contra"
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            value={values.email}
+            onChange={handleOnChange}
+          />
+          <div className="error">{errors.emailErr}</div>
+          <br />
+          <br />
+          <button className="boton" onClick={handleSubmit}>
+            Recuperar
+          </button>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
