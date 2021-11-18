@@ -17,7 +17,7 @@ import {
 
 const RegistroPsico = () => {
   const history = useHistory();
-  const { createUserPsico } = useContext(UserContext);
+  const { createUser, setUser } = useContext(UserContext);
   const [file, setfile] = useState(null);
   const [errors, setErrors] = useState({
     pswrdError: "",
@@ -119,24 +119,30 @@ const RegistroPsico = () => {
           values.email,
           values.password
         );
-        await createUserPsico(
-          {
-            name: values.firstName,
-            lastname: values.lastName,
-            email: values.email,
-            gender: values.gender,
-            phoneNumber: values.phoneNumber,
-            rol: "psicologo",
-            bio: "",
-          },
-          res.user.uid
-        );
-        await storage
-          .ref("usersPsico/" + auth.currentUser.uid + "/" + file.name)
-          .put(file);
+        const imgp = await storage
+          .ref("FotosPerfil/defaultimg.png")
+          .getDownloadURL();
+        const newProfile = {
+          name: values.firstName,
+          lastname: values.lastName,
+          email: values.email,
+          gender: values.gender,
+          phoneNumber: values.phoneNumber,
+          rol: "psicologo",
+          bio: "",
+          especialidad: [],
+          schedule: [],
+          feedback: [],
+          ranking: 0,
+          status: "standby",
+          img: imgp,
+        };
+        await createUser(newProfile, res.user.uid);
+        setUser(newProfile);
+        await storage.ref("credentials/" + auth.currentUser.uid).put(file);
 
-        history.push("/perfilPsicologo");
-
+        history.push("/perfilPsicologo"); //Eliminar push a perfil psicologo
+        //poner error de perfil en revision y hacer logout
         console.log(res.user.uid);
       } catch (error) {
         values.password = "";
@@ -152,6 +158,7 @@ const RegistroPsico = () => {
     }
   };
   console.log(file);
+
   return (
     <div className="newUser">
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>

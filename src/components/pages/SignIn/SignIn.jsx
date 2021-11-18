@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useContext } from "react";
 import "../../../App";
-import { auth, googleProvider } from "../../../utils/firebaseApp";
+import { auth, googleProvider, db } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { errorCorreo, errorContra, errorTodo, Icon } from "../Icon";
 import "../Registro/Registro.css";
 import { UserContext } from "../../../context/UserContext";
+import { Message } from "@material-ui/icons";
 
 function SignIn() {
   const history = useHistory();
@@ -79,6 +80,7 @@ function SignIn() {
             gender: "",
             phoneNumber: auth.currentUser.phoneNumber,
             rol: "paciente",
+            photo: auth.currentUser.photoURL,
           };
           await createUser(newProfile, auth.currentUser.uid);
           setUser(newProfile);
@@ -99,10 +101,40 @@ function SignIn() {
     if (isValid) {
       try {
         await auth.signInWithEmailAndPassword(values.email, values.password);
+
         if (auth.currentUser) {
-          history.push("/perfilusuario");
+          await db
+            .collection("users")
+            .doc(auth.currentUser.uid)
+            .get()
+            .then((doc) => {
+              let rol = doc.data().rol;
+              if (rol === "paciente") {
+                history.push("/perfilusuario");
+              }
+              if (rol === "psicologo") {
+                let status = doc.data().status;
+                if (status === "standby") {
+                  auth.signOut();
+                  let badcred = " ";
+                  setErrors({ badcred } & errorTodo());
+                  auth.signOut(); // FALTA ERROR STAND BY PSICOLOGO
+                } else if (status === "rechazado") {
+                  // FALTA ERROR PSICOLOGO RECHAZADO
+                  let badcred = " ";
+                  setErrors({ badcred } & errorTodo());
+                  auth.signOut(); // FALTA ERROR STAND BY PSICOLOGO
+                } else {
+                  history.push("/perfilPsicologo");
+                }
+              }
+              if (rol === "admin") {
+                history.push("/admin");
+              }
+            });
         }
       } catch (error) {
+        console.error(error);
         let badcred = " ";
         badcred = " ";
         setErrors({ badcred } & errorTodo());
@@ -132,7 +164,7 @@ function SignIn() {
               value={values.email}
               onChange={handleOnChange}
             />
-            <div class="error">{errors.emailErr}</div>
+            <div className="error">{errors.emailErr}</div>
           </div>
           <br />
           <br />
@@ -148,7 +180,7 @@ function SignIn() {
               value={values.password}
               onChange={handleOnChange}
             />
-            <div class="error">{errors.passErr}</div>
+            <div className="error">{errors.passErr}</div>
           </div>
           <br />
           <br />
@@ -164,7 +196,7 @@ function SignIn() {
           <Link className="boton" to="/resetpswd">
             Olvidaste tu contraseña? Restaurala.
           </Link>
-          <div class="error">{errors.badcred}</div>
+          <div className="error">{errors.badcred}</div>
         </div>
         <div className="contenedoricon">
           <Icon />

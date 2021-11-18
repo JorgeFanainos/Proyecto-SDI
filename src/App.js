@@ -24,6 +24,7 @@ import userConfig from "./components/pages/userConfig/Profile";
 import userConfigpsicologo from "./components/pages/userConfig/ProfilePsicologo";
 import PerfilPsicologo from "./components/pages/Perfiles/PerfilPsicologo/PerfilPsicologo";
 import CitasAgendadas from "./components/pages/Perfiles/AgendarCita/CitasAgendadas";
+import Admin from "./components/pages/PerfilAdmin/admin";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/registropsico" component={RegistroPsico} />
           <Route path="/registro" component={Registro} />
           <Route path="/sign-in" component={SignIn} />
+          <Route path="/admin" component={Admin} />
           <Route path="/resetpswd" component={ResetPassword} />
           <Route path="/psicologos" component={Cards} />
           <Route path="/contacto" component={Footer} />

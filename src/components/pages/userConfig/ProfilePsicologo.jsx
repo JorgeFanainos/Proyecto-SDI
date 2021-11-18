@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db, auth } from "../../../utils/firebaseApp";
+import { db, auth, storage } from "../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
 import "./Profile.css";
 import { updateProfile } from "firebase/auth";
@@ -11,6 +11,9 @@ import {
   errorContraInv,
   Timer2,
 } from "../Icon";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import { Tooltip } from "@material-ui/core";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -25,6 +28,7 @@ const Profile = () => {
     empassword: "",
     confirmEmail: "",
     newemail: "",
+    newimg: "",
   });
 
   const [display, setdisplay] = useState({
@@ -32,6 +36,7 @@ const Profile = () => {
     lastNamed: "",
     phoneNumberd: "",
     genderd: "",
+    img: "",
   });
 
   const [errors, setErrors] = useState({
@@ -112,8 +117,7 @@ const Profile = () => {
     if (newpassword === 0) {
       newpswrdError = false;
     } else if (newpassword < 6) {
-      newpswrdError =
-        errorContra();
+      newpswrdError = errorContra();
     }
     if (confirmpss < 6) {
       cpassword = errorApelli();
@@ -144,32 +148,51 @@ const Profile = () => {
 
   const validateUpdate = async () => {
     if (values.firstName !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         name: values.firstName,
       });
     }
     if (values.lastName !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         lastname: values.lastName,
       });
     }
     if (values.gender !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         gender: values.gender,
       });
     }
     if (values.phoneNumber !== "") {
-      await db.collection("usersPsicologos").doc(auth.currentUser.uid).update({
+      await db.collection("users").doc(auth.currentUser.uid).update({
         phoneNumber: values.phoneNumber,
       });
     }
   };
-
+  const handlePicChange = async (e) => {
+    //FALTA PONERLE UN TIMER PARA QUE LA PERSONA NO CRISEE
+    e.preventDefault();
+    const img = e.target.files[0];
+    await storage.ref("images/" + auth.currentUser.uid).put(img);
+    const newimg = await storage
+      .ref("images/" + auth.currentUser.uid)
+      .getDownloadURL();
+    if (newimg !== "") {
+      await db
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .update({ img: newimg });
+      window.location.reload();
+    }
+  };
+  const handleEditPic = () => {
+    const fileinput = document.getElementById("imgInput");
+    fileinput.click();
+  };
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
       unsub();
       if (user) {
-        db.collection("usersPsicologos")
+        db.collection("users")
           .doc(auth.currentUser.uid)
           .get()
           .then((doc) => {
@@ -178,12 +201,15 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+            let img = doc.data().img;
+
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+              img,
             });
           });
       } else {
@@ -209,7 +235,7 @@ const Profile = () => {
         console.log("enviado");
         validateUpdate()
           .then(() => {
-            db.collection("usersPsicologos")
+            db.collection("users")
               .doc(auth.currentUser.uid)
               .get()
               .then((doc) => {
@@ -273,7 +299,7 @@ const Profile = () => {
     const unsub = auth.onAuthStateChanged((user) => {
       unsub();
       if (user) {
-        db.collection("usersPsicologos")
+        db.collection("users")
           .doc(auth.currentUser.uid)
           .get()
           .then((doc) => {
@@ -282,12 +308,15 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
+            let img = doc.data().img;
+
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
+              img,
             });
           });
       } else {
@@ -299,7 +328,7 @@ const Profile = () => {
   return (
     <div className="newUser">
       <div className="divTexto3">
-      <div>
+        <div>
           <h2 className="newUserTitle">Información actual</h2>
         </div>
         <div className="divTexto1">
@@ -309,184 +338,199 @@ const Profile = () => {
           <h2 className="newUserTitle"> Cambie su contraseña</h2>
         </div>
       </div>
-      <br/>
+      <br />
       <div className="ContenedorTODO">
         <div className="Contenedor">
           <div className="newUserItem">
-            <lable>Nombre actual:</lable> 
+            <img
+              src={display.img}
+              alt="fotico"
+              height="200"
+              width="200"
+              className="perfilpic"
+            />
+          </div>
+          <div>
+            <input
+              hidden
+              type="file"
+              id="imgInput"
+              accept=".png,.jpg"
+              onChange={handlePicChange}
+            />
+            <br />
+            <Tooltip title="Edite su foto de perfil" placement="right">
+              <IconButton onClick={handleEditPic}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className="newUserItem">
+            <lable>Nombre actual:</lable>
             {display.firstNamed}
-            </div>
+          </div>
           <br />
           <div className="newUserItem">
-            <lable>
-              Apellido actual: 
-            </lable>
+            <lable>Apellido actual:</lable>
             {display.lastNamed}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              email: 
-            </lable>
+          <div className="newUserItem">
+            <lable>email:</lable>
             {display.emaild}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              numero actual: 
-            </lable>
+          <div className="newUserItem">
+            <lable>numero actual:</lable>
             {display.phoneNumberd}
-            </div>
+          </div>
           <br />
-          <div className="newUserItem" >
-            <lable>
-              genero: 
-            </lable>
+          <div className="newUserItem">
+            <lable>genero:</lable>
             {display.genderd}
           </div>
         </div>
-      <br />
-      <br />
-      
-      <div className="Info1">
-        <form className="newUserForm" onSubmit={handleSubmit1}>
-          <div className="newUserItem">
-            <label>Nombre</label>
-            <input
-              type="text"
-              placeholder={display.firstNamed}
-              name="firstName"
-              variant="filled"
-              value={values.firstName}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.nameError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Apellido</label>
-            <input
-              name="lastName"
-              type="text"
-              placeholder={display.lastNamed}
-              variant="filled"
-              value={values.lastName}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.lastNameError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Numero De Teléfono</label>
-            <input
-              name="phoneNumber"
-              type="number"
-              placeholder={display.phoneNumberd}
-              variant="filled"
-              value={values.phoneNumber}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.tlfError}</div>
-          </div>
-          <div className="newUserItem">
-            <label>Genero</label>
-            <div className="newUserGender">
+        <br />
+        <br />
+
+        <div className="Info1">
+          <form className="newUserForm" onSubmit={handleSubmit1}>
+            <div className="newUserItem">
+              <label>Nombre</label>
               <input
-                name="gender"
-                type="radio"
-                id="male"
-                value="male"
+                type="text"
+                placeholder={display.firstNamed}
+                name="firstName"
+                variant="filled"
+                value={values.firstName}
                 onChange={handleOnChange}
               />
-              <label htmlFor="male">Hombre</label>
+              <div className="error">{errors.nameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Apellido</label>
               <input
-                type="radio"
-                name="gender"
-                id="female"
-                value="female"
+                name="lastName"
+                type="text"
+                placeholder={display.lastNamed}
+                variant="filled"
+                value={values.lastName}
                 onChange={handleOnChange}
               />
-              <label htmlFor="female">Mujer</label>
+              <div className="error">{errors.lastNameError}</div>
+            </div>
+            <div className="newUserItem">
+              <label>Numero De Teléfono</label>
               <input
-                type="radio"
-                name="gender"
-                id="other"
-                value="other"
+                name="phoneNumber"
+                type="number"
+                placeholder={display.phoneNumberd}
+                variant="filled"
+                value={values.phoneNumber}
                 onChange={handleOnChange}
               />
-              <label htmlFor="other">Otro</label>
+              <div className="error">{errors.tlfError}</div>
             </div>
-          </div>
-
-          <div>
-            <br />
-            <br />
-            <div className="boton-registro">
-              <button className="link" type="submit">
-                Guardar cambios
-              </button>
+            <div className="newUserItem">
+              <label>Genero</label>
+              <div className="newUserGender">
+                <input
+                  name="gender"
+                  type="radio"
+                  id="male"
+                  value="male"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="male">Hombre</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="female"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="female">Mujer</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="other"
+                  value="other"
+                  onChange={handleOnChange}
+                />
+                <label htmlFor="other">Otro</label>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div className="Info2">
-        <form className="newUserForm" onSubmit={handleSubmit2}>
-          <div className="newUserItem">
-            <label>Contraseña Actual</label>
-            <input
-              name="password"
-              type="password"
-              placeholder="Ingrese su contraseña actual"
-              variant="filled"
-              required
-              value={values.password}
-              onChange={handleOnChange}
-            />
-            <div className="error">{errors.pswrdError}</div>
-          </div>
 
-          <div className="newUserItem">
-            <label>Nueva Contraseña</label>
-            <input
-              name="newpassword"
-              type="password"
-              placeholder="Ingrese su nueva contraseña"
-              variant="filled"
-              required
-              value={values.newpassword || ""}
-              onChange={handleOnChange}
-            />
-
-            <div className="error">{errors.newpswrdError}</div>
-          </div>
-
-          <div className="newUserItem">
-            <label>Confirmar Nueva contraseña</label>
-            <input
-              name="confirmed_password"
-              type="password"
-              placeholder="Confirme su nueva contraseña"
-              variant="filled"
-              required
-              value={values.confirmed_password || ""}
-              onChange={handleOnChange}
-            />
-
-            <div className="error">{errors.cpassword}</div>
-          </div>
-          <div>
-            <br />
-            <br />
-            <div className="boton-registro">
-              <button className="link" type="submit">
-                Guardar cambios
-              </button>
+            <div>
+              <br />
+              <br />
+              <div className="boton-registro">
+                <button className="link" type="submit">
+                  Guardar cambios
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+        <div className="Info2">
+          <form className="newUserForm" onSubmit={handleSubmit2}>
+            <div className="newUserItem">
+              <label>Contraseña Actual</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Ingrese su contraseña actual"
+                variant="filled"
+                required
+                value={values.password}
+                onChange={handleOnChange}
+              />
+              <div className="error">{errors.pswrdError}</div>
+            </div>
+
+            <div className="newUserItem">
+              <label>Nueva Contraseña</label>
+              <input
+                name="newpassword"
+                type="password"
+                placeholder="Ingrese su nueva contraseña"
+                variant="filled"
+                required
+                value={values.newpassword || ""}
+                onChange={handleOnChange}
+              />
+
+              <div className="error">{errors.newpswrdError}</div>
+            </div>
+
+            <div className="newUserItem">
+              <label>Confirmar Nueva contraseña</label>
+              <input
+                name="confirmed_password"
+                type="password"
+                placeholder="Confirme su nueva contraseña"
+                variant="filled"
+                required
+                value={values.confirmed_password || ""}
+                onChange={handleOnChange}
+              />
+
+              <div className="error">{errors.cpassword}</div>
+            </div>
+            <div>
+              <br />
+              <br />
+              <div className="boton-registro">
+                <button className="link" type="submit">
+                  Guardar cambios
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
   );
-   
 };
 
 export default Profile;
