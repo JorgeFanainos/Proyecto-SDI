@@ -1,10 +1,10 @@
 import "./Sidebar.css";
 import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import ChatIcon from '@material-ui/icons/Chat';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import SearchIcon from '@material-ui/icons/Search';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import ChatIcon from "@material-ui/icons/Chat";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import SearchIcon from "@material-ui/icons/Search";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 function Sidebar() {
   return (

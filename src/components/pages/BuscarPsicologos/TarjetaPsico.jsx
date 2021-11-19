@@ -1,7 +1,7 @@
 import React from "react";
 import "./tarjetapsico.css";
 
-const TarjetaEspecialista = (props) => {
+const TarjetaPsico = (props) => {
   return (
     <div className="especialistaCard-1">
       <div className="espBox-1">
@@ -32,4 +32,4 @@ const TarjetaEspecialista = (props) => {
 // <button type="button" className="rechazarEsp" onClick={props.handleReject}></button>
 // </div> */}
 
-export default TarjetaEspecialista;
+export default TarjetaPsico;

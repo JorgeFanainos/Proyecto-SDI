@@ -3,6 +3,7 @@ import { LineStyle, PermIdentity } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import ChatIcon from "@material-ui/icons/Chat";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 
 function SidebarPsico() {
   return (
@@ -43,6 +44,14 @@ function SidebarPsico() {
               <li className="sidebarListItem">
                 <ChatIcon className="sidebarIcon" />
                 Mis Chats
+              </li>
+            </Link>
+            <br />
+            <br />
+            <Link to="/historial">
+              <li className="sidebarListItem">
+                <LibraryBooksIcon className="sidebarIcon" />
+                Historia Pacientes
               </li>
             </Link>
           </ul>
