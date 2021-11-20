@@ -40,7 +40,7 @@ function SidebarPsico() {
             </Link>
             <br />
             <br />
-            <Link to="/perfilusuario">
+            <Link to="/chat">
               <li className="sidebarListItem">
                 <ChatIcon className="sidebarIcon" />
                 Mis Chats

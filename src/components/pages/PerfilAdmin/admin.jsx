@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "./Admin.css";
 import { useHistory } from "react-router-dom";
 
+
 const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [psicologos, setPsicologos] = useState({});
@@ -82,24 +83,15 @@ const Admin = () => {
 
   return (
     <>
-      <nav className="adminNav">
-        <div className="nav-wrapper">
-          <div className="adminNavLogo"></div>
-        </div>
-        <div className="adminLogOut-wrapper">
-          <button type="button" className="adminLogOut" onClick={handleLogout}>
-            Salir
-          </button>
-        </div>
-      </nav>
-
       <section className="admin">
         <div className="titulo">¡Bienvenido administrador!</div>
         <div className="containerEspecialistasAdmin">
-          <p className="introAdmin">
-            Se le presentarán los candidatos postulados, considere su decisión:
-          </p>
-          <hr />
+          <br/>
+          <div className="parrafo">
+            <p className="introAdmin">
+              Se le presentarán los candidatos postulados, considere su decisión.   
+            </p>
+          </div><br/>
           {
             //si está cargando, muestra "Cargando..."; si no: si hay un error muestra el mensaje de error;
             //si no: si hay especialistas que mostrar se muestran y si no, muestra "No hay especialistas nuevos."
@@ -107,7 +99,8 @@ const Admin = () => {
               <h1>loading</h1>
             ) : error ? (
               <div className="altText">
-                Error: {error.message}. <br></br>
+                <br/>
+                Error: {error.message}. <br/>
                 <span className="refreshLink" onClick={() => setError(false)}>
                   Intente refrescar la página.
                 </span>

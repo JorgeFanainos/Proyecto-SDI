@@ -1,24 +1,7 @@
 import React from "react";
 import "./tarjetapsico.css";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@material-ui/core";
 
 const TarjetaPsico = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = async () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <div>
       <div className="especialistaCard-1">

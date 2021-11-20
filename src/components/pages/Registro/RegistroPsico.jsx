@@ -164,6 +164,9 @@ const RegistroPsico = () => {
       <h1 className="newUserTitle">Registrarse Como Psicologo</h1>
       <p className="p1">Completa el formulario para completar tu cuenta</p>
       <p className="p1">Recuerda insertar tus credenciales</p>
+      <br />
+      <br />
+      <br />
       <div className="ContenedorTODO">
         <form className="newUserForm" onSubmit={handleSubmit}>
           <div className="divcontenedorpsico">

@@ -146,10 +146,13 @@ function SignIn() {
 
   return (
     <div className="inicar_sesion">
-      <h1 className="h1">Iniciar sesión</h1>
-      <p className="p2">Introduce tus datos para Iniciar sesión.</p>
-      <br />
-      <br />
+      <div>
+        <h1 className="h1">Iniciar sesión</h1>
+        <p className="p2">Introduce tus datos para Iniciar sesión.</p>
+        <br />
+        <br />
+      </div>
+
       <div className="ContenedorTODO">
         <div className="contenedorini">
           <div className="newUserItem">
@@ -187,12 +190,14 @@ function SignIn() {
           <Link className="boton" to="/registro">
             No tienes cuenta? Registrate
           </Link>
-          <button className="boton" onClick={handleSubmit}>
-            Iniciar Sesión
-          </button>
-          <button className="boton" onClick={handleGoogleLogin}>
-            Iniciar Sesión con Google
-          </button>
+          <div className="Contenedor_botones">
+            <button className="boton" onClick={handleSubmit}>
+              Iniciar Sesión
+            </button>
+            <button className="boton" onClick={handleGoogleLogin}>
+              Iniciar Sesión con Google
+            </button>
+          </div>
           <Link className="boton" to="/resetpswd">
             Olvidaste tu contraseña? Restaurala.
           </Link>

@@ -15,9 +15,10 @@
   margin-right: 10%;
   margin-top: 60px;
 }
+
 .Texto {
   color: #0d00c2;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "PT Sans", sans-serif;
   align-self: center;
 }
 .InputBuscador:hover {
