@@ -16,9 +16,9 @@ const TarjetaPsico = (props) => {
           <p className="espInfo-1"></p>
         </div>
         <div className="espBox-1">
-          <a className="espInfo-1" title={props.especialista.name}>
+          <lable className="espInfo-1" title={props.especialista.name}>
             {props.especialista.name}
-          </a>
+          </lable>
         </div>
         <div>Especialidades:</div>
         <div className="">{props.especialista.especialidad[0]}</div>
@@ -27,10 +27,5 @@ const TarjetaPsico = (props) => {
     </div>
   );
 };
-
-// {/* <div className="choiceEspBox">
-// <button type="button" className="aceptarEsp" onClick={props.handleAccept}></button>
-// <button type="button" className="rechazarEsp" onClick={props.handleReject}></button>
-// </div> */}
 
 export default TarjetaPsico;

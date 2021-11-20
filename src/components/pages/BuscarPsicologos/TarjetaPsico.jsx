@@ -33,22 +33,19 @@ const TarjetaPsico = (props) => {
           <p className="espInfo-1"></p>
         </div>
         <div className="espBox-1">
-          <a
-            className="espInfo-1"
-            title={props.especialista.name}
-            onClick={handleClickOpen}
-          >
-            {props.especialista.name}
-          </a>
+          <div className="espInfo-1">{props.especialista.name}</div>
         </div>
         <div>Especialidades:</div>
         <div className="">{props.especialista.especialidad[0]}</div>
-        <div className="">{props.especialista.especialidad[1]}</div>
+        <button title="perfil" onClick={handleClickOpen}>
+          {" "}
+          Ver perfil
+        </button>
       </div>
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-        <DialogTitle>Historial del Paciente</DialogTitle>
+        <DialogTitle>Perfil del especialista</DialogTitle>
         <DialogContent>
-          <DialogContentText>Edite el Contenido</DialogContentText>
+          <DialogContentText>Conoce mas respecto a mi </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -113,10 +110,5 @@ const TarjetaPsico = (props) => {
     </div>
   );
 };
-
-// {/* <div className="choiceEspBox">
-// <button type="button" className="aceptarEsp" onClick={props.handleAccept}></button>
-// <button type="button" className="rechazarEsp" onClick={props.handleReject}></button>
-// </div> */}
 
 export default TarjetaPsico;

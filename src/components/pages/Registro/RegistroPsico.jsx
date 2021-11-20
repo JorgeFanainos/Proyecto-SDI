@@ -141,7 +141,8 @@ const RegistroPsico = () => {
         setUser(newProfile);
         await storage.ref("credentials/" + auth.currentUser.uid).put(file);
 
-        history.push("/perfilPsicologo"); //Eliminar push a perfil psicologo
+        auth.signOut();
+        window.alert("Su perfil sera revisado antes de ser aceptado"); //Eliminar push a perfil psicologo
         //poner error de perfil en revision y hacer logout
         console.log(res.user.uid);
       } catch (error) {
@@ -251,7 +252,7 @@ const RegistroPsico = () => {
               </div>
 
               <div className="newUserItem">
-                <label>Contraseña</label>
+                <label>Confirme su contraseña</label>
                 <input
                   name="confirmed_password"
                   type="password"
