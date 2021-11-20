@@ -1,14 +1,14 @@
 .newUserTitle {
-  font-family: cursive;
+  font-family: 'PT Sans', sans-serif;
   font-size: 100%;
   font-size: xx-large;
 }
 .p1 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'PT Sans', sans-serif;
   font-size: 100%;
 }
 .p2 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'PT Sans', sans-serif;
   font-size: 10%;
 }
 .link {

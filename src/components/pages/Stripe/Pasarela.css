@@ -14,7 +14,7 @@
 .ContenedorTodo{
 	display: flex;
 	flex-direction: row;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'PT Sans', sans-serif;
 
 }
 .botonPago{

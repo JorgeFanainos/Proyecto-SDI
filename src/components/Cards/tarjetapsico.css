@@ -10,12 +10,13 @@
   justify-content: space-evenly;
   flex-direction: column;
   margin: auto;
+  margin-bottom: 10%;
 }
 .imagen-especialista {
   margin: 0;
   width: 150px;
   height: 150px;
-  border: 1px solid #ee9d6b;
+  border: 1px solid #1a1899;
   box-sizing: border-box;
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
@@ -81,7 +82,7 @@
 
 .espBoxCategory {
   border-radius: 1.5em;
-  background-color: #ee9d6b;
+  background-color: #222bad;
   width: 5.5em;
   height: 2em;
   border-width: 0;

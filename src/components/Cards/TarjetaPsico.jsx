@@ -18,7 +18,7 @@ const TarjetaEspecialista = (props) => {
         <a
           className="espInfo-1"
           title={props.especialista.name}
-          href="/psicologos"
+          href="/agendarcita"
         >
           {props.especialista.name}
         </a>

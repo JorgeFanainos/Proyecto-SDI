@@ -7,7 +7,7 @@
 .h1{
     text-align: center;
     text-decoration:underline;
-    font-family: cursive;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .p{
@@ -16,7 +16,7 @@
     margin-right: 20%;
     text-indent: 2%;
     text-align: justify;
-    font-family: cursive;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .h3{
@@ -24,7 +24,7 @@
     margin-left: 10%;
     margin-right: 20%;
     text-decoration: underline;
-    font-family: cursive;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .social-icon-link1 {
@@ -35,7 +35,7 @@
     width: 90%;
     max-width: 1000px;
     margin: 40px auto 0 auto;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'PT Sans', sans-serif;
   }
 
 .TextArea{
@@ -43,7 +43,7 @@
     width: 30%;
     height: 200px;
     align-self: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .btn-formulario{
@@ -56,13 +56,13 @@
     cursor: pointer;
     background-color:#0d00c2;
     width: 30%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'PT Sans', sans-serif;
   }
 .btn-formulario:hover{
     color:#0d00c2;
     cursor: pointer;
     background-color: #fff;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'PT Sans', sans-serif;
 }
 .div{
     box-shadow:0 6px 20px rgba(56, 125, 255, 0.17);

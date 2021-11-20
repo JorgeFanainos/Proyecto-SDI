@@ -1,6 +1,6 @@
 import React from "react";
 import { db } from "../../../utils/firebaseApp";
-import TarjetaPsico from "./TarjetaPsico";
+import TarjetaPsico from "../../Cards/TarjetaPsico";
 import { useState, useEffect } from "react";
 import "./psicocards.css";
 import "firebase/firestore";
