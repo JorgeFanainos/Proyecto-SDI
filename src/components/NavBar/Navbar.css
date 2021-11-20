@@ -46,7 +46,6 @@
 
 .nav-item {
   height: 80px;
-  
 }
 
 .nav-links {
@@ -166,7 +165,7 @@ span {
   }
 
   .nav-links {
-    text-align:center;
+    text-align: center;
     padding: 0rem;
     width: 100%;
     display: table;

@@ -8,9 +8,15 @@ import CartasPsicologo from "../pages/BuscarPsicologos/PsicoCards";
 function Home() {
   return (
     <>
-      <HeroSection />
-      <CartasPsicologo />
-      <Footer />
+      <div>
+        <HeroSection />
+      </div>
+      <div>
+        <CartasPsicologo />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }

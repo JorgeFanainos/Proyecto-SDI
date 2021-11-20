@@ -1,25 +1,29 @@
-.ContenedorTodo{
-    display: flex;
-    flex-direction: row;
+.ContenedorTodo {
+  display: flex;
+  flex-direction: row;
 }
-.contenedor{
-    display: flex;
-    flex-direction: column;
+.contenedor {
+  display: flex;
+  flex-direction: column;
 }
-.contenedorTexto{
-    display: flex;
-    width: 100%;
-
+.contenedorTexto {
+  display: flex;
+  width: 100%;
 }
-.Texto{
-    color: #0d00c2;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    align-self: center;
+.containerPsicologos {
+  margin-left: 70px;
+  margin-right: 10%;
+  margin-top: 60px;
 }
-.InputBuscador:hover{
-    border-color: #0d00c2;
-    border-width: 3px;
+.Texto {
+  color: #0d00c2;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  align-self: center;
 }
-.ContenedorSidebar{
-    width: 20%;
+.InputBuscador:hover {
+  border-color: #0d00c2;
+  border-width: 3px;
+}
+.ContenedorSidebar {
+  width: 20%;
 }

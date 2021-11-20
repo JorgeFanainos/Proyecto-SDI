@@ -1,6 +1,6 @@
 import React from "react";
 import { db } from "../../../utils/firebaseApp";
-import TarjetaPsico from "./TarjetaPsico";
+import TarjetaPsicoHome from "./TarjetaPsicoHome";
 import { useState, useEffect } from "react";
 import "./psicocards.css";
 import "firebase/firestore";
@@ -69,7 +69,7 @@ const CartasPsicologo = () => {
               {desplegarEspecialistas(Object.keys(especialistas)).map((key) => {
                 const especialista = especialistas[key];
                 return (
-                  <TarjetaPsico
+                  <TarjetaPsicoHome
                     key={especialista.id}
                     especialista={especialista}
                   />

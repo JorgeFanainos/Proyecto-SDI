@@ -25,23 +25,23 @@ function Footer() {
           </form>
         </div>
       </section>
-      <div class="footer-links">
+      <div className="footer-links">
         <div className="footer-link-wrapper">
-          <div class="footer-link-items">
+          <div className="footer-link-items">
             <h2>Sobre Nosotros</h2>
             <Link to="/comoFuncionamos">Cómo funcionamos?</Link>
             <Link to="/testimonios">Testimonios</Link>
             <Link to="/colaboradores">Colaboradores</Link>
             <Link to="/terminos">Terminos de Uso</Link>
           </div>
-          <div class="footer-link-items">
+          <div className="footer-link-items">
             <h2>Contáctanos</h2>
             <Link to="/contactos">Contacto</Link>
             <Link to="/soporte">Soporte</Link>
           </div>
         </div>
         <div className="footer-link-wrapper">
-          <div class="footer-link-items">
+          <div className="footer-link-items">
             <h2>Redes Sociales</h2>
             <a href="https://www.instagram.com/MyHelperSDI" rel="noreferrer">
               Instagram
@@ -52,33 +52,33 @@ function Footer() {
           </div>
         </div>
       </div>
-      <section class="social-media">
-        <div class="social-media-wrap">
-          <div class="footer-logo">
+      <section className="social-media">
+        <div className="social-media-wrap">
+          <div className="footer-logo">
             <Link to="/" className="social-logo">
               MyHelper
-              <i class="fab fa-typo3" />
+              <i className="fab fa-typo3" />
             </Link>
           </div>
-          <small class="website-rights">My Helper © 2020</small>
-          <div class="social-icons">
+          <small className="website-rights">My Helper © 2020</small>
+          <div className="social-icons">
             <a
-              class="social-icon-link instagram"
+              className="social-icon-link instagram"
               href="https://www.instagram.com/MyHelperSDI"
               rel="noreferrer"
               target="_blank"
               aria-label="Instagram"
             >
-              <i class="fab fa-instagram" />
+              <i className="fab fa-instagram" />
             </a>
             <a
-              class="social-icon-link twitter"
+              className="social-icon-link twitter"
               href="https://twitter.com/Paginapsicolog1"
               rel="noreferrer"
               target="_blank"
               aria-label="Twitter"
             >
-              <i class="fab fa-twitter" />
+              <i className="fab fa-twitter" />
             </a>
           </div>
         </div>

@@ -1,23 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { db, auth, storage } from "../../../utils/firebaseApp";
+import { db, auth } from "../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
 import "./Historial.css";
-import HistorialCards from "./HistorialCard";
-
-import {
-  errorNombre,
-  errorContra,
-  errorApelli,
-  errorTelef,
-  errorContraInv,
-  Timer2,
-} from "../Icon";
+import Buscador from "./Buscador";
+import { Button, TextField } from "@material-ui/core";
 
 const Historial = () => {
   const [values, setValues] = useState({
@@ -26,10 +16,7 @@ const Historial = () => {
     email: "",
     phoneNumber: "",
     titleButton: "Guardar",
-  });
-  const [errors, setErrors] = useState({
-    nameError: "",
-    infoError: "",
+    search: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -54,36 +41,75 @@ const Historial = () => {
         info: values.info,
         email: values.email,
         phoneNumber: values.phoneNumber,
-        date: firebase.firestore.FieldValue.serverTimestamp(),
+        date: Date(
+          firebase.firestore.FieldValue.serverTimestamp().seconds * 1000
+        ),
       })
       .catch((error) => {
         console.error();
       });
+    delay(2000);
+    setRefresh(refresh + 1);
+  };
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+  const Refresh = () => {
     setRefresh(refresh + 1);
   };
 
   async function getHistoriales() {
-    try {
-      setLoading(true);
-      const histRef = db.collection(`users/${auth.currentUser.uid}/historias`);
-      await histRef;
-      const historias = await histRef.get();
-      let docsHistorias = {};
-      let data;
-      let docId;
-      historias.forEach((doc) => {
-        data = doc.data();
-        docId = doc.id;
+    if (values.search === "") {
+      try {
+        setLoading(true);
+        const histRef = db.collection(
+          `users/${auth.currentUser.uid}/historias`
+        );
+        await histRef;
+        const historias = await histRef.get();
+        let docsHistorias = {};
+        let data;
+        let docId;
+        historias.forEach((doc) => {
+          data = doc.data();
+          docId = doc.id;
 
-        docsHistorias[docId] = data;
-        docsHistorias[docId]["id"] = docId;
-      });
+          docsHistorias[docId] = data;
+          docsHistorias[docId]["id"] = docId;
+        });
 
-      setHistorias(docsHistorias);
-      setLoading(false);
-    } catch (e) {
-      setError(e);
-      setLoading(false);
+        setHistorias(docsHistorias);
+        setLoading(false);
+      } catch (e) {
+        setError(e);
+        setLoading(false);
+      }
+    } else if (values.search !== "") {
+      try {
+        setLoading(true);
+        const histRef = db
+          .collection(`users/${auth.currentUser.uid}/historias`)
+          .where("name", ">=", values.search)
+          .where("name", "<=", values.search + "\uf8ff")
+          .get();
+        await histRef;
+
+        let docsHistorias = {};
+        let data;
+        let docId;
+        (await histRef).forEach((doc) => {
+          data = doc.data();
+          console.log(data);
+          docId = doc.id;
+
+          docsHistorias[docId] = data;
+          docsHistorias[docId]["id"] = docId;
+        });
+
+        setHistorias(docsHistorias);
+        setLoading(false);
+      } catch (e) {
+        setError(e);
+        setLoading(false);
+      }
     }
   }
 
@@ -104,16 +130,6 @@ const Historial = () => {
       setLoading(false);
     }
   }
-
-  const handleEdit = async (id) => {
-    console.log("hola");
-    // await db
-    //   .ref(`users/${auth.currentUser.uid}/historias` + id)
-    //   .on("value", (snapshot) => {
-    //     const data = snapshot.val();
-    //     this.setState({ employee: data.employee, titleButton: "Editar" });
-    //   });
-  };
 
   return (
     <div>
@@ -167,6 +183,7 @@ const Historial = () => {
                     name="info"
                     label="Historial"
                     fullWidth
+                    multiline
                     value={values.info}
                   />
                 </Grid>
@@ -185,8 +202,18 @@ const Historial = () => {
       <br />
       <div className="containerEspecialistasAdmin">
         <p className="introAdmin">
-          Observe y edite sus historiales de pacientes:
+          Observe y edite sus historiales de pacientes: &nbsp;&nbsp;
+          <input
+            type="text"
+            id="search"
+            name="search"
+            placeholder="ingrese nombre o correo"
+            value={values.search}
+            onChange={handleOnChange}
+          />
+          <button onClick={getHistoriales}>Search</button>
         </p>
+
         <hr />
         {
           //si está cargando, muestra "Cargando..."; si no: si hay un error muestra el mensaje de error;
@@ -201,18 +228,12 @@ const Historial = () => {
               </span>
             </div>
           ) : Object.entries(historias).length !== 0 ? (
-            <div className="especialistaList">
-              {Object.keys(historias).map((key) => {
-                const historiales = historias[key];
-                return (
-                  <HistorialCards
-                    key={historiales.id}
-                    historiales={historiales}
-                    handleEdit={handleEdit}
-                    handleReject={handleReject}
-                  />
-                );
-              })}
+            <div>
+              <Buscador
+                histfilt={historias}
+                handleReject={handleReject}
+                Refresh={Refresh}
+              />
             </div>
           ) : (
             <div className="altText">
