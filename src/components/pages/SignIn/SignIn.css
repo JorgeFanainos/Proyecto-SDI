@@ -6,8 +6,15 @@
     padding: 8px 20px;
     cursor: pointer;
     position: relative;
-    margin-right: auto;
-    margin-left: 10%;
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 80%;
+}
+.Contenedor_botones{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 }
 .correo{
     color: rgb(45, 36, 175);

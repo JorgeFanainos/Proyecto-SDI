@@ -427,3 +427,9 @@ export function Exito(){
     showConfirmButton: false,
     timer: 1500
   })}
+
+  export function Hr(){
+    return(
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#133aa5" fill-opacity="1" d="M0,224L0,160L1440,160L1440,320L0,320L0,320Z"></path></svg>
+    );
+  }

@@ -20,6 +20,8 @@
 }
 
 .espCardTop {
+  display: flex;
+  align-items: center;
   height: 40px;
   width: 100%;
   margin-bottom: 0.5em;
@@ -31,7 +33,6 @@
   background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
-  float: right;
   filter: brightness(1);
   border: none;
 }
@@ -63,12 +64,6 @@
   filter: brightness(1);
   margin: auto;
 }
-
-.choiceEspBox button:hover {
-  filter: brightness(1.05);
-  cursor: pointer;
-}
-
 .aceptarEsp {
   background-repeat: no-repeat;
   background-size: contain;
@@ -78,10 +73,16 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+.aceptarEsp:hover {
+ color: green;
+}
+
+.rechazarEsp:hover {
+  color: red;
+}
 
 .espBoxCategory {
-  border-radius: 1.5em;
-  background-color: #ee9d6b;
+  background-color: #133aa5;
   width: 5.5em;
   height: 2em;
   border-width: 0;

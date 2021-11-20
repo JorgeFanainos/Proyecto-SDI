@@ -187,12 +187,14 @@ function SignIn() {
           <Link className="boton" to="/registro">
             No tienes cuenta? Registrate
           </Link>
+          <div className="Contenedor_botones">
           <button className="boton" onClick={handleSubmit}>
             Iniciar Sesión
           </button>
           <button className="boton" onClick={handleGoogleLogin}>
             Iniciar Sesión con Google
           </button>
+          </div>
           <Link className="boton" to="/resetpswd">
             Olvidaste tu contraseña? Restaurala.
           </Link>
