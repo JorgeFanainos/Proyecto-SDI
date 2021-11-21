@@ -301,7 +301,7 @@ export function Timer(){
     Swal.fire({
       title: 'Gracias por registrarse!',
       html: 'Su solicitud esta siendo procesada, tomará <b></b> milisegundos.',
-      timer: 3000,
+      timer: 5000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
@@ -432,4 +432,19 @@ export function Exito(){
     return(
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#133aa5" fill-opacity="1" d="M0,224L0,160L1440,160L1440,320L0,320L0,320Z"></path></svg>
     );
+  }
+  export function mensajeaceptado(){
+    Swal.fire(
+        'Usted ha sido Aceptado!',
+        'Gracias por confiar en nuestra plataforma!',
+        'success'
+      )
+  }
+
+  export function mensajenegado(){
+    Swal.fire(
+        'Usted ha sido Rechazado!',
+        'Su perfil no cumple con los requisitos necesarios!',
+        'success'
+      )
   }

@@ -13,6 +13,8 @@ import {
   errorNombre,
   errorTelef,
   Timer,
+  mensajeaceptado,
+  mensajenegado
 } from "../Icon";
 
 const RegistroPsico = () => {
@@ -142,7 +144,7 @@ const RegistroPsico = () => {
         await storage.ref("credentials/" + auth.currentUser.uid).put(file);
 
         auth.signOut();
-        window.alert("Su perfil sera revisado antes de ser aceptado"); //Eliminar push a perfil psicologo
+         //Eliminar push a perfil psicologo
         //poner error de perfil en revision y hacer logout
         console.log(res.user.uid);
       } catch (error) {
