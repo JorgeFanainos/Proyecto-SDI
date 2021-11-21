@@ -2,61 +2,93 @@ import  Message  from "./Message";
 import { add } from "date-fns";
 import firebase from "firebase/compat";
 import { QuerySnapshot } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useFirestoreQuery } from './Hooks';
 
-const Canal = ({user = null, db = null}) => {
-    const [messages, setMessages] = useState([]);
+const Channel = ({ user = null }) => {
+    const db = firebase.firestore();
+    const messagesRef = db.collection('messages');
+    const messages = useFirestoreQuery(
+      messagesRef.orderBy('createdAT', 'desc').limit(100)
+    );
+  
     const [newMessage, setNewMessage] = useState('');
-    const {uid , dislplayName, photoURL} = user;
-
+  
+    const inputRef = useRef();
+    const bottomListRef = useRef();
+  
+    const { uid, displayName, photoURL } = user;
+  
     useEffect(() => {
-    if (db){
-       const unsuscribe = 
-       db.collection('messages')
-       .orderBy('createdAT')
-       .limit(100)
-       .onSnapshot(querySnapshot => {
-           const data = querySnapshot.docs.map(doc => ({
-               ...doc.data(),
-               id: doc.id,
-           }));
-           setMessages(data);
-       });
-       return unsuscribe;
-    }
-    }, [db]);
-    const handleOnChange = e =>{
-        setNewMessage(e.target.value)
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, [inputRef]);
+  
+    const handleOnChange = e => {
+      setNewMessage(e.target.value);
     };
-    const handleOnSubmit = e =>{
-        e.preventDefault();
-        if (db){
-            db.collection('messages').add({
-            text: newMessage,
-            createdAT: firebase.firestore.FieldValue.serverTimestamp(),
-        })
-    }
-    };
-    return (
-        <>
-        <ul>
-            {messages.map(message=>(
-                <li key={message.id}><Message {...message}/></li>
-            ))}
-        </ul>
-        <form  onSubmit={handleOnSubmit}>
-            <input
-            type="text"
-            value={newMessage}
-            onChange={handleOnChange}
-            placeholder="|"
-            />
-            <button type="submit" disabled={!newMessage}> Enviar</button>
-        </form>
+  
+    const handleOnSubmit = e => {
+      e.preventDefault();
+  
+      const trimmedMessage = newMessage.trim();
+      if (trimmedMessage) {
+      
+        messagesRef.add({
+          text: trimmedMessage,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
         
-        </>
-    )
-
-};
-
-export default Canal;
+        setNewMessage('');
+        
+        bottomListRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  
+    return (
+      <div >
+        <div >
+          <div >
+            <ul>
+              {messages
+                ?.sort((first, second) =>
+                  first?.createdAt?.seconds <= second?.createdAt?.seconds ? -1 : 1
+                )
+                ?.map(message => (
+                  <li key={message.id}>
+                    <Message {...message} />
+                  </li>
+                ))}
+            </ul>
+            <div ref={bottomListRef} />
+          </div>
+        </div>
+        <div >
+          <form
+            onSubmit={handleOnSubmit}
+            
+          >
+            <input
+              ref={inputRef}
+              type="text"
+              value={newMessage}
+              onChange={handleOnChange}
+              placeholder="|"
+              
+            />
+            <button
+              type="submit"
+              disabled={!newMessage}
+              
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+  
+  
+  export default Channel;
