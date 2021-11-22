@@ -5,7 +5,7 @@ import { auth, googleProvider, db } from "../../../utils/firebaseApp";
 import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
-import { errorCorreo, errorContra, errorTodo, Icon } from "../Icon";
+import { errorCorreo, errorContra, errorTodo, Icon, mensajenegado } from "../Icon";
 import "../Registro/Registro.css";
 import { UserContext } from "../../../context/UserContext";
 import { Message } from "@material-ui/icons";
@@ -120,9 +120,8 @@ function SignIn() {
                   setErrors({ badcred } & errorTodo());
                   auth.signOut(); // FALTA ERROR STAND BY PSICOLOGO
                 } else if (status === "rechazado") {
-                  // FALTA ERROR PSICOLOGO RECHAZADO
                   let badcred = " ";
-                  setErrors({ badcred } & errorTodo());
+                  setErrors({ badcred } & mensajenegado() );
                   auth.signOut(); // FALTA ERROR STAND BY PSICOLOGO
                 } else {
                   history.push("/perfilPsicologo");

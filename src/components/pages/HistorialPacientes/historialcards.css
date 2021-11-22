@@ -82,7 +82,8 @@
 }
 
 .espBoxCategory {
-  background-color: #133aa5;
+  border-radius: 1.5em;
+  background-color: #10028b;
   width: 5.5em;
   height: 2em;
   border-width: 0;

@@ -7,7 +7,9 @@ const user =firebase.firestore();
 function Chat() {
     return (
       <>
+      
        <Canal user={user} db={db}/>
+       
       </>
     );
   }
