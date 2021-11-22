@@ -215,38 +215,34 @@ const Historial = () => {
         </p>
 
         <hr />
-        {
-          //si está cargando, muestra "Cargando..."; si no: si hay un error muestra el mensaje de error;
-          //si no: si hay especialistas que mostrar se muestran y si no, muestra "No hay especialistas nuevos."
-          loading && !error ? (
-            <h1>loading</h1>
-          ) : error ? (
-            <div className="altText">
-              Error: {error.message}. <br></br>
-              <span className="refreshLink" onClick={() => setError(false)}>
-                Intente refrescar la página.
-              </span>
-            </div>
-          ) : Object.entries(historias).length !== 0 ? (
-            <div>
-              <Buscador
-                histfilt={historias}
-                handleReject={handleReject}
-                Refresh={Refresh}
-              />
-            </div>
-          ) : (
-            <div className="altText">
-              No hay historiales. <br></br>
-              <span
-                className="refreshLink"
-                onClick={() => setRefresh(refresh + 1)}
-              >
-                Intente refrescar la página.
-              </span>
-            </div>
-          )
-        }
+        {loading && !error ? (
+          <h1>loading</h1>
+        ) : error ? (
+          <div className="altText">
+            <br></br>
+            <span className="refreshLink" onClick={() => setError(false)}>
+              Intente refrescar la página.
+            </span>
+          </div>
+        ) : Object.entries(historias).length !== 0 ? (
+          <div>
+            <Buscador
+              histfilt={historias}
+              handleReject={handleReject}
+              Refresh={Refresh}
+            />
+          </div>
+        ) : (
+          <div className="altText">
+            No hay historiales. <br></br>
+            <span
+              className="refreshLink"
+              onClick={() => setRefresh(refresh + 1)}
+            >
+              Intente refrescar la página.
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

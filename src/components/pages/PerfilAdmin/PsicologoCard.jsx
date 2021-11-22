@@ -12,7 +12,9 @@ const PsicologoCard = (props) => {
           onClick={() => {
             props.handleCredentials(props.especialista);
           }}
-        >Credenciales</button>
+        >
+          Credenciales
+        </button>
       </div>
       <div className="espBox">
         <div className="espBoxCategory">Nombre</div>
@@ -34,7 +36,10 @@ const PsicologoCard = (props) => {
           onClick={() => {
             props.handleAccept(props.especialista);
           }}
-        > Aceptar</button>
+        >
+          {" "}
+          Aceptar
+        </button>
         <button
           type="button"
           className="rechazarEsp"
@@ -42,7 +47,10 @@ const PsicologoCard = (props) => {
           onClick={() => {
             props.handleReject(props.especialista);
           }}
-        > Rechazar</button>
+        >
+          {" "}
+          Rechazar
+        </button>
       </div>
     </div>
   );

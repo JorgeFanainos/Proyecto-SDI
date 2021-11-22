@@ -1,6 +1,5 @@
 import React from "react";
 import HistorialCards from "./HistorialCard";
-import "./Historial.css";
 
 function Buscador({ histfilt, handleReject, Refresh }) {
   const filtrados = Object.keys(histfilt).map((key) => {

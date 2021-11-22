@@ -1,5 +1,5 @@
 .especialistaCard {
-  width: 300px;
+  width: 275px;
   height: 270px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1em;
@@ -14,25 +14,25 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 200 px;
+  width: 120px;
   line-height: 2em;
   margin-left: 0.5em;
 }
 
 .espCardTop {
+  display: flex;
+  align-items: center;
   height: 40px;
   width: 100%;
   margin-bottom: 0.5em;
 }
 
 .credencialButton {
-  /*background-image: url("../../img/credenciales.svg");*/
   height: 40px;
   width: 40px;
   background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
-  float: right;
   filter: brightness(1);
   border: none;
 }
@@ -64,27 +64,25 @@
   filter: brightness(1);
   margin: auto;
 }
-
-.choiceEspBox button:hover {
-  filter: brightness(1.05);
-  cursor: pointer;
-}
-
 .aceptarEsp {
-  /*background-image: url("../../img/circle-check-fill.svg");*/
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .rechazarEsp {
-  /*background-image: url("../../img/circle-x.svg");*/
   background-repeat: no-repeat;
   background-size: contain;
 }
+.aceptarEsp:hover {
+  color: green;
+}
+
+.rechazarEsp:hover {
+  color: red;
+}
 
 .espBoxCategory {
-  border-radius: 1.5em;
-  background-color: #ee9d6b;
+  background-color: #133aa5;
   width: 5.5em;
   height: 2em;
   border-width: 0;

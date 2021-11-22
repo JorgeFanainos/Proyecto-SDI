@@ -107,7 +107,10 @@ const HistorialCards = (props) => {
             className="aceptarEsp"
             title="Click para aceptar al especialista."
             onClick={handleClickOpen}
-          ></button>
+          >
+            {" "}
+            Editar
+          </button>
           <button
             type="button"
             className="rechazarEsp"
@@ -115,7 +118,10 @@ const HistorialCards = (props) => {
             onClick={() => {
               props.handleReject(props.historiales);
             }}
-          ></button>
+          >
+            {" "}
+            Eliminar
+          </button>
         </div>
       </div>
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>

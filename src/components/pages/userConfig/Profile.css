@@ -1,14 +1,14 @@
 .newUserTitle {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 100%;
   font-size: xx-large;
 }
 .p1 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 100%;
 }
 .p2 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 10%;
 }
 .link {
@@ -24,25 +24,26 @@
   cursor: pointer;
   margin-left: 5%;
 }
-.divTexto{
+.divTexto {
   margin-left: 100%;
   width: 100%;
   font-size: large;
-  
 }
-.divTexto1{
+.divTexto1 {
   display: flex;
   flex-direction: row;
   margin-left: 50%;
   width: 30%;
-  
 }
-.divTexto3{
+.divTexto3 {
   display: flex;
   flex-direction: row;
   margin-left: 5%;
   width: 30%;
-  
+}
+
+.perfilpic {
+  margin-left: 15px;
 }
 .newUser {
   flex: 4;
@@ -159,7 +160,7 @@
 .divcredenciales {
   width: 40%;
 }
-.Contenedor{
+.Contenedor {
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
   -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
   filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
