@@ -26,7 +26,7 @@ import PerfilPsicologo from "./components/pages/Perfiles/PerfilPsicologo/PerfilP
 import CitasAgendadas from "./components/pages/Perfiles/AgendarCita/CitasAgendadas";
 import Admin from "./components/pages/PerfilAdmin/admin";
 import Historial from "./components/pages/HistorialPacientes/Historial";
-import Chat from "./components/Chat/Chat";
+
 
 function App() {
   return (
@@ -57,7 +57,7 @@ function App() {
           <Route path="/perfilPsicologo" component={PerfilPsicologo} />
           <Route path="/citasagendadas" component={CitasAgendadas} />
           <Route path="/historial" component={Historial} />
-          <Route path="/chat" component={Chat} />
+          
         </Switch>
       </Router>
     </UserContextProvider>
