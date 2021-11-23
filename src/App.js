@@ -43,7 +43,7 @@ function App() {
           <Route path="/psicologos" component={Cards} />
           <Route path="/contacto" component={Footer} />
           <Route path="/contactos" component={Contacto} />
-          <Route path="/comoFuncionamos" component={comoFuncionamos} />
+          <Route path="/paginaProblemas" component={comoFuncionamos} />
           <Route path="/testimonios" component={Testimonios} />
           <Route path="/colaboradores" component={Colaboradores} />
           <Route path="/terminos" component={terminos} />

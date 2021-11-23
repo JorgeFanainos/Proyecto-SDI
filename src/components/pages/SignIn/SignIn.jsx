@@ -147,7 +147,7 @@ function SignIn() {
     <div className="inicar_sesion">
       <div>
         <h1 className="h1">Iniciar sesión</h1>
-        <p className="p2">Introduce tus datos para Iniciar sesión.</p>
+        <p className="Textoabajo">Introduce tus datos para Iniciar sesión.</p>
         <br />
         <br />
       </div>

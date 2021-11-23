@@ -3,6 +3,7 @@ import React from "react";
 import "../../../App";
 import { auth } from "../../../utils/firebaseApp";
 import { Icon3, errorCorreo, Exito, Wave } from "../Icon";
+import "./SignIn.css"
 
 function ResetPassword() {
   const [values, setValues] = useState({
@@ -65,9 +66,9 @@ function ResetPassword() {
       <div className="contenedoricon">
         <Icon3 />
       </div>
-      <div className="contenedorini">
+      <div className="contenedorini1">
         <div className="newUserItem">
-          <p className="p2">
+          <p className="Textoabajo">
             Realice su solicitud para recuperar su contraseña
           </p>
           <label>Correo </label>
@@ -83,7 +84,7 @@ function ResetPassword() {
           <div className="error">{errors.emailErr}</div>
           <br />
           <br />
-          <button className="boton" onClick={handleSubmit}>
+          <button className="boton1" onClick={handleSubmit}>
             Recuperar
           </button>
         </div>

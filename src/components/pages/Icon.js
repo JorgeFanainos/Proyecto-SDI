@@ -442,9 +442,10 @@ export function Exito(){
   }
 
   export function mensajenegado(){
-    Swal.fire(
-        'Usted ha sido Rechazado!',
-        'Su perfil no cumple con los requisitos necesarios!',
-        'success'
-      )
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Algo Salió mal, usted fue Rechazado!',
+      footer: '<a href="/paginaProblemas">Porque tengo este error?</a>'
+    })
   }

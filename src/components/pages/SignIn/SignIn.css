@@ -41,9 +41,10 @@
   font-family: "PT Sans", sans-serif;
   font-size: 70px;
 }
-.p2 {
+.Textoabajo {
   font-family: "PT Sans", sans-serif;
-  font-size: 20px;
+  font: size 30px;
+  width: 100%;
 }
 .contenedorini {
   display: flex;
@@ -55,4 +56,27 @@
   border-radius: 10px;
   margin-left: 10%;
   width: 30%;
+}
+.boton1 {
+  background-color: transparent;
+  border-color: rgb(58, 50, 175);
+  color: rgb(45, 36, 175);
+  border-width: 10px;
+  padding: 8px 20px;
+  cursor: pointer;
+  align-self: center ;
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 30%;
+}
+.contenedorini1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  border-radius: 10px;
+  margin-left: 10%;
+  width: 50%;
 }
