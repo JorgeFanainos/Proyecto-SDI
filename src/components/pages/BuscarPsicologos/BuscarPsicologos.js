@@ -163,14 +163,14 @@ function BuscarPsicologo() {
         <br />
         <br />
 
-        <label for="cars">Busque por especialidad &nbsp; </label>
+        <label>Busque por especialidad &nbsp; </label>
         <select
-          id="cars"
+          id="select"
           name="especialidad"
           value={values.especialidad}
           onChange={handleOnChange}
         >
-          <option selected> </option>
+          <option defaultValue=""> </option>
           <option value="pareja">Terapia de Pareja</option>
           <option value="autoestima">Terapia de autoestima</option>
           <option value="ansiedad">Terapia de ansiedad</option>

@@ -19,7 +19,7 @@ const PsicologoCard = (props) => {
       <div className="espBox">
         <div className="espBoxCategory">Nombre</div>
         <p className="espInfo" title={props.especialista.name}>
-          {props.especialista.name}
+          {props.especialista.name} + " " + {props.especialista.lastname}
         </p>
       </div>
       <div className="espBox">

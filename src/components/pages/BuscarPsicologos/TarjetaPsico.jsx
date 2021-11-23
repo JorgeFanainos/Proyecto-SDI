@@ -1,5 +1,6 @@
 import React from "react";
 import "./tarjetapsico.css";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   TextField,
@@ -11,9 +12,17 @@ import {
 } from "@material-ui/core";
 
 const TarjetaPsico = (props) => {
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = async () => {
     setOpen(true);
+  };
+
+  const agendarcita = async () => {
+    localStorage.setItem("nombre", props.especialista.name);
+    localStorage.setItem("lastname", props.especialista.lastname);
+    localStorage.setItem("id", props.especialista.id);
+    history.push("/agendarcita");
   };
 
   const handleClose = () => {
@@ -33,7 +42,9 @@ const TarjetaPsico = (props) => {
           <p className="espInfo-1"></p>
         </div>
         <div className="espBox-1">
-          <div className="espInfo-1">{props.especialista.name}</div>
+          <div className="espInfo-1">
+            {props.especialista.name + " " + props.especialista.lastname}
+          </div>
         </div>
         <div>Especialidades:</div>
         <div className="">{props.especialista.especialidad[0]}</div>
@@ -53,7 +64,7 @@ const TarjetaPsico = (props) => {
             name="nombre1"
             label="nombre"
             type="textarea"
-            value={props.especialista.name}
+            value={props.especialista.name + " " + props.especialista.lastname}
             variant="outlined"
           />
           <TextField
@@ -104,7 +115,7 @@ const TarjetaPsico = (props) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button href="/agendarcita">Agendar Cita</Button>
+          <Button onClick={agendarcita}>Agendar Cita</Button>
         </DialogActions>
       </Dialog>
     </div>
