@@ -17,7 +17,7 @@ const TarjetaPsico = (props) => {
         </div>
         <div className="espBox-1">
           <lable className="espInfo-1" title={props.especialista.name}>
-            {props.especialista.name}
+            {props.especialista.name + " " + props.especialista.lastname}
           </lable>
         </div>
         <div>Especialidades:</div>
