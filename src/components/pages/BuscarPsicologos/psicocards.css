@@ -5,8 +5,12 @@
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
+  background-color: #ffff;
 }
-
+.containerEspecialistasAdmin{
+  background-color: #ffff;
+  
+}
 .introAdmin {
   font-style: italic;
   font-size: large;
