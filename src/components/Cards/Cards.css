@@ -9,7 +9,17 @@ h1 {
 p {
   text-align: center;
 }
+
 .cards__container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.buscador {
   display: flex;
   flex-flow: column;
   align-items: center;
