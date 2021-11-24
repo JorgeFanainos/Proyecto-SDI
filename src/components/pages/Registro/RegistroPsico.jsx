@@ -14,7 +14,8 @@ import {
   errorTelef,
   Timer,
   mensajeaceptado,
-  mensajenegado
+  mensajenegado,
+  mensajependiente
 } from "../Icon";
 
 const RegistroPsico = () => {
@@ -145,7 +146,7 @@ const RegistroPsico = () => {
 
         auth.signOut();
          //Eliminar push a perfil psicologo
-        //poner error de perfil en revision y hacer logout
+         mensajependiente()
         console.log(res.user.uid);
       } catch (error) {
         values.password = "";

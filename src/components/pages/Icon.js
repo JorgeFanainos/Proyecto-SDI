@@ -301,7 +301,7 @@ export function Timer(){
     Swal.fire({
       title: 'Gracias por registrarse!',
       html: 'Su solicitud esta siendo procesada, tomará <b></b> milisegundos.',
-      timer: 5000,
+      timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
@@ -447,5 +447,22 @@ export function Exito(){
       title: 'Oops...',
       text: 'Algo Salió mal, usted fue Rechazado!',
       footer: '<a href="/paginaProblemas">Porque tengo este error?</a>'
+    })
+  }
+  export function mensajependiente(){
+    Swal.fire({
+      title: '<strong> Estamos evaluando <u>Su perfil</u></strong>',
+      icon: 'info',
+      html:
+        'Porfavor espere un momento',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        '<i class="fa fa-thumbs-up"></i> Ok!',
+      confirmButtonAriaLabel: 'Thumbs up, great!',
+      cancelButtonText:
+        '<i class="fa fa-thumbs-down"></i>',
+      cancelButtonAriaLabel: 'Thumbs down'
     })
   }
