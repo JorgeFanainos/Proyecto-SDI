@@ -29,8 +29,6 @@ function Footer() {
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>Sobre Nosotros</h2>
-            <Link to="/comoFuncionamos">Cómo funcionamos?</Link>
-            <Link to="/testimonios">Testimonios</Link>
             <Link to="/colaboradores">Colaboradores</Link>
             <Link to="/terminos">Terminos de Uso</Link>
           </div>

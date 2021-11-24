@@ -337,9 +337,7 @@ const Profile = () => {
         <div className="divTexto1">
           <h2 className="newUserTitle">Configure sus datos</h2>
         </div>
-        <div className="divTexto">
-          <h2 className="newUserTitle"> Cambie su contraseña</h2>
-        </div>
+        
       </div>
       <br />
       <div className="ContenedorTODO">
@@ -348,8 +346,8 @@ const Profile = () => {
             <img
               src={display.img}
               alt="fotico"
-              height="200"
-              width="200"
+              height="100"
+              width="100"
               className="perfilpic"
             />
           </div>
@@ -474,8 +472,9 @@ const Profile = () => {
               </div>
             </div>
           </form>
-        </div>
-        <div className="Info2">
+          
+          <h2 className="newUserTitle"> Cambie su contraseña</h2>
+        
           <form className="newUserForm" onSubmit={handleSubmit2}>
             <div className="newUserItem">
               <label>Contraseña Actual</label>
