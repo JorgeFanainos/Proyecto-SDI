@@ -3,65 +3,67 @@ import { add } from "date-fns";
 import firebase from "firebase/compat";
 import { QuerySnapshot } from "firebase/firestore";
 import React, { useState, useEffect, useRef } from "react";
-import { useFirestoreQuery } from './Hooks';
 import { db } from "../../utils/firebaseApp";
+import "./Chat.css";
 
 const Channel = ({ user = null }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState([]);
-    const { uid, displayName, photoURL } = user;
+    const db = firebase.firestore();
+    const query = db.collection('messages').orderBy('createdAt').limit(100);
     useEffect(() => {
-        if (db) {
-         const unsuscribe =  db
-            .collection('messages')
-            .orderBy('createdAT')
-            .limit(150);
-            .onSnapshot(querySnapshot => {
-                // Get all documents from collection - with IDs
-                const data = querySnapshot.docs.map(doc => ({
-                  ...doc.data(),
-                  id: doc.id,
-                }));
-              });
-           return unsuscribe;
-        }
-    }, [db]);
+        // Subscribe to query with onSnapshot
+        const unsubscribe = query.onSnapshot(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id,
+              }));
+        setMessages(data);
+        });
+      
+        // Detach listener
+        return unsubscribe;
+      }, []);
     const handleOnChange = e => {
         setNewMessage(e.target.value)
     };
-    const handleOnSumit = e => {
+    const handleOnSubmit = e => {
         e.preventDefault();
-        if (db){
-            db.collection('messages').add({
-                text:newMessage,
-                createdAT: firebase.firestore.FieldValue.serverTimestamp(),
-                uid,
-                displayName,
-                photoURL
-            })
+      
+        
+        if (db) {
+          
+        db.collection('messages').add({
+            text: newMessage,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+          
+          setNewMessage('');
         }
-    };
+      };
     return (
     <>
       <ul>
         {messages.map(message => (
-          <li key={message.id}>{message.text}</li>
+          <li key={message.id}><Message {...message}/></li>
         ))}
       </ul>
       <form
+        className="formchat"
         onSubmit={handleOnSubmit}>
         <input
-          ref={inputRef}
+        className="input-texto"
           type="text"
           value={newMessage}
           onChange={handleOnChange}
-          placeholder="Type your message here..."
+          placeholder="|"
         />
         <button
+          className="enviar"
           type="submit"
           disabled={!newMessage}
         >
-          Send
+          Enviar
         </button>
       </form>
     </>
