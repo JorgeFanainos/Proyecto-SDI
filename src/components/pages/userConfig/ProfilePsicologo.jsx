@@ -365,8 +365,8 @@ const Profile = () => {
             <img
               src={display.img}
               alt="fotico"
-              height="100"
-              width="100"
+              height="200"
+              width="200"
               className="perfilpic"
             />
           </div>
@@ -414,8 +414,7 @@ const Profile = () => {
             {display.biod}
           </div>
         </div>
-        <br />
-        <br />
+        
 
         <div className="Info1">
           <form className="newUserForm" onSubmit={handleSubmit1}>
@@ -496,7 +495,6 @@ const Profile = () => {
                 <label htmlFor="other">Otro</label>
               </div>
             </div>
-
             <div>
               <br />
               <br />
