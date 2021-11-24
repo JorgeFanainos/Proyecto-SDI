@@ -244,9 +244,11 @@ const Profile = () => {
                 let firstNamed = doc.data().name;
                 let lastNamed = doc.data().lastname;
                 let phoneNumberd = doc.data().phoneNumber;
+                let photoupdate = doc.data().photo;
                 updateProfile(auth.currentUser, {
                   displayName: firstNamed + " " + lastNamed,
                   phoneNumber: phoneNumberd,
+                  photoURL: photoupdate,
                 })
                   .then(() => {
                     console.log("profile updated");

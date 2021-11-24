@@ -13,10 +13,8 @@ function AgendarCita() {
     psicoid: "",
     date: "",
     time: "",
-    clientname: "",
-    clientlastname: "",
-    clientid: "",
     pago: "standby",
+    status: "pending",
     asunto: "",
     descripcion: "",
   });
