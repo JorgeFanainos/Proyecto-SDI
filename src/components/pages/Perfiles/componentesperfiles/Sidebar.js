@@ -55,12 +55,6 @@ function Sidebar() {
             </Link>
             <br />
             <br />
-            <Link to="/agendarcita">
-              <li className="sidebarListItem">
-                <DateRangeIcon className="sidebarIcon" />
-                Agendar una Cita
-              </li>
-            </Link>
             <br />
             <br />
           </ul>
