@@ -15,7 +15,6 @@ import comoFuncionamos from "./components/pages/PageFooter/ComoFuncionamos";
 import Testimonios from "./components/pages/PageFooter/Testimonios";
 import Contacto from "./components/pages/PageFooter/Contacto";
 import Soporte from "./components/pages/PageFooter/Soporte";
-import Pasarela from "./components/pages/Stripe/Pasarela";
 import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario";
 import AgendarCita from "./components/pages/Perfiles/AgendarCita/AgendarCita";
 import BuscarPsicologo from "./components/pages/BuscarPsicologos/BuscarPsicologos";
@@ -49,7 +48,6 @@ function App() {
           <Route path="/colaboradores" component={Colaboradores} />
           <Route path="/terminos" component={terminos} />
           <Route path="/soporte" component={Soporte} />
-          <Route path="/pasarela" component={Pasarela} />
           <Route path="/perfilusuario" component={PerfilUsuario} />
           <Route path="/userconfig" component={userConfig} />
           <Route path="/userconfigpsicologo" component={userConfigpsicologo} />

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./AgendarCita.css";
 import { Link } from "react-router-dom";
 import { auth, db } from "../../../../utils/firebaseApp";
+import Pasarela from "../../Stripe/Pasarela";
 
 function AgendarCita() {
   const history = useHistory();
@@ -134,10 +135,7 @@ function AgendarCita() {
         <p>Precio de la Consulta</p>
         <br />
         <br />
-        <button className="boton" onClick={handlecita1}>
-          {" "}
-          Pagar
-        </button>
+        <Pasarela onClick={handlecita1}/>
       </div>
     </div>
   );

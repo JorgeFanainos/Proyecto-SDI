@@ -1,5 +1,5 @@
 .contenedor {
-	width: 40%;
+	width: 60%;
 	max-width: 1000px;
 	margin: 50px auto;
 	text-align: center;
@@ -10,9 +10,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	margin-left: 5%;
+	margin-right: 2%;
 }
 .contenedorTexto {
-	width: 50%;
+	width: 40%;
 	max-width: 1000px;
 	margin: 50px auto;
 	text-align: center;
@@ -23,6 +25,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	margin-right: 5%;
+	margin-left: 2%;
 }
 .contenedorTodo{
 	display: flex;

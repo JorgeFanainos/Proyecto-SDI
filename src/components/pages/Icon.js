@@ -466,3 +466,28 @@ export function Exito(){
       cancelButtonAriaLabel: 'Thumbs down'
     })
   }
+  export function Pagoexitoso(){
+    Swal.fire(
+        'Su pago fue exitoso!',
+        'Gracias por confiar en nuestra plataforma!',
+        'success'
+      )
+  }
+  export function PagoMal(){
+    Swal.fire({
+      title: 'Ocurrio un error al procesar su pago!',
+      text: "Porfavor Intente nuevamente!",
+      icon: 'error',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+    })
+  }
+  export function PagoCancelado(){
+    Swal.fire({
+      title: 'Usted Cancelo el pago',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+    })
+  }

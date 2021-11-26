@@ -1,5 +1,6 @@
 import React from "react";
 import './pagesFooter.css';
+import Pasarela from "../Stripe/Pasarela";
 
 function Contacto(){
     return(
