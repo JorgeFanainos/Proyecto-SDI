@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./AgendarCita.css";
-import { Link } from "react-router-dom";
 import { auth, db } from "../../../../utils/firebaseApp";
-import Pasarela from "../../Stripe/Pasarela";
+import ReactDOM from "react-dom";
+import paypal from "paypal-checkout";
+import { Pagoexitoso, PagoCancelado, PagoMal } from "../../Icon";
+import { Button } from "@material-ui/core";
 
 function AgendarCita() {
   const history = useHistory();
@@ -14,7 +16,7 @@ function AgendarCita() {
     psicoid: "",
     date: "",
     time: "",
-    pago: "standby",
+    pago: "done",
     status: "pending",
     asunto: "",
     descripcion: "",
@@ -31,7 +33,20 @@ function AgendarCita() {
   console.log(values.psiconame, values.psicoid, values.psicolastname);
 
   const validate = () => {
-    return true;
+    if (values.asunto === "" || values.asunto.length < 3) {
+      return false;
+    }
+    if (values.descripcion === "" || values.descripcion.length < 3) {
+      return false;
+    }
+    if (values.date === "") {
+      return false;
+    }
+    if (values.time === "") {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const crear_cita_user = async () => {
@@ -69,18 +84,80 @@ function AgendarCita() {
         console.error();
       });
   };
-  const handlecita1 = () => {
+  const handlecita = () => {
     const isvalid = validate();
     if (isvalid) {
       try {
         crear_cita_user();
         crear_cita_psico();
-        history.push("/pasarela");
       } catch (error) {}
     } else {
       window.alert("Alguno de sus datos esta incompleto o no es aceptable");
     }
   };
+
+  const paypalConf = {
+    currency: "USD",
+    env: "sandbox",
+    client: {
+      sandbox:
+        "AYzvDF3dAHirlR1fNpr58mqVlLZYXLApfdth1tKg6OIH_gn58d5YtHpNRTM_xZutXD1n2zpvXVqpx2Hv",
+      production: "--id--",
+    },
+    style: {
+      lable: "pay",
+      size: "medium",
+      shape: "pill",
+      color: "gold",
+    },
+  };
+  const PayPalButton = paypal.Button.driver("react", { React, ReactDOM });
+  const payment = (data, actions) => {
+    const payment = {
+      transactions: [
+        {
+          amount: {
+            total: "20",
+            currency: paypalConf.currency,
+          },
+          description: "Pago de cita!",
+        },
+      ],
+    };
+    return actions.payment.create({ payment });
+  };
+
+  const onAuthorize = (data, actions) => {
+    const isvalid = validate();
+    if (isvalid) {
+      try {
+        return actions.payment
+          .execute()
+          .then((response) => {
+            console.log(response);
+            crear_cita_user();
+            crear_cita_psico();
+            Pagoexitoso();
+          })
+          .catch((error) => {
+            console.log(error);
+            PagoMal();
+          });
+      } catch (error) {}
+    } else {
+      window.alert("Alguno de sus datos esta incompleto o no es aceptable");
+      PagoMal();
+    }
+  };
+
+  const onError = (error) => {
+    console.log(error);
+    PagoMal();
+  };
+  const onCancel = (data, actions) => {
+    PagoCancelado();
+  };
+
   return (
     <div className="contenedorTodo">
       <div className="contenedorTexto">
@@ -137,7 +214,17 @@ function AgendarCita() {
         <p className="p">20$</p>
         <br />
         <br />
-        <Pasarela onClick={handlecita1}/>
+        <PayPalButton
+          env={paypalConf.env}
+          client={paypalConf.client}
+          payment={(data, actions) => payment(data, actions)}
+          onAuthorize={(data, actions) => onAuthorize(data, actions)}
+          onCancel={(data, actions) => onCancel(data, actions)}
+          onError={(error) => onError(error)}
+          style={paypalConf.style}
+          commit
+          locale="es_MX"
+        />
       </div>
     </div>
   );
