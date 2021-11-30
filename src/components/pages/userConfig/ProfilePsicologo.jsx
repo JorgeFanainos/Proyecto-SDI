@@ -261,10 +261,12 @@ const Profile = () => {
                 let firstNamed = doc.data().name;
                 let lastNamed = doc.data().lastname;
                 let phoneNumberd = doc.data().phoneNumber;
+                let photoUrl = doc.data().img;
 
                 updateProfile(auth.currentUser, {
                   displayName: firstNamed + " " + lastNamed,
                   phoneNumber: phoneNumberd,
+                  photoURL: photoUrl,
                 })
                   .then(() => {
                     console.log("profile updated");
@@ -356,7 +358,9 @@ const Profile = () => {
         <div className="divTexto1">
           <h2 className="newUserTitle">Configure sus datos</h2>
         </div>
-        
+        <div className="divTexto">
+          <h2 className="newUserTitle"> Cambie su contraseña</h2>
+        </div>
       </div>
       <br />
       <div className="ContenedorTODO">
@@ -414,7 +418,8 @@ const Profile = () => {
             {display.biod}
           </div>
         </div>
-        
+        <br />
+        <br />
 
         <div className="Info1">
           <form className="newUserForm" onSubmit={handleSubmit1}>
@@ -495,6 +500,7 @@ const Profile = () => {
                 <label htmlFor="other">Otro</label>
               </div>
             </div>
+
             <div>
               <br />
               <br />
@@ -505,9 +511,8 @@ const Profile = () => {
               </div>
             </div>
           </form>
-         
-          <h2 className="newUserTitle"> Cambie su contraseña</h2>
-        
+        </div>
+        <div className="Info2">
           <form className="newUserForm" onSubmit={handleSubmit2}>
             <div className="newUserItem">
               <label>Contraseña Actual</label>

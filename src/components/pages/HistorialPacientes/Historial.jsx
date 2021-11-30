@@ -207,7 +207,7 @@ const Historial = () => {
             type="text"
             id="search"
             name="search"
-            placeholder="ingrese nombre o correo"
+            placeholder="ingrese nombre"
             value={values.search}
             onChange={handleOnChange}
           />

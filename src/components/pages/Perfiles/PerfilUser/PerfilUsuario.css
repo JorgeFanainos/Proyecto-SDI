@@ -1,10 +1,14 @@
-.container{
-    display: flex;
-    background-color: #fff;
+.container {
+  display: flex;
+  background-color: #fff;
 }
 
+.table {
+  margin-top: 60px;
+  margin-left: 60px;
+}
 
-.link{
-    text-decoration: none;
-    color: inherit;
+.link {
+  text-decoration: none;
+  color: inherit;
 }

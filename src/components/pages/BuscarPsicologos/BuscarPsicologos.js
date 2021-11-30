@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "../../../utils/firebaseApp";
+import { db } from "../../../utils/firebaseApp";
 import Buscador from "./BuscadorPsico";
 import "./Buscar.css";
 import Sidebar from "../Perfiles/componentesperfiles/Sidebar";

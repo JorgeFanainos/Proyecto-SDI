@@ -45,6 +45,7 @@ function AgendarCita() {
         date: values.date,
         time: values.time,
         pago: values.pago,
+        status: values.status,
       })
       .catch((error) => {
         console.error();
@@ -62,6 +63,7 @@ function AgendarCita() {
         date: values.date,
         time: values.time,
         pago: values.pago,
+        status: values.status,
       })
       .catch((error) => {
         console.error();
@@ -135,7 +137,10 @@ function AgendarCita() {
         <p>Precio de la Consulta</p>
         <br />
         <br />
-        <Pasarela onClick={handlecita1}/>
+        <button className="boton" onClick={handlecita1}>
+          {" "}
+          Pagar
+        </button>
       </div>
     </div>
   );

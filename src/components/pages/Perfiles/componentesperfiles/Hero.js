@@ -1,127 +1,74 @@
 import "./Hero.css";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, gridColumnLookupSelector } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db, auth } from "../../../../utils/firebaseApp";
+import Sidebar from "../componentesperfiles/Sidebar";
+import { render } from "react-dom";
 
 export default function Hero() {
-    const userRows = [
-        {
-          id: 1,
-          username: "Mary Rosamund",
-          especialidad: "Neuropsicólogo",
-          date: "1/05/2021",
-          transaction: "$21.00",
-        },
-        {
-          id: 2,
-          username: "Jane Doe",
-          especialidad: "Psiquiatra",
-          date: "2/05/2021",
-          transaction: "$22.00",
-        },
-        {
-          id: 3,
-          username:"Sherlock Watson" ,
-          especialidad: "Especialista en ansiedad",
-          date: "3/05/2021",
-          transaction: "$23.00",
-        },
-        {
-          id: 4,
-          username: "John Holmes",
-          especialidad: "Psicoterapeuta",
-          date: "4/05/2021",
-          transaction: "$24.00",
-        },
-        {
-          id: 5,
-          username: "Andres Gonzales",
-          especialidad: "Psicólogo educativo",
-          date: "5/05/2021",
-          transaction: "$24.00",
-        },
-        {
-          id: 6,
-          username: "Mycroft Lestrade",
-          especialidad: "Psicólogo de desarrollo",
-          date: "6/05/2021",
-          transaction: "$25.00",
-        },
-        {
-          id: 7,
-          username: "Jorge Perez",
-          especialidad: "Neuropsicólogo",
-          date: "7/05/2021",
-          transaction: "$26.00",
-        },
-        {
-          id: 8,
-          username: "Mycroft Lestrade",
-          especialidad: "Neuropsicólogo",
-          date: "8/05/2021",
-          transaction: "$27.00",
-        },
-        {
-          id: 9,
-          username: "Andres Gonzales",
-          especialidad: "Psicoterapeuta",
-          date: "9/05/2021",
-          transaction: "$28.00",
-        },
-      ];
-    
-  const [data, setData] = useState(userRows);
+  const [refresh, setRefresh] = useState(0);
+  const [values, setValues] = useState({
+    listacitas: [],
+  });
+  const [order, setOrder] = useState("ASC");
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-  
-  const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "username",
-      headerName: "Nombre",
-      width: 200
-    },
-    { field: "date", headerName: "Fecha", width: 200 },
-    {
-      field: "especialidad",
-      headerName: "Especialidad",
-      width: 200,
-    },
-    {
-      field: "transaction",
-      headerName: "Pago Consulta",
-      width: 180,
-    },
-    {
-      field: "action",
-      headerName: "Borrar",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
-    },
-  ];
+  async function getCitas() {
+    try {
+      const citasref = await db.collection(
+        `users/${auth.currentUser.uid}/citas`
+      );
+
+      const citas = await citasref.get();
+      citas.forEach((doc) => {
+        var data = doc.data();
+
+        values.listacitas.push(data);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  console.log(values.listacitas);
+
+  useEffect(() => {
+    getCitas();
+  }, [refresh]);
 
   return (
-    <div className="userList">
-      <h1 className="titulo1">Agenda de Citas</h1>
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={9}
-        checkboxSelection
-      />
+    <div className="container">
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous"
+      ></link>
+      <Sidebar />
+      <div className="table">
+        <table class="table table-bordered">
+          <thead>
+            <th class="text-center"> Nombre del Especialista </th>
+            <th class="text-center"> Fecha de Cita </th>
+            <th class="text-center"> Hora de Cita </th>
+            <th class="text-center"> Asunto de Cita </th>
+          </thead>
+          <tbody id="tbody1">
+            {" "}
+            {values.listacitas.map((data) => {
+              return (
+                <tr>
+                  <td class="text-center">{data.name}</td>
+                  <td class="text-center">{data.date}</td>
+                  <td class="text-center">{data.time}</td>
+                  <td class="text-center">{data.asunto}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div></div>
     </div>
   );
 }

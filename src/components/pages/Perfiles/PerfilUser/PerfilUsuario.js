@@ -1,12 +1,12 @@
 import Sidebar from "../componentesperfiles/Sidebar";
 import Hero from "../componentesperfiles/Hero";
 import "./PerfilUsuario.css";
+
 function PerfilUsuario() {
   return (
     <div className="container">
       <Sidebar />
-
-      <Hero />
+      <h1>Bienvenido de nuevo !</h1>
     </div>
   );
 }

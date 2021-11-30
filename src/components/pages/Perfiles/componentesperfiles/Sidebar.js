@@ -27,6 +27,13 @@ function Sidebar() {
               Editar Perfil
             </li>
           </Link>
+          <br />
+          <Link to="/citasagendadasusuario">
+            <li className="sidebarListItem">
+              <DateRangeIcon className="sidebarIcon" />
+              Citas Agendadas
+            </li>
+          </Link>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Menú</h3>

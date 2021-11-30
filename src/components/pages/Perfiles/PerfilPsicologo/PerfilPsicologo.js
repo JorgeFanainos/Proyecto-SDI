@@ -5,7 +5,7 @@ function PerfilPsicologo() {
   return (
     <div className="container">
       <SidebarPsico />
-      <HeroPsicologo/>
+      <HeroPsicologo />
     </div>
   );
 }
