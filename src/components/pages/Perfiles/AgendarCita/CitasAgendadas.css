@@ -1,10 +1,14 @@
 .container{
     display: flex;
     margin-top: 10px;
+    flex-direction: row;
 }
 
 
 .link{
     text-decoration: none;
     color: inherit;
+}
+.sidebarcitas{
+    width: 20%;
 }

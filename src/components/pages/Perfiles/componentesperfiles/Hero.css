@@ -3,12 +3,21 @@
   background-color: #fff;
 }
 
-.table {
-  margin-top: 60px;
-  margin-left: 60px;
-}
 
 .link {
   text-decoration: none;
   color: inherit;
+}
+.userList{
+  width: 80%;
+}
+.sidebarcitas1{
+  width: 20%;
+  margin-left: -100px; 
+}
+@media screen and (max-width: 1024px) {
+  .sidebarcitas1{
+    width: 40%;
+    margin-left: -10px; 
+  }
 }

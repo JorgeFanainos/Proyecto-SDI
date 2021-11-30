@@ -1,5 +1,4 @@
 import React from "react";
-import './Icon.css';
 import Swal from 'sweetalert2'
 export function Icon() {
   return (

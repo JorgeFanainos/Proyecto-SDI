@@ -44,7 +44,9 @@ export default function Hero() {
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
         crossorigin="anonymous"
       ></link>
+      <div className="sidebarcitas1">
       <Sidebar />
+      </div>
       <div className="table">
         <table class="table table-bordered">
           <thead>
@@ -68,7 +70,6 @@ export default function Hero() {
           </tbody>
         </table>
       </div>
-      <div></div>
     </div>
   );
 }

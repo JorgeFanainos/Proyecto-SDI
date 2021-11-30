@@ -6,7 +6,9 @@ function PerfilUsuario() {
   return (
     <div className="container">
       <Sidebar />
-      <h1>Bienvenido de nuevo !</h1>
+      <div className="textoprfil">
+        <h1 className="h1perfil">Bienvenido de nuevo !</h1>
+      </div>
     </div>
   );
 }

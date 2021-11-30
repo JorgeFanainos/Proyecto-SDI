@@ -4,8 +4,13 @@ import HeroPsicologo from "../componentesperfiles/HeroPsicologo";
 function PerfilPsicologo() {
   return (
     <div className="container">
-      <SidebarPsico />
+      <div className="divsidebar">
+        <SidebarPsico />
+      </div>
+      
       <HeroPsicologo />
+      
+      
     </div>
   );
 }

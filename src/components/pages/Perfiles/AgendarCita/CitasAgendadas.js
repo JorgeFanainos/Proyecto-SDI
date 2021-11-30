@@ -40,8 +40,12 @@ function CitasAgendadas() {
   }, [refresh]);
   return (
     <div className="container">
-      <SidebarPsico />
+      <div className="sidebarcitas">
+        <SidebarPsico />
+      </div>
+      <div className="herocitas">
       <HeroCitas />
+      </div>
     </div>
   );
 }

@@ -134,13 +134,10 @@ function AgendarCita() {
         </div>
         <br />
         <br />
-        <p>Precio de la Consulta</p>
+        <p className="p">20$</p>
         <br />
         <br />
-        <button className="boton" onClick={handlecita1}>
-          {" "}
-          Pagar
-        </button>
+        <Pasarela onClick={handlecita1}/>
       </div>
     </div>
   );
