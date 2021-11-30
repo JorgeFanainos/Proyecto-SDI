@@ -1,40 +1,51 @@
-.notes {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-gap: 15px;
-	padding: 15px;
+.boton_feed{
+	background-color: transparent;
+	border-color: rgb(58, 50, 175);
+	color: rgb(45, 36, 175);
+	padding: 8px 20px;
+	cursor: pointer;
+	position: relative;
+	margin-top: 1%;
+	margin-right: 5%;
+	margin-left: 10%;
+	width: 10%;
   }
-  .notes .note {
-	background: #FFFFFF;
-	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  .boton_feed:hover {
+	background-color: rgb(58, 50, 175);
+	border-color: rgb(58, 50, 175);
+	color: rgb(255, 255, 255);
+	padding: 8px 20px;
+	cursor: pointer;
+	position: relative;
+	margin-top: 1%;
+	margin-right: 5%;
+	margin-left: 10%;
+	width: 10%;
   }
-  
-  .notes .note .note-title {
-	background: #0a1c85;
-	padding: 15px;
+  .input-texto{
+	display:grid;
+	height: 30px;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin-left: 5%;
+	width: 25%;
+  }
+  .Testimonio{
+	margin-top: 2%;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    flex-direction: column;
+    position: absolute;
+	color: rgb(58, 50, 175);
+	font-family: 'PT Sans', sans-serif;
+	font-size: larger;
+	margin-left: 3%;
   }
-  
-  .notes .note .note-title h3 {
-	color: #f3f3f3;
-	margin: 0;
-	padding: 0;
+  .formTestimonio{
+	display: flex;
+    flex-direction: row;
+    position: absolute;
   }
-  
-  .notes .note .note-title .remove {
-	color: #FF0000;
-	font-size: 24px;
-	font-weight: 700;
-  }
-  
-  .notes .note .note-content {
-	padding: 15px;
-  }
-  
-  @media screen and (min-width: 768px) {
-	.notes {
-	  grid-template-columns: repeat(3, 1fr);
-	}
-  }
+.textotestimo{
+	font-size:xx-large;
+}

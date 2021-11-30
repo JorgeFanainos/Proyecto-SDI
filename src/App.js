@@ -12,7 +12,7 @@ import RegistroPsico from "./components/pages/Registro/RegistroPsico";
 import terminos from "./components/pages/PageFooter/Terminos";
 import Colaboradores from "./components/pages/PageFooter/Colaboradores";
 import comoFuncionamos from "./components/pages/PageFooter/ComoFuncionamos";
-import Testimonios from "./components/pages/PageFooter/Testimonios";
+import Testimonio from "./components/pages/PageFooter/Testimonios";
 import Contacto from "./components/pages/PageFooter/Contacto";
 import Soporte from "./components/pages/PageFooter/Soporte";
 import PerfilUsuario from "./components/pages/Perfiles/PerfilUser/PerfilUsuario";
@@ -44,7 +44,7 @@ function App() {
           <Route path="/contacto" component={Footer} />
           <Route path="/contactos" component={Contacto} />
           <Route path="/paginaProblemas" component={comoFuncionamos} />
-          <Route path="/testimonios" component={Testimonios} />
+          <Route path="/testimonios" component={Testimonio} />
           <Route path="/colaboradores" component={Colaboradores} />
           <Route path="/terminos" component={terminos} />
           <Route path="/soporte" component={Soporte} />
