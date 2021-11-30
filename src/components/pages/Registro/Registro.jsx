@@ -140,7 +140,7 @@ const Registro = () => {
     <div className="newUser">
       <h1 className="newUserTitle">Registrarse</h1>
       <p className="p1">Completa el formulario para completar tu cuenta</p>
-      <div className="ContenedorTODO">
+      <div className="ContenedorTODO11">
         <form className="newUserForm" onSubmit={handleSubmit}>
           <div className="divcontenedor">
             <div className="newUserItem">

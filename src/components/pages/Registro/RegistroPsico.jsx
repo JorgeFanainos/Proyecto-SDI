@@ -171,7 +171,7 @@ const RegistroPsico = () => {
       <br />
       <br />
       <br />
-      <div className="ContenedorTODO">
+      <div className="ContenedorTODO11">
         <form className="newUserForm" onSubmit={handleSubmit}>
           <div className="divcontenedorpsico">
             <div className="divcredenciales">

@@ -4,35 +4,35 @@
 	color: rgb(45, 36, 175);
 	padding: 8px 20px;
 	cursor: pointer;
-	position: relative;
 	margin-top: 1%;
 	margin-right: 5%;
-	margin-left: 10%;
-	width: 10%;
+	margin-left: 5%;
+	width: 100%;
+
+	
   }
-  .boton_feed:hover {
+.textotestimo1{
+	font-family: 'PT Sans', sans-serif;
+  }
+.boton_feed:hover {
 	background-color: rgb(58, 50, 175);
 	border-color: rgb(58, 50, 175);
 	color: rgb(255, 255, 255);
-	padding: 8px 20px;
-	cursor: pointer;
-	position: relative;
-	margin-top: 1%;
-	margin-right: 5%;
-	margin-left: 10%;
-	width: 10%;
   }
-  .input-texto{
+.input-texto1{
+	display: flex;
+	flex-direction: column;
 	display:grid;
 	height: 30px;
 	padding: 10px;
 	border: 1px solid gray;
 	border-radius: 5px;
 	margin-left: 5%;
-	width: 25%;
-  }
-  .Testimonio{
+	width: 100%;
 	margin-top: 2%;
+  }
+.Testimonio1{
+	margin-top: 7%;
 	display: flex;
     flex-direction: column;
     position: absolute;
@@ -41,11 +41,16 @@
 	font-size: larger;
 	margin-left: 3%;
   }
-  .formTestimonio{
+.formTestimonio1{
 	display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
   }
-.textotestimo{
+.textotestimo1{
 	font-size:xx-large;
+}
+.contenedorTesti1{
+    display: flex;
+    flex-direction: row;
+    
 }

@@ -35,3 +35,7 @@ body {
     color: #F3F3F3;
     font-weight: 300;
   }
+  .contenedor_canal{
+    display: flex;
+    flex-direction: row;
+  }

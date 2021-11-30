@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { db, auth, storage } from "../../../utils/firebaseApp";
+import { db, auth, storage } from "../../../../utils/firebaseApp";
 import firebase from "firebase/compat/app";
-import "./Profile.css";
 import { updateProfile } from "firebase/auth";
+import'./Infogene.css'
 import {
+  Icon,
   errorNombre,
   errorContra,
+  errorCorreo,
   errorApelli,
   errorTelef,
   errorContraInv,
   Timer2,
-} from "../Icon";
+} from "../../Icon";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import { Tooltip } from "@material-ui/core";
 
-const Profile = () => {
+const Infousuario = () => {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: "",
     email: "",
     gender: "",
-    bio: "",
     password: "",
     newpassword: "",
     confirmed_password: "",
@@ -37,7 +38,6 @@ const Profile = () => {
     lastNamed: "",
     phoneNumberd: "",
     genderd: "",
-    biod: "",
     img: "",
   });
 
@@ -50,7 +50,6 @@ const Profile = () => {
     tlfError: "",
     empswrdError: "",
     cregistered: "",
-    bioerror: "",
   });
 
   const handleOnChange = (event) => {
@@ -63,10 +62,8 @@ const Profile = () => {
     let nameError = "";
     let lastNameError = "";
     let tlfError = "";
-    let bioerror = "";
     let name = values.firstName.length;
     let lastName = values.lastName.length;
-    let bio = values.bio.length;
     let tlf = values.phoneNumber.length;
     var letters = /^[A-Za-z]+$/;
 
@@ -74,11 +71,6 @@ const Profile = () => {
       nameError = false;
     } else if (!values.firstName.match(letters) || name < 4) {
       nameError = errorNombre();
-    }
-    if (bio === 0) {
-      bioerror = false;
-    } else if (bio < 4) {
-      bioerror = errorNombre();
     }
     if (lastName === 0) {
       lastNameError = false;
@@ -88,19 +80,18 @@ const Profile = () => {
 
     if (tlf === 0) {
       tlfError = false;
-    } else if (tlf < 11) {
+    } else if (tlf < 6) {
       tlfError = errorTelef();
     }
 
-    if (lastNameError || nameError || tlfError || bioerror) {
+    if (lastNameError || nameError || tlfError) {
       setErrors({
         nameError,
         lastNameError,
         tlfError,
-        bioerror,
       });
       return false;
-    } else if (!tlf && !name && !lastName && !bio) {
+    } else if (!tlf && !name && !lastName) {
       window.alert("Debe realizar al menos un cambio");
       return false;
     } else {
@@ -108,7 +99,6 @@ const Profile = () => {
         nameError,
         lastNameError,
         tlfError,
-        bioerror,
       });
       return true;
     }
@@ -132,7 +122,7 @@ const Profile = () => {
       newpswrdError = errorContra();
     }
     if (confirmpss < 6) {
-      cpassword = errorApelli();
+      cpassword = errorContra();
     }
     if (values.newpassword !== values.confirmed_password) {
       cpassword = errorContraInv();
@@ -179,11 +169,6 @@ const Profile = () => {
         phoneNumber: values.phoneNumber,
       });
     }
-    if (values.bio !== "") {
-      await db.collection("users").doc(auth.currentUser.uid).update({
-        bio: values.bio,
-      });
-    }
   };
   const handlePicChange = async (e) => {
     //FALTA PONERLE UN TIMER PARA QUE LA PERSONA NO CRISEE
@@ -205,6 +190,7 @@ const Profile = () => {
     const fileinput = document.getElementById("imgInput");
     fileinput.click();
   };
+
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
       unsub();
@@ -218,16 +204,13 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
-            let biod = doc.data().bio;
             let img = doc.data().img;
-
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
-              biod,
               img,
             });
           });
@@ -261,12 +244,11 @@ const Profile = () => {
                 let firstNamed = doc.data().name;
                 let lastNamed = doc.data().lastname;
                 let phoneNumberd = doc.data().phoneNumber;
-                let photoUrl = doc.data().img;
-
+                let photoupdate = doc.data().photo;
                 updateProfile(auth.currentUser, {
                   displayName: firstNamed + " " + lastNamed,
                   phoneNumber: phoneNumberd,
-                  photoURL: photoUrl,
+                  photoURL: photoupdate,
                 })
                   .then(() => {
                     console.log("profile updated");
@@ -330,16 +312,13 @@ const Profile = () => {
             let emaild = doc.data().email;
             let genderd = doc.data().gender;
             let phoneNumberd = doc.data().phoneNumber;
-            let biod = doc.data().bio;
             let img = doc.data().img;
-
             setdisplay({
               firstNamed,
               lastNamed,
               emaild,
               genderd,
               phoneNumberd,
-              biod,
               img,
             });
           });
@@ -349,167 +328,57 @@ const Profile = () => {
     });
   }, []);
 
-  return (
-    <div className="newUser">
-      <div className="divTexto3">
-          <h2 className="newUserTitle">Configure sus datos</h2>
-        
-      </div>
-      <br />
-      <div className="ContenedorTODO">
-        <div className="Info1">
-          <form className="newUserForm" onSubmit={handleSubmit1}>
-            <div className="newUserItem">
-              <label>Nombre</label>
-              <input
-                type="text"
-                placeholder={display.firstNamed}
-                name="firstName"
-                variant="filled"
-                value={values.firstName}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.nameError}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Apellido</label>
-              <input
-                name="lastName"
-                type="text"
-                placeholder={display.lastNamed}
-                variant="filled"
-                value={values.lastName}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.lastNameError}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Numero De Teléfono</label>
-              <input
-                name="phoneNumber"
-                type="number"
-                placeholder={display.phoneNumberd}
-                variant="filled"
-                value={values.phoneNumber}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.tlfError}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Bio</label>
-              <input
-                name="bio"
-                type="text"
-                placeholder={display.biod}
-                variant="filled"
-                value={values.bio}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.bioerror}</div>
-            </div>
-            <div className="newUserItem">
-              <label>Genero</label>
-              <div className="newUserGender">
-                <input
-                  name="gender"
-                  type="radio"
-                  id="male"
-                  value="male"
-                  onChange={handleOnChange}
-                />
-                <label htmlFor="male">Hombre</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  value="female"
-                  onChange={handleOnChange}
-                />
-                <label htmlFor="female">Mujer</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  id="other"
-                  value="other"
-                  onChange={handleOnChange}
-                />
-                <label htmlFor="other">Otro</label>
-              </div>
-            </div>
-
-            <div>
-              <br />
-              <br />
-              <div className="boton-registro">
-                <button className="link" type="submit">
-                  Guardar cambios
-                </button>
-              </div>
-            </div>
-          </form>
+return (
+        <div className="Contenedor">
+          <div className="newUserItem">
+            <img
+              src={display.img}
+              alt="fotico"
+              height="200"
+              width="200"
+              className="perfilpic"
+            />
+          </div>
+          <div>
+            <input
+              hidden
+              type="file"
+              id="imgInput"
+              accept=".png,.jpg"
+              onChange={handlePicChange}
+            />
+            <br />
+            <Tooltip title="Edite su foto de perfil" placement="right">
+              <IconButton onClick={handleEditPic}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className="newUserItem">
+            <lable>Nombre actual:</lable>
+            {display.firstNamed}
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>Apellido actual:</lable>
+            {display.lastNamed}
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>email:</lable>
+            {display.emaild}
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>numero actual:</lable>
+            {display.phoneNumberd}
+          </div>
+          <br />
+          <div className="newUserItem">
+            <lable>genero:</lable>
+            {display.genderd}
+          </div>
         </div>
-    
-          <h2 className="newUserTitle"> Cambie su contraseña</h2>
-        
-        <div className="Info2">
-          <form className="newUserForm" onSubmit={handleSubmit2}>
-            <div className="newUserItem">
-              <label>Contraseña Actual</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Ingrese su contraseña actual"
-                variant="filled"
-                required
-                value={values.password}
-                onChange={handleOnChange}
-              />
-              <div className="error">{errors.pswrdError}</div>
-            </div>
-
-            <div className="newUserItem">
-              <label>Nueva Contraseña</label>
-              <input
-                name="newpassword"
-                type="password"
-                placeholder="Ingrese su nueva contraseña"
-                variant="filled"
-                required
-                value={values.newpassword || ""}
-                onChange={handleOnChange}
-              />
-
-              <div className="error">{errors.newpswrdError}</div>
-            </div>
-
-            <div className="newUserItem">
-              <label>Confirmar Nueva contraseña</label>
-              <input
-                name="confirmed_password"
-                type="password"
-                placeholder="Confirme su nueva contraseña"
-                variant="filled"
-                required
-                value={values.confirmed_password || ""}
-                onChange={handleOnChange}
-              />
-
-              <div className="error">{errors.cpassword}</div>
-            </div>
-            <div>
-              <br />
-              <br />
-              <div className="boton-registro">
-                <button className="link" type="submit">
-                  Guardar cambios
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+);
 };
-
-export default Profile;
+export default Infousuario;

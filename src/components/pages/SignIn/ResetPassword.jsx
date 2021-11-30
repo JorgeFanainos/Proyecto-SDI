@@ -62,7 +62,7 @@ function ResetPassword() {
   };
 
   return (
-    <div className="ContenedorTODO">
+    <div className="ContenedorTODO11">
       <div className="contenedoricon">
         <Icon3 />
       </div>
@@ -84,7 +84,7 @@ function ResetPassword() {
           <div className="error">{errors.emailErr}</div>
           <br />
           <br />
-          <button className="boton1" onClick={handleSubmit}>
+          <button className="boton11" onClick={handleSubmit}>
             Recuperar
           </button>
         </div>

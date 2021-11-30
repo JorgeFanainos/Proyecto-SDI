@@ -49,3 +49,19 @@
     display: block;
     
 }
+@media screen and (max-width: 960px) {
+  .sidebarListItem.active,
+  .sidebarListItem:hover {
+    background-color: rgb(240, 240, 255);
+    width: 60%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .sidebarListItem.active,
+  .sidebarListItem:hover {
+    background-color: rgb(240, 240, 255);
+    width: 30%;
+  }
+    
+  
+}

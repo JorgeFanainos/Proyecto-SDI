@@ -152,7 +152,7 @@ function SignIn() {
         <br />
       </div>
 
-      <div className="ContenedorTODO">
+      <div className="ContenedorTODO11">
         <div className="contenedorini">
           <div className="newUserItem">
             <label>Correo</label>
@@ -190,10 +190,10 @@ function SignIn() {
             No tienes cuenta? Registrate
           </Link>
           <div className="Contenedor_botones">
-            <button className="boton" onClick={handleSubmit}>
+            <button className="boton11" onClick={handleSubmit}>
               Iniciar Sesión
             </button>
-            <button className="boton" onClick={handleGoogleLogin}>
+            <button className="boton11" onClick={handleGoogleLogin}>
               Iniciar Sesión con Google
             </button>
           </div>

@@ -43,11 +43,7 @@ const Channel = ({ user = null }) => {
       };
     return (
     <>
-      <ul>
-        {messages.map(message => (
-          <li key={message.id}><Message {...message}/></li>
-        ))}
-      </ul>
+     
       <form
         className="formchat"
         onSubmit={handleOnSubmit}>
@@ -64,8 +60,15 @@ const Channel = ({ user = null }) => {
           disabled={!newMessage}
         >
           Enviar
-        </button>
-      </form>
+        </button> 
+        
+      </form> 
+      <br/>
+      <ul>
+        {messages.map(message => (
+          <li key={message.id}><Message {...message}/></li>
+        ))}
+      </ul>
     </>
         
     );

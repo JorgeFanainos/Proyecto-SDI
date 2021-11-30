@@ -44,13 +44,13 @@ const Nota = ({ user = null }) => {
     return (
     <>
       
-	  <p className="textotestimo"> Testimonios</p>
-	  <div className="contenedorTesti">
+	  <p className="textotestimo1"> Testimonios</p>
+	  <div className="contenedorTesti1">
       <form
-        className="formTestimonios"
+        className="formTestimonios1"
         onSubmit={handleOnSubmit}>
         <input
-        className="input-texto"
+        className="input-texto1"
           type="text"
           value={newMessage}
           onChange={handleOnChange}
@@ -64,7 +64,7 @@ const Nota = ({ user = null }) => {
           Enviar
         </button>
       </form></div>
-	  <ul className="Testimonio">
+	  <ul className="Testimonio1">
         {messages.map(message => (
           <li key={message.id}><FormaDeNota {...message}/></li>
         ))}

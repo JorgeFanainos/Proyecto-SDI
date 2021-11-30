@@ -23,8 +23,8 @@ const  Message =({
       {createdAT?.seconds ? (
         <span className="Hora_chat">{formatDate(new Date(createdAT.seconds * 1000))}</span>
       ) : null}
-      
-      <li className="Texto_chat">{text}</li>
+      <br/>
+      <li className="Texto_chat">{text}<br/></li>
       
       </ul>
 }

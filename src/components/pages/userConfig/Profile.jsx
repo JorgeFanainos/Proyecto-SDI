@@ -331,67 +331,12 @@ const Profile = () => {
   return (
     <div className="newUser">
       <div className="divTexto3">
-        <div>
-          <h2 className="newUserTitle">Información actual</h2>
-        </div>
-        <div className="divTexto1">
           <h2 className="newUserTitle">Configure sus datos</h2>
-        </div>
+        
         
       </div>
       <br />
       <div className="ContenedorTODO">
-        <div className="Contenedor">
-          <div className="newUserItem">
-            <img
-              src={display.img}
-              alt="fotico"
-              height="200"
-              width="200"
-              className="perfilpic"
-            />
-          </div>
-          <div>
-            <input
-              hidden
-              type="file"
-              id="imgInput"
-              accept=".png,.jpg"
-              onChange={handlePicChange}
-            />
-            <br />
-            <Tooltip title="Edite su foto de perfil" placement="right">
-              <IconButton onClick={handleEditPic}>
-                <EditIcon />
-              </IconButton>
-            </Tooltip>
-          </div>
-          <div className="newUserItem">
-            <lable>Nombre actual:</lable>
-            {display.firstNamed}
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>Apellido actual:</lable>
-            {display.lastNamed}
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>email:</lable>
-            {display.emaild}
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>numero actual:</lable>
-            {display.phoneNumberd}
-          </div>
-          <br />
-          <div className="newUserItem">
-            <lable>genero:</lable>
-            {display.genderd}
-          </div>
-        </div>
-
         <div className="Info1">
           <form className="newUserForm" onSubmit={handleSubmit1}>
             <div className="newUserItem">

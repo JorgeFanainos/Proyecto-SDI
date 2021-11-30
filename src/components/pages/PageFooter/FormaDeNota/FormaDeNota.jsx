@@ -7,7 +7,7 @@ const  FormaDeNota =({
     displayName  = '',
     photoURL  = '',
 }) =>  {
-    return <ul className="partefeed">
+    return <ul className="partefeed1">
       
       <li className="Texto_chat1">- {text}</li>
       

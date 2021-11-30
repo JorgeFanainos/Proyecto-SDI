@@ -9,7 +9,18 @@
   margin-left: 5%;
   width: 80%;
 }
-.boton:hover {
+.boton11 {
+  background-color: transparent;
+  border-color: rgb(58, 50, 175);
+  color: rgb(45, 36, 175);
+  padding: 8px 20px;
+  cursor: pointer;
+  position: relative;
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 80%;
+}
+.boton11:hover {
   background-color: rgb(58, 50, 175);
   border-color: rgb(58, 50, 175);
   color: rgb(255, 255, 255);
@@ -89,4 +100,8 @@
   border-radius: 10px;
   margin-left: 10%;
   width: 50%;
+}
+.ContenedorTODO11{
+  display: flex;
+  flex-direction: row;
 }
