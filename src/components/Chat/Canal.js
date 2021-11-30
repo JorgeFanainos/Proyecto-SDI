@@ -1,83 +1,69 @@
-import  Message  from "./Message";
+import Message from "./Message";
 import { add } from "date-fns";
 import firebase from "firebase/compat";
 import { QuerySnapshot } from "firebase/firestore";
 import React, { useState, useEffect, useRef } from "react";
-import { db } from "../../utils/firebaseApp";
+import { db, auth } from "../../utils/firebaseApp";
 import "./Chat.css";
 
 const Channel = ({ user = null }) => {
-    const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState([]);
-    const db = firebase.firestore();
-    const query = db.collection('messages').orderBy('createdAt').limit(100);
-    useEffect(() => {
-        // Subscribe to query with onSnapshot
-        const unsubscribe = query.onSnapshot(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => ({
-                ...doc.data(),
-                id: doc.id,
-              }));
-        setMessages(data);
-        });
-      
-        // Detach listener
-        return unsubscribe;
-      }, []);
-    const handleOnChange = e => {
-        setNewMessage(e.target.value)
-    };
-    const handleOnSubmit = e => {
-        e.preventDefault();
-      
-        
-        if (db) {
-          
-        db.collection('messages').add({
-            text: newMessage,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          });
-          
-          setNewMessage('');
-        }
-      };
-    return (
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState([]);
+
+  const query = db.collection("messages").orderBy("createdAt").limit(100);
+  useEffect(() => {
+    // Subscribe to query with onSnapshot
+    const unsubscribe = query.onSnapshot((querySnapshot) => {
+      const data = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setMessages(data);
+    });
+
+    // Detach listener
+    return unsubscribe;
+  }, []);
+  const handleOnChange = (e) => {
+    setNewMessage(e.target.value);
+  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if (db) {
+      db.collection("messages").add({
+        username: auth.currentUser.displayName,
+        text: newMessage,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+
+      setNewMessage("");
+    }
+  };
+  return (
     <>
-     
-      <form
-        className="formchat"
-        onSubmit={handleOnSubmit}>
+      <form className="formchat" onSubmit={handleOnSubmit}>
         <input
-        className="input-texto"
+          className="input-texto"
           type="text"
           value={newMessage}
           onChange={handleOnChange}
           placeholder="|"
         />
-        <button
-          className="enviar"
-          type="submit"
-          disabled={!newMessage}
-        >
+        <button className="enviar" type="submit" disabled={!newMessage}>
           Enviar
-        </button> 
-        
-      </form> 
-      <br/>
+        </button>
+      </form>
+      <br />
       <ul>
-        {messages.map(message => (
-          <li key={message.id}><Message {...message}/></li>
+        {messages.map((message) => (
+          <li key={message.id}>
+            <Message {...message} />
+          </li>
         ))}
       </ul>
     </>
-        
-    );
+  );
 };
-  
-    
-  
- 
-  
 
-  
-  export default Channel;
+export default Channel;
