@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "../../../../utils/firebaseApp";
 import FormaDeNota from "../FormaDeNota/FormaDeNota";
 import "./Nota.css";
+import {Exito} from '../../Icon';
 
 const Nota = ({ user = null }) => {
   const [messages, setMessages] = useState([]);
@@ -36,6 +37,7 @@ const Nota = ({ user = null }) => {
 
       setNewMessage("");
     }
+    
   };
   return (
     <>
@@ -49,19 +51,13 @@ const Nota = ({ user = null }) => {
             onChange={handleOnChange}
             placeholder="Escriba su testimonio"
           />
-          <button className="boton_feed" type="submit" disabled={!newMessage}>
+          <button className="boton_feed" type="submit" disabled={!newMessage} >
             Enviar
           </button>
         </form>
       </div>
-      <ul className="Testimonio1">
-        {messages.map((message) => (
-          <li key={message.id}>
-            <FormaDeNota {...message} />
-          </li>
-        ))}
-      </ul>
     </>
   );
 };
 export default Nota;
+

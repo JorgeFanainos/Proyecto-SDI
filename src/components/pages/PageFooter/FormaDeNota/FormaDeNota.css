@@ -1,8 +1,10 @@
 .partefeed1 {
-	display: block;
+	display: flex;
+	flex-direction: row;
 	width: 100%;
 	max-width: 480px;
 	margin: 0 auto 15px;
+	margin-left: 5%;
   }
   .noteform h3 {
 	color: #171717;
