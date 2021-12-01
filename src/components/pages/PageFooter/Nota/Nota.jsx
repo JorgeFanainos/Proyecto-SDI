@@ -51,7 +51,7 @@ const Nota = ({ user = null }) => {
             onChange={handleOnChange}
             placeholder="Escriba su testimonio"
           />
-          <button className="boton_feed" type="submit" disabled={!newMessage} >
+          <button className="boton_feed" type="submit" disabled={!newMessage} onClick={Exito()}>
             Enviar
           </button>
         </form>
