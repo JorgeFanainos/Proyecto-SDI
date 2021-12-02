@@ -34,24 +34,28 @@ const Nota = ({ user = null }) => {
         text: newMessage,
         username: auth.currentUser.displayName,
       });
-
+    if (newMessage!=="") {
+      Exito()
+    }
       setNewMessage("");
     }
     
   };
+ 
   return (
     <>
       <p className="textotestimo1"> Testimonios</p>
       <div className="contenedorTesti1">
         <form className="formTestimonios1" onSubmit={handleOnSubmit}>
           <input
+            required
             className="input-texto1"
             type="text"
             value={newMessage}
             onChange={handleOnChange}
             placeholder="Escriba su testimonio"
           />
-          <button className="boton_feed" type="submit" disabled={!newMessage} onClick={Exito()}>
+          <button className="boton_feed" type="submit" disabled={!newMessage}  >
             Enviar
           </button>
         </form>
